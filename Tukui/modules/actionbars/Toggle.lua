@@ -388,37 +388,3 @@ for i = 1, 6 do
 		end
 	end)		
 end
-
--- local ff = CreateFrame("Frame", nil, UIParent)
--- ff:CreatePanel("Default", 50, TukuiInfoLeft:GetHeight(), "BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 3)
--- ff:EnableMouse(true)
-
--- local tt = ff:CreateFontString(nil, "OVERLAY")
--- tt:SetFont(TukuiCF["media"].pixel_font, 12, "MONOCHROMEOUTLINE")
--- tt:SetPoint("CENTER", 1, 1)
-
--- local function check()
-	-- if TukuiSaved.actionbarsLocked == true then
-		-- tt:SetText("|cff50e468Unlock")
-	-- elseif TukuiSaved.actionbarsLocked == false then
-		-- tt:SetText("|cffe45050Lock")
-	-- end
--- end
-
--- ff:SetScript("OnMouseDown", function()	
-	-- if TukuiSaved.actionbarsLocked == true then
-		-- TukuiSaved.actionbarsLocked = false
-		-- print(L.actionbars_unlocked)
-	-- elseif TukuiSaved.actionbarsLocked == false then
-		-- TukuiSaved.actionbarsLocked = true
-		-- print(L.actionbars_locked)
-	-- end
-
-	-- check()
--- end)
-
--- ff:SetScript("OnEvent", function()
-	-- check()
--- end)
--- ff:RegisterEvent("PLAYER_ENTERING_WORLD")
-
