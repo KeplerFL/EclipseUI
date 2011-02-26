@@ -1,15 +1,5 @@
 local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
 
-if C["datatext"].classcolor then
-	local color = RAID_CLASS_COLORS[TukuiDB.myclass]
-	T.cStart = ("|cff%.2x%.2x%.2x"):format(color.r * 255, color.g * 255, color.b * 255)
-else
-	local r, g, b = unpack(C["datatext"].color)
-	T.cStart = ("|cff%.2x%.2x%.2x"):format(r * 255, g * 255, b * 255)
-end
-T.cEnd = "|r"
-
-
 T.PP = function(p, obj)
 	local TukuiInfoLeft = TukuiInfoLeft
 	local TukuiInfoRight = TukuiInfoRight

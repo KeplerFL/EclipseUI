@@ -6,5 +6,5 @@
 ## X-Category: UnitFrame
 ## RequiredDeps: Tukui
 
-oUF_Tukz_Raid01_25.lua
-oUF_Tukz_Raid40.lua
+Party_Raid15.lua
+Raid16_40.lua

@@ -207,7 +207,7 @@ GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 			self.text:Point("CENTER", GameTooltipStatusBar, 0, 6)
 		end
 		
-		self.text:SetFont(unpack(T.Fonts.tGeneral.setfont))
+		self.text:SetFont(T.Fonts.tGeneral.setfont[1], T.Fonts.tGeneral.setfont[2], "OUTLINE")
 		self.text:Show()
 		if unit then
 			min, max = UnitHealth(unit), UnitHealthMax(unit)
@@ -243,7 +243,7 @@ healthBar:ClearAllPoints()
 healthBar:Height(6)
 healthBar:Point("BOTTOMLEFT", healthBar:GetParent(), "TOPLEFT", 2, 5)
 healthBar:Point("BOTTOMRIGHT", healthBar:GetParent(), "TOPRIGHT", -2, 5)
-healthBar:SetStatusBarTexture(C.media.normTex)
+healthBar:SetStatusBarTexture(unpack(T.Textures.statusBars))
 
 local healthBarBG = CreateFrame("Frame", "StatusBarBG", healthBar)
 healthBarBG:SetFrameLevel(healthBar:GetFrameLevel() - 1)

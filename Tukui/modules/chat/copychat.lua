@@ -79,10 +79,12 @@ local function ChatCopyButtons()
 	for i = 1, NUM_CHAT_WINDOWS do
 		local cf = _G[format("ChatFrame%d",  i)]
 		local button = CreateFrame("Button", format("ButtonCF%d", i), cf)
-		if i == 1 then
-			button:Point("TOPRIGHT", 0, -4)
+		if i == 2 then
+			button:Point("BOTTOMRIGHT", 0, 0)
 		elseif i == 4 then
-			button:Point("TOPLEFT", 0, -4)
+			button:Point("TOPLEFT", 0, 0)
+		else
+			button:Point("TOPRIGHT", 0, 0)
 		end
 		button:Size(20, 20)
 		button:SetNormalTexture(C.media.copyicon)

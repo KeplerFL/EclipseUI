@@ -13,6 +13,7 @@ T.MoverFrames = {
 	TukuiWatchFrameAnchor,
 	TukuiGMFrameAnchor,
 	TukuiVehicleAnchor,
+	TukuiDurabilityAnchor,
 }
 
 -- used to exec various code if we enable or disable moving
@@ -70,7 +71,7 @@ local function exec(self, enable)
 		end
 	end
 	
-	if self == TukuiTooltipAnchor or self == TukuiRollAnchor or self == TukuiAchievementHolder or self == TukuiVehicleAnchor then
+	if self == TukuiTooltipAnchor or self == TukuiRollAnchor or self == TukuiAchievementHolder or self == TukuiVehicleAnchor or self == TukuiDurabilityAnchor then
 		if enable then
 			self:SetAlpha(1)
 		else

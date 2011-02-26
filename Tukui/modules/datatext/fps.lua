@@ -17,7 +17,12 @@ if C["datatext"].fps_ms and C["datatext"].fps_ms > 0 then
 	local function Update(self, t)
 		int = int - t
 		if int < 0 then
-			Text:SetText(floor(GetFramerate()) .. T.cStart .. L.datatext_fps .. T.cEnd .. select(3, GetNetStats()) .. T.cStart .. L.datatext_ms .. T.cEnd)
+			local fps = floor(GetFramerate()) --.. T.cStart .. L.datatext_fps .. T.cEnd
+			local ms = select(3, GetNetStats()) --.. T.cStart .. L.datatext_ms .. T.cEnd
+			
+			local r1, g1, b1 = ColorGradient(fps/60, .9, .2, .2, .9, .9, .2, .2, .9, .2)
+			local r2, g2, b2 = ColorGradient(ms/350, .2, .9, .2, .9, .9, .2, .9, .2, .2)
+			Text:SetFormattedText('|cff%02x%02x%s%s|cff%02x%02x%s%s', r1*255, g1*255, b1*255, fps .. T.cStart .. L.datatext_fps .. T.cEnd, r2*255, g2*255, b2*255, ms .. T.cStart .. L.datatext_ms .. T.cEnd)
 			
 			self:SetAllPoints(Text)
 			int = 1

@@ -6,7 +6,11 @@ if not C["actionbar"].enable == true then return end
 ---------------------------------------------------------------------------
 
 local TukuiShift = CreateFrame("Frame", "TukuiShiftBar", UIParent)
-TukuiShift:Height(T.stancebuttonsize + 10)
+if C["actionbar"].vertical_shapeshift then
+	TukuiShift:Width(T.stancebuttonsize + 10)
+else
+	TukuiShift:Height(T.stancebuttonsize + 10)
+end
 TukuiShift:Point("TOPLEFT",  TukuiMinimap, "TOPRIGHT", 3, 0)
 TukuiShift:SetFrameStrata("LOW")
 TukuiShift:SetMovable(true)
@@ -27,7 +31,11 @@ TukuiShift:SetScript("OnEvent", function(self, event, ...)
 		local forms = GetNumShapeshiftForms()
 		if forms > 0 then
 			if InCombatLockdown() then return end
-			TukuiShift:Width((T.stancebuttonsize * forms) + (T.buttonspacing * forms + 1) + 5)
+			if C["actionbar"].vertical_shapeshift then
+				TukuiShift:Height((T.stancebuttonsize * forms) + (T.buttonspacing * forms + 1) + 5)
+			else
+				TukuiShift:Width((T.stancebuttonsize * forms) + (T.buttonspacing * forms + 1) + 5)
+			end
 			TukuiShift:Show()
 		else
 			if InCombatLockdown() then return end
@@ -86,10 +94,18 @@ bar:SetScript("OnEvent", function(self, event, ...)
 			button:SetParent(self)
 			button:SetFrameStrata("LOW")
 			if i == 1 then
-				button:Point("BOTTOMLEFT", 5, 5)
+				if C["actionbar"].vertical_shapeshift then
+					button:Point("TOPLEFT", 5, -5)
+				else
+					button:Point("BOTTOMLEFT", 5, 5)
+				end
 			else
 				local previous = _G["ShapeshiftButton"..i-1]
-				button:Point("LEFT", previous, "RIGHT", T.buttonspacing, 0)
+				if C["actionbar"].vertical_shapeshift then
+					button:Point("TOP", previous, "BOTTOM", 0, -T.buttonspacing)
+				else
+					button:Point("LEFT", previous, "RIGHT", T.buttonspacing, 0)
+				end
 			end
 			local _, name = GetShapeshiftFormInfo(i)
 			if name then

@@ -219,4 +219,5 @@ if T.client == "frFR" then
 	L.move_achievements = "Bouger la fenêtre des Hauts-Faits"
 	L.move_roll = "Bouger la fenêtre d'attribution du butin"
 	L.move_vehicle = "Bouger le schéma du véhicule"
+	L.move_durability = "MOve Durability"
 end

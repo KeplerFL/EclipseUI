@@ -151,7 +151,7 @@ addon:RegisterForClicks"anyup"
 
 addon:SetParent(UIParent)
 addon:SetUserPlaced(true)
-addon:Point("TOPLEFT", 0, -104)
+addon:Point("RIGHT", -250, 0)
 addon:SetTemplate("Default")
 addon:Width(256)
 addon:Height(64)

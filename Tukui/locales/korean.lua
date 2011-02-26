@@ -225,4 +225,5 @@ if T.client == "koKR" then
 	L.move_achievements = "업적창 이동"
 	L.move_roll = "주사위 창 이동"
 	L.move_vehicle = "탈것 창 이동"
+	L.move_durability = "MOve Durability"
 end

@@ -218,4 +218,5 @@ if T.client == "ruRU" then
 	L.move_achievements = "Передвинуть всплывающее окно достижений"
 	L.move_roll = "Передвинуть окно розыгрыша добычи"
 	L.move_vehicle = "Передвинуть фрейм транспорта"
+	L.move_durability = "MOve Durability"
 end

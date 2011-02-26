@@ -2,6 +2,8 @@ local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, vari
 
 if not C["actionbar"].enable then return end
 
+-- © 2011 Eclípsé
+
 local TukuiBar1 = TukuiBar1
 local TukuiBar2 = TukuiBar2
 local TukuiBar3 = TukuiBar3
@@ -247,7 +249,7 @@ for i = 1, 5 do
 	Toggle[i].Text = Toggle[i]:CreateFontString(nil, "OVERLAY")
 	Toggle[i].Text:SetFont(TukuiCF["media"].pixel_font, 12, "MONOCHROMEOUTLINE")
 	Toggle[i].Text:Point("CENTER", 2, 1)
-	
+		
 	if i == 1 then
 		Toggle[i]:CreatePanel("Eclipse", TukuiBar1:GetWidth(), T.buttonsize / 2, "BOTTOM", TukuiBar1, "TOP", 0, 3)
 
@@ -346,17 +348,3 @@ for i = 1, 5 do
 		Toggle[i]:FadeOut()
 	end)
 end
-
--- local function ggg()
-	-- if InCombatLockdown() then return end
-	-- if TukuiSaved.bottomrows == 1 then
-		-- _G["MultiBarBottomLeft"]:Hide()
-	-- else
-		-- _G["MultiBarBottomLeft"]:Show()
-	-- end
-	
-	-- if TukuiSaved.splitbars ~= true and TukuiSaved.rightbars < 3 then
-		-- _G["MultiBarLeft"]:Hide()
-	-- end			
--- end
--- TukuiBar1:SetScript("OnUpdate", ggg)

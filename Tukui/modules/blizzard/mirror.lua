@@ -9,7 +9,7 @@ local _, settings = ...
 local _DEFAULTS = {
 	width = T.Scale(220),
 	height = T.Scale(19),
-	texture = C["media"].blank,
+	texture = unpack(T.Textures.statusBars),
 
 	position = {
 		["BREATH"] = 'TOP#UIParent#TOP#0#-160';

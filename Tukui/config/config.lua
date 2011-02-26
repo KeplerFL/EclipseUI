@@ -15,7 +15,7 @@ C["unitframes"] = {
 	["enemyhcolor"] = false,                            -- enemy target (players) color by hostility, very useful for healer.
 	["unicolor"] = true,                               -- enable unicolor theme
 		-- if unicolor == true then it uses these colors
-		["healthColor"] = { .15, .15, .15 },
+		["healthColor"] = { .15, .15, .15 },	
 		["healthBgColor"] = { .05, .05, .05 },
 	
 	-- Castbar
@@ -34,10 +34,10 @@ C["unitframes"] = {
 	["totdebuffs"] = false,                             -- enable tot debuffs (high reso only)
 	["focusdebuffs"] = true,                             -- enable focus debuffs
 	["focusbuffs"] = true,                             -- enable focus buffs
-	["onlyselfdebuffs"] = false,                        -- display only our own debuffs applied on target
-	["onlyselfbuffs"] = true,                        -- display only our own buffs applied on target
-	["buffrows"] = 2,                       
-	["debuffrows"] = 2,                        
+	["onlyselfdebuffs"] = true,                        -- display only our own debuffs applied on target
+	["onlyselfbuffs"] = false,                        -- display only our own buffs applied on target
+	["buffrows"] = 2,                       			-- change how many buff rows are displayed
+	["debuffrows"] = 2,                        			-- change how many debuff rows are displayed
 	
 	-- Misc.
 	["charportrait"] = false,                           -- do i really need to explain this?
@@ -59,14 +59,14 @@ C["unitframes"] = {
 		["healcomm"] = true,                               -- enable healprediction support.
 		["debuffHighlightFilter"] = false,					-- filter debuff border coloring
 			-- enable player / target debuff highlight
-			["playerHighlight"] = true,
+			["playerHighlight"] = true,				
 		
 		-- Heal
-		["healthvertical"] = true,
-		["healthdeficit"] = false,	
+		["healthvertical"] = true,						-- change orientation of health bars in heal mode
+		["healthdeficit"] = false,						-- show health deficit values in heal mode
 		
 		-- Dps
-		["hidepower"] = false,
+		["hidepower"] = false,							-- hide power bar in dps party/raid15 mode
 	
 
 	-- Extra Frames
@@ -80,6 +80,12 @@ C["unitframes"] = {
 	
 	-- class bar
 	["classbar"] = true,                                -- enable tukui classbar over player unit
+		-- individual class bar set up
+		["deathknight"] = true,
+		["warlock"] = true,
+		["shaman"] = true,
+		["druid"] = true,
+		["paladin"] = true,
 }
 
 C["arena"] = {
@@ -99,7 +105,8 @@ C["actionbar"] = {
 	["petbuttonsize"] = 27,                             -- pet & stance buttons size
 	["stancebuttonsize"] = 27,                             -- pet & stance buttons size
 	["buttonspacing"] = 4,                              -- buttons spacing
-	["vertical_rightbars"] = false,
+	["vertical_rightbars"] = false,						-- vertical or horizontal right bars
+	["vertical_shapeshift"] = true,						-- (NOT FOR SHAMANS/TOTEMS) vertical or horizontal shapeshift bar
 }
 
 C["bags"] = {
@@ -134,19 +141,17 @@ C["datatext"] = {
 	["gold"] = 0,                                       -- show your current gold on panels
 	["guild"] = 2,                                      -- show number on guildmate connected on panels
 	["haste"] = 0,                                      -- show your haste rating on panels.
-	["hit"] = 0,
+	["hit"] = 0,										-- show your hit on panels
 	["hps_text"] = 0,                                   -- show a heal meter on panels
-	["mastery"] = 0,
-	["micromenu"] = 0,
+	["mastery"] = 0,									-- show mastery on panels
+	["micromenu"] = 0,									-- game menu attached to panels
 	["power"] = 0,                                      -- show your attackpower/spellpower/healpower/rangedattackpower whatever stat is higher gets displayed
 	["system"] = 5,                                      -- show total memory and others systems infos on panels
 	["wowtime"] = 1,                                    -- show time on panels
 
-	["battleground"] = true,                            -- enable 3 stats in battleground only that replace stat1,stat2,stat3.
+	-- ["battleground"] = true,                            -- enable 3 stats in battleground only that replace stat1,stat2,stat3.
 	["time24"] = false,                                  -- set time to 24h format.
 	["localtime"] = true,                              -- set time to local time instead of server time.
-	["fontsize"] = 12,                                  -- font size for panels.
-	["style"] = "MONOCHROMEOUTLINE", 
 	
 	["classcolor"] = false,
 		["color"] = { .4, .4, .4 },

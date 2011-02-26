@@ -23,7 +23,7 @@ TukuiWatchFrameAnchor.text:SetText(L.move_watchframe)
 TukuiWatchFrameAnchor.text:Hide()
 
 -- set default position according to how many right bars we have
-TukuiWatchFrameAnchor:Point("TOPRIGHT", UIParent, -210, -220)
+TukuiWatchFrameAnchor:Point("TOPRIGHT", UIParent, -140, -220)
 
 -- width of the watchframe according to our Blizzard cVar.
 if wideFrame == "1" then

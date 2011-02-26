@@ -148,16 +148,71 @@ oUF.Tags['Tukui:namelong'] = function(unit)
 	return utf8sub(name, 20, true)
 end
 
-oUF.TagEvents['Tukui:dead'] = 'UNIT_HEALTH'
-oUF.Tags['Tukui:dead'] = function(unit)
-	if UnitIsDeadOrGhost(unit) then
-		return L.unitframes_ouf_deaddps
+-- custom tags
+
+oUF.TagEvents['Tukui:name_short'] = 'UNIT_NAME_UPDATE UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_HEALTH UNIT_MAXHEALTH'
+oUF.Tags['Tukui:name_short'] = function(unit)
+	local name = UnitName(unit)
+	if UnitIsAFK(unit) or not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) or UnitIsPartyLeader(unit) then
+		return utf8sub(name, 3, false)
+	else
+		return utf8sub(name, 10, false)
 	end
 end
 
-oUF.TagEvents['Tukui:afk'] = 'PLAYER_FLAGS_CHANGED'
+
+oUF.TagEvents['Tukui:name_medium'] = 'UNIT_NAME_UPDATE UNIT_CONNECTION PLAYER_FLAGS_CHANGED UNIT_HEALTH UNIT_MAXHEALTH'
+oUF.Tags['Tukui:name_medium'] = function(unit)
+	local name = UnitName(unit)
+	if UnitIsAFK(unit) or not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) then
+		return utf8sub(name, 10, false)
+	else
+		return utf8sub(name, 15, false)
+	end
+end
+
+oUF.TagEvents["Tukui:masterlooter"] = "PARTY_LOOT_METHOD_CHANGED PARTY_MEMBERS_CHANGED"
+oUF.Tags["Tukui:masterlooter"] = function(unit)
+	local typeLoot, partyID, raidID = GetLootMethod()
+	if (typeLoot == "master") then
+		if (raidID) then
+			if (raidID == 0) then
+				return (unit == "player") and " |cffe45050[M]|r"
+			else
+				return (unit == "raid"..raidID) and " |cffe45050[M]|r"
+			end
+		elseif (partyID) then
+			if (partyID == 0) then
+				return (unit == "player") and " |cffe45050[M]|r"
+			else
+				return (unit == "party"..partyID) and " |cffe45050[M]|r"
+			end
+		end
+	end
+end
+
+oUF.TagEvents["Tukui:leader"] = "PARTY_LEADER_CHANGED"
+oUF.Tags["Tukui:leader"] = function(unit)
+	if UnitIsPartyLeader(unit) then
+		return "|cffe45050[L]|r "
+	end
+end
+
+oUF.TagEvents['Tukui:dead'] = 'UNIT_HEALTH'
+oUF.Tags['Tukui:dead'] = function(unit)
+	if UnitIsDead(unit) then
+		return " |cffe45050[D]|r"
+	elseif UnitIsGhost(unit) then
+		return " |cffe45050[G]|r"
+	end
+end
+
+
+oUF.TagEvents['Tukui:afk'] = 'PLAYER_FLAGS_CHANGED', 'UNIT_CONNECTION'
 oUF.Tags['Tukui:afk'] = function(unit)
 	if UnitIsAFK(unit) then
-		return CHAT_FLAG_AFK
+		return " |cffe45050[A]|r"
+	elseif not UnitIsConnected(unit) then
+		return " |cffe45050[O]|r"
 	end
 end

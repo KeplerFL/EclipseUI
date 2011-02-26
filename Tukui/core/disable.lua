@@ -41,3 +41,11 @@ end
 if (IsAddOnLoaded("SatrinaBuffFrame") or IsAddOnLoaded("ElkBuffBars")) then
 	C["auras"].player = false
 end
+
+if not C["unitframes"].classbar then
+	C["unitframes"].deathknight = false
+	C["unitframes"].druid = false
+	C["unitframes"].warlock = false
+	C["unitframes"].paladin = false
+	C["unitframes"].shaman = false
+end

@@ -218,4 +218,5 @@ if T.client == "deDE" then
 	L.move_achievements = "Erfolgsfenster bewegen"
 	L.move_roll = "Würfelfenster bewegen"
 	L.move_vehicle = "Fahrzeugausstieg bewegen"
+	L.move_durability = "MOve Durability"
 end

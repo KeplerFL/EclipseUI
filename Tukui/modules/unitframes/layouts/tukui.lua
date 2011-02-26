@@ -16,13 +16,6 @@ else
 end
 
 ------------------------------------------------------------------------
---	local variables
-------------------------------------------------------------------------
-
-local normTex = C["media"].normTex
-local glowTex = C["media"].glowTex
-
-------------------------------------------------------------------------
 --	Layout
 ------------------------------------------------------------------------
 
@@ -50,7 +43,7 @@ local function Shared(self, unit)
 	
 	-- symbols, now put the symbol on the frame we created above.
 	local RaidIcon = InvFrame:CreateTexture(nil, "OVERLAY")
-	RaidIcon:SetTexture("Interface\\AddOns\\Tukui\\medias\\textures\\raidicons.blp") -- thx hankthetank for texture
+	RaidIcon:SetTexture("Interface\\AddOns\\Tukui\\media\\textures\\raidicons.blp") -- thx hankthetank for texture
 	RaidIcon:SetHeight(20)
 	RaidIcon:SetWidth(20)
 	RaidIcon:SetPoint("TOP", 0, 11)
@@ -61,7 +54,7 @@ local function Shared(self, unit)
 	local health = CreateFrame('StatusBar', nil, self)
 	health:SetPoint("TOPLEFT")
 	health:SetPoint("TOPRIGHT")
-	health:SetStatusBarTexture(normTex)
+	health:SetStatusBarTexture(unpack(T.Textures.statusBars))
 	health:SetFrameLevel(2)
 	self.Health = health
 
@@ -75,12 +68,12 @@ local function Shared(self, unit)
 	local power = CreateFrame('StatusBar', nil, self)
 	power:Point("TOPLEFT", health, "BOTTOMLEFT", 0, -3)
 	power:Point("TOPRIGHT", health, "BOTTOMRIGHT", 0, -3)
-	power:SetStatusBarTexture(normTex)
+	power:SetStatusBarTexture(unpack(T.Textures.statusBars))
 	self.Power = power
 
 	local powerBG = power:CreateTexture(nil, 'BORDER')
 	powerBG:SetAllPoints(power)
-	powerBG:SetTexture(normTex)
+	powerBG:SetTexture(unpack(T.Textures.statusBars))
 	powerBG.multiplier = 0.3
 	self.Power.bg = powerBG
 	
@@ -151,7 +144,7 @@ local function Shared(self, unit)
 	
 	-- castbar of player and target
 	local castbar = CreateFrame("StatusBar", self:GetName().."CastBar", self)
-	castbar:SetStatusBarTexture(normTex)
+	castbar:SetStatusBarTexture(unpack(T.Textures.statusBars))
 
 	local castbarBG = CreateFrame("Frame", nil, castbar)
 	castbarBG:CreatePanel("Default", 1, 1, "CENTER")
@@ -240,7 +233,7 @@ local function Shared(self, unit)
 		AltPowerBar:SetFrameLevel(0)
 		AltPowerBar:SetFrameStrata("LOW")
 		AltPowerBar:SetHeight(5)
-		AltPowerBar:SetStatusBarTexture(C.media.normTex)
+		AltPowerBar:SetStatusBarTexture(C.media.unpack(T.Textures.statusBars))
 		AltPowerBar:GetStatusBarTexture():SetHorizTile(false)
 		AltPowerBar:SetStatusBarColor(163/255,  24/255,  24/255)
 		AltPowerBar:EnableMouse(true)
@@ -296,7 +289,7 @@ local function Shared(self, unit)
 			end
 			
 			if C["unitframes"].classbar then
-				if T.myclass == "DRUID" then			
+				if T.myclass == "DRUID" and C["unitframes"].druid then			
 					local eclipseBar = CreateFrame('Frame', nil, self)
 					eclipseBar:Point("LEFT", health, "TOPLEFT", 10, 1)
 					if T.lowversion then
@@ -321,14 +314,14 @@ local function Shared(self, unit)
 					local lunarBar = CreateFrame('StatusBar', nil, eclipseBar)
 					lunarBar:SetPoint('LEFT', eclipseBar, 'LEFT', 0, 0)
 					lunarBar:SetSize(eclipseBar:GetWidth(), eclipseBar:GetHeight())
-					lunarBar:SetStatusBarTexture(normTex)
+					lunarBar:SetStatusBarTexture(unpack(T.Textures.statusBars))
 					lunarBar:SetStatusBarColor(.30, .52, .90)
 					eclipseBar.LunarBar = lunarBar
 
 					local solarBar = CreateFrame('StatusBar', nil, eclipseBar)
 					solarBar:SetPoint('LEFT', lunarBar:GetStatusBarTexture(), 'RIGHT', 0, 0)
 					solarBar:SetSize(eclipseBar:GetWidth(), eclipseBar:GetHeight())
-					solarBar:SetStatusBarTexture(normTex)
+					solarBar:SetStatusBarTexture(unpack(T.Textures.statusBars))
 					solarBar:SetStatusBarColor(.80, .82,  .60)
 					eclipseBar.SolarBar = solarBar
 
@@ -346,7 +339,7 @@ local function Shared(self, unit)
 				end
 
 				-- set holy power bar or shard bar
-				if (T.myclass == "WARLOCK" or T.myclass == "PALADIN") then		
+				if (T.myclass == "WARLOCK" and C["unitframes"].warlock) or (T.myclass == "PALADIN" and C["unitframes"].paladin) then		
 					local bars = CreateFrame("Frame", nil, self)
 					bars:CreatePanel("Default", 150, 9, "LEFT", health, "TOPLEFT", 10, 1)
 					if T.lowversion then
@@ -361,14 +354,14 @@ local function Shared(self, unit)
 						bars[i]:Height(bars:GetHeight() - 4)
 						bars[i]:Width(bars:GetWidth() / 3 - 2)
 						
-						bars[i]:SetStatusBarTexture(normTex)
+						bars[i]:SetStatusBarTexture(unpack(T.Textures.statusBars))
 						bars[i]:GetStatusBarTexture():SetHorizTile(false)
 						bars[i]:SetFrameLevel(bars:GetFrameLevel())
 						bars[i]:SetFrameStrata(bars:GetFrameStrata())
 						
 						bars[i].bg = bars[i]:CreateTexture(nil, 'BORDER')
 						bars[i].bg:SetAllPoints(bars[i])
-						bars[i].bg:SetTexture(normTex)					
+						bars[i].bg:SetTexture(unpack(T.Textures.statusBars))					
 						bars[i].bg:SetAlpha(.15)
 
 						if T.myclass == "WARLOCK" then
@@ -396,7 +389,7 @@ local function Shared(self, unit)
 				end
 
 				-- deathknight runes
-				if T.myclass == "DEATHKNIGHT" then
+				if T.myclass == "DEATHKNIGHT" and C["unitframes"].deathknight then
 					
 					local Runes = CreateFrame("Frame", nil, self)
 					Runes:CreatePanel("Default", T.Player - 18, 9, "LEFT", health, "TOPLEFT", 9, 1)
@@ -421,7 +414,7 @@ local function Shared(self, unit)
 						else
 							Runes[i]:Point("LEFT", Runes[i-1], "RIGHT", 1, 0)
 						end
-						Runes[i]:SetStatusBarTexture(normTex)
+						Runes[i]:SetStatusBarTexture(unpack(T.Textures.statusBars))
 						Runes[i]:GetStatusBarTexture():SetHorizTile(false)
 					end
 
@@ -429,7 +422,7 @@ local function Shared(self, unit)
 				end
 				
 				-- shaman totem bar
-				if T.myclass == "SHAMAN" then				
+				if T.myclass == "SHAMAN" and C["unitframes"].shaman then				
 					local TotemBar = {}
 					TotemBar.Destroy = true
 					
@@ -459,12 +452,12 @@ local function Shared(self, unit)
 						else
 						   TotemBar[i]:Point("LEFT", TotemBar[i-1], "RIGHT", 1, 0)
 						end
-						TotemBar[i]:SetStatusBarTexture(normTex)
+						TotemBar[i]:SetStatusBarTexture(unpack(T.Textures.statusBars))
 						TotemBar[i]:SetMinMaxValues(0, 1)
 
 						TotemBar[i].bg = TotemBar[i]:CreateTexture(nil, "BORDER")
 						TotemBar[i].bg:SetAllPoints(TotemBar[i])
-						TotemBar[i].bg:SetTexture(normTex)
+						TotemBar[i].bg:SetTexture(unpack(T.Textures.statusBars))
 						TotemBar[i].bg.multiplier = 0.3
 					end
 					self.TotemBar = TotemBar
@@ -497,7 +490,7 @@ local function Shared(self, unit)
 			Name:SetJustifyH("LEFT")
 			Name:SetFont(unpack(T.Fonts.uName.setfont))
 
-			self:Tag(Name, '[Tukui:getnamecolor][Tukui:namelong] [Tukui:diffcolor][level] [shortclassification]')
+			self:Tag(Name, '[Tukui:getnamecolor][Tukui:name_medium] [Tukui:diffcolor][level] [shortclassification]')
 			self.Name = Name
 		end
 
@@ -505,7 +498,12 @@ local function Shared(self, unit)
 			local buffs = CreateFrame("Frame", nil, self)
 			local debuffs = CreateFrame("Frame", nil, self)
 			
-			if (T.myclass == "SHAMAN" or T.myclass == "DEATHKNIGHT" or T.myclass == "PALADIN" or T.myclass == "WARLOCK") and (C["unitframes"].classbar) and (C["unitframes"].playerauras) and (unit == "player") then
+			if (T.myclass == "SHAMAN" and C["unitframes"].shaman) or
+				(T.myclass == "DEATHKNIGHT" and C["unitframes"].deathknight) or
+				(T.myclass == "WARLOCK" and C["unitframes"].warlock) or
+				(T.myclass == "PALADIN" and C["unitframes"].paladin) or
+				(T.myclass == "DRUID" and C["unitframes"].druid) and 
+				(C["unitframes"].classbar and C["unitframes"].playerauras and unit == "player") then
 				buffs:SetPoint("BOTTOMLEFT", ufbg, "TOPLEFT", 0, 7)
 			else
 				buffs:SetPoint("BOTTOMLEFT", ufbg, "TOPLEFT", 0, 3)
@@ -638,7 +636,7 @@ local function Shared(self, unit)
 			-- cast bar latency on player
 			if unit == "player" and C["unitframes"].cblatency == true then
 				castbar.safezone = castbar:CreateTexture(nil, "ARTWORK")
-				castbar.safezone:SetTexture(normTex)
+				castbar.safezone:SetTexture(unpack(T.Textures.statusBars))
 				castbar.safezone:SetVertexColor(0.69, 0.31, 0.31, 0.75)
 				castbar.SafeZone = castbar.safezone
 			end
@@ -679,7 +677,7 @@ local function Shared(self, unit)
 			else
 				mhpb:SetWidth(T.Player)
 			end
-			mhpb:SetStatusBarTexture(normTex)
+			mhpb:SetStatusBarTexture(unpack(T.Textures.statusBars))
 			mhpb:SetStatusBarColor(0, 1, 0.5, 0.25)
 			mhpb:SetMinMaxValues(0,1)
 
@@ -687,7 +685,7 @@ local function Shared(self, unit)
 			ohpb:SetPoint('TOPLEFT', mhpb:GetStatusBarTexture(), 'TOPRIGHT', 0, 0)
 			ohpb:SetPoint('BOTTOMLEFT', mhpb:GetStatusBarTexture(), 'BOTTOMRIGHT', 0, 0)
 			ohpb:SetWidth(T.Player)
-			ohpb:SetStatusBarTexture(normTex)
+			ohpb:SetStatusBarTexture(unpack(T.Textures.statusBars))
 			ohpb:SetStatusBarColor(0, 1, 0, 0.25)
 
 			self.HealPrediction = {
@@ -744,7 +742,7 @@ local function Shared(self, unit)
 		end
 		Name:SetJustifyH("CENTER")
 
-		self:Tag(Name, '[Tukui:getnamecolor][Tukui:namemedium]')
+		self:Tag(Name, '[Tukui:getnamecolor][Tukui:name_medium][Tukui:dead][Tukui:afk]')
 		self.Name = Name
 		
 		if C["unitframes"].totdebuffs == true and T.lowversion ~= true then
@@ -793,7 +791,7 @@ local function Shared(self, unit)
 		end
 		Name:SetJustifyH("CENTER")
 
-		self:Tag(Name, '[Tukui:getnamecolor][Tukui:namemedium] [Tukui:diffcolor][level]')
+		self:Tag(Name, '[Tukui:getnamecolor][Tukui:name_medium] [Tukui:diffcolor][level] [Tukui:dead]')
 		self.Name = Name
 		
 		if (C["unitframes"].unitcastbar == true) then
@@ -831,7 +829,7 @@ local function Shared(self, unit)
 		Name:SetJustifyH("CENTER")
 		Name:SetFont(unpack(T.Fonts.uName.setfont))
 		
-		self:Tag(Name, '[Tukui:getnamecolor][Tukui:namelong]')
+		self:Tag(Name, '[Tukui:getnamecolor][Tukui:name_medium][Tukui:dead][Tukui:afk]')
 		self.Name = Name
 
 		if C["unitframes"].focusdebuffs then
@@ -947,7 +945,7 @@ local function Shared(self, unit)
 		Name:SetFont(unpack(T.Fonts.uName.setfont))
 		Name.frequentUpdates = 0.2
 		
-		self:Tag(Name, '[Tukui:getnamecolor][Tukui:namelong]')
+		self:Tag(Name, '[Tukui:getnamecolor][Tukui:name_medium][Tukui:dead]')
 		self.Name = Name
 		
 		if (unit and unit:find("boss%d")) then
@@ -955,7 +953,7 @@ local function Shared(self, unit)
 			local AltPowerBar = CreateFrame("StatusBar", nil, self.Health)
 			AltPowerBar:SetFrameLevel(self.Health:GetFrameLevel() + 4)
 			AltPowerBar:Height(5)
-			AltPowerBar:SetStatusBarTexture(C.media.normTex)
+			AltPowerBar:SetStatusBarTexture(unpack(T.Textures.statusBars))
 			AltPowerBar:GetStatusBarTexture():SetHorizTile(false)
 			AltPowerBar:SetStatusBarColor(1, 0, 0)
 			AltPowerBar:SetPoint("LEFT", self.Health, "TOPLEFT", 5, 1)
@@ -1080,37 +1078,37 @@ f:SetScript("OnEvent", function(self, event, addon)
 		--[ DPS ]--
 		-- points
 		if T.lowversion then
-			player:SetPoint("TOP", UIParent, "BOTTOM", -96 , 220)
-			target:SetPoint("TOP", UIParent, "BOTTOM", 96, 220)
-			tot:SetPoint("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
-			pet:SetPoint("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
+			player:Point("TOP", UIParent, "BOTTOM", -96 , 220)
+			target:Point("TOP", UIParent, "BOTTOM", 96, 220)
+			tot:Point("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
+			pet:Point("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
 
-			focus:SetPoint("TOP", UIParent, "BOTTOM", 0, 133)
+			focus:Point("TOP", UIParent, "BOTTOM", 0, 133)
 		else
-			player:SetPoint("TOP", UIParent, "BOTTOM", -179 , 230)
-			target:SetPoint("TOP", UIParent, "BOTTOM", 179, 230)
-			tot:SetPoint("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
-			pet:SetPoint("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
+			player:Point("TOP", UIParent, "BOTTOM", -179 , 230)
+			target:Point("TOP", UIParent, "BOTTOM", 179, 230)
+			tot:Point("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
+			pet:Point("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
 
-			focus:SetPoint("TOP", UIParent, "BOTTOM", 0, 230)
+			focus:Point("TOP", UIParent, "BOTTOM", 0, 230)
 		end
 	elseif addon == "Tukui_Heal_Layout" then
 		--[ HEAL ]--
 		-- points
 		if T.lowversion then
-			player:SetPoint("TOP", UIParent, "BOTTOM", -300 , 230)
-			target:SetPoint("TOP", UIParent, "BOTTOM", 300, 230)
-			tot:SetPoint("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
-			pet:SetPoint("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
+			player:Point("TOP", UIParent, "BOTTOM", -300 , 230)
+			target:Point("TOP", UIParent, "BOTTOM", 300, 230)
+			tot:Point("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
+			pet:Point("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
 			
-			focus:SetPoint("TOP", UIParent, "BOTTOM", 0, 230)
+			focus:Point("TOP", UIParent, "BOTTOM", 0, 230)
 		else
-			player:SetPoint("TOP", UIParent, "BOTTOM", -310 , 230)
-			target:SetPoint("TOP", UIParent, "BOTTOM", 310, 230)
-			tot:SetPoint("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
-			pet:SetPoint("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
+			player:Point("TOP", UIParent, "BOTTOM", -310 , 230)
+			target:Point("TOP", UIParent, "BOTTOM", 310, 230)
+			tot:Point("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
+			pet:Point("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
 
-			focus:SetPoint("TOP", UIParent, "BOTTOM", -400, 400)
+			focus:Point("TOP", UIParent, "BOTTOM", -400, 400)
 		end
 	end
 end)
@@ -1129,9 +1127,9 @@ if C.arena.unitframes then
 	for i = 1, 5 do
 		arena[i] = oUF:Spawn("arena"..i, "TukuiArena"..i)
 		if i == 1 then
-			arena[i]:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -300, 520)
+			arena[i]:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -300, 520)
 		else
-			arena[i]:SetPoint("BOTTOM", arena[i-1], "TOP", 0, 23)
+			arena[i]:Point("BOTTOM", arena[i-1], "TOP", 0, 23)
 		end
 		arena[i]:Size(T.Boss, arena[i].Health:GetHeight() + arena[i].Power:GetHeight() + 7)
 	end
@@ -1151,9 +1149,9 @@ if C["unitframes"].showboss then
 	for i = 1, MAX_BOSS_FRAMES do
 		boss[i] = oUF:Spawn("boss"..i, "TukuiBoss"..i)
 		if i == 1 then
-			boss[i]:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -300, 520)
+			boss[i]:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -300, 520)
 		else
-			boss[i]:SetPoint('BOTTOM', boss[i-1], 'TOP', 0, 23)             
+			boss[i]:Point('BOTTOM', boss[i-1], 'TOP', 0, 23)             
 		end
 		boss[i]:Size(T.Boss, boss[i].Health:GetHeight() + boss[i].Power:GetHeight() + 7)
 	end
@@ -1161,7 +1159,7 @@ end
 
 local assisttank_width = 100
 local assisttank_height  = 20
-if C["unitframes"].maintank == true then
+if C["unitframes"].maintank then
 	local tank = oUF:SpawnHeader('TukuiMainTank', nil, 'raid',
 		'oUF-initialConfigFunction', ([[
 			self:SetWidth(%d)
@@ -1173,10 +1171,10 @@ if C["unitframes"].maintank == true then
 		'point' , 'BOTTOM',
 		'template', 'oUF_TukuiMtt'
 	)
-	tank:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+	tank:Point("CENTER", UIParent, "CENTER", 0, 0)
 end
  
-if C["unitframes"].mainassist == true then
+if C["unitframes"].mainassist then
 	local assist = oUF:SpawnHeader("TukuiMainAssist", nil, 'raid',
 		'oUF-initialConfigFunction', ([[
 			self:SetWidth(%d)
@@ -1188,10 +1186,10 @@ if C["unitframes"].mainassist == true then
 		'point' , 'BOTTOM',
 		'template', 'oUF_TukuiMtt'
 	)
-	if C["unitframes"].maintank == true then
-		assist:SetPoint("TOPLEFT", TukuiMainTank, "BOTTOMLEFT", 2, -50)
+	if C["unitframes"].maintank then
+		assist:Point("TOPLEFT", TukuiMainTank, "BOTTOMLEFT", 2, -50)
 	else
-		assist:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+		assist:Point("CENTER", UIParent, "CENTER", 0, 0)
 	end
 end
 

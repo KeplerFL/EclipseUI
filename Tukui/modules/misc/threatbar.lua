@@ -12,7 +12,7 @@ local aggroColors = {
 
 -- create the bar
 local TukuiThreatBar = CreateFrame("StatusBar", "TukuiThreatBar", UIParent)
-TukuiThreatBar:SetStatusBarTexture(C.media.normTex)
+TukuiThreatBar:SetStatusBarTexture(unpack(T.Textures.statusBars))
 TukuiThreatBar:GetStatusBarTexture():SetHorizTile(false)
 TukuiThreatBar:SetBackdrop({bgFile = C.media.blank})
 TukuiThreatBar:SetBackdropColor(0, 0, 0, 0)

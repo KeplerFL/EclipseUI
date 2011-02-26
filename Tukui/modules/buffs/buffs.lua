@@ -49,7 +49,9 @@ local function UpdateWeapons(button, slot, active, expiration)
 		button.time:SetFont(unpack(T.Fonts.bDuration.setfont))
 
 		button.bg = CreateFrame("Frame", nil, button)
-		button.bg:CreatePanel("Default", 30, 30, "CENTER", button, "CENTER", 0, 0)
+		button.bg:CreatePanel("Default", 1, 1, "CENTER")
+		button.bg:Point("TOPLEFT", -2, 2)
+		button.bg:Point("BOTTOMRIGHT", 2, -2)
 		button.bg:SetFrameLevel(button:GetFrameLevel() - 1)
 		button.bg:SetFrameStrata(button:GetFrameStrata())
 		button.bg:SetAlpha(0)
@@ -72,7 +74,7 @@ local function UpdateWeapons(button, slot, active, expiration)
 end
 
 local function UpdateAuras(header, button, weapon)
-	if(not button.texture) then
+	if(not button.texture) then	
 		button.texture = button:CreateTexture(nil, "BORDER")
 		button.texture:SetAllPoints()
 
@@ -87,14 +89,16 @@ local function UpdateAuras(header, button, weapon)
 		button:SetScript("OnUpdate", UpdateTime)
 		
 		button.bg = CreateFrame("Frame", nil, button)
-		button.bg:CreatePanel("Default", 30, 30, "CENTER", button, "CENTER", 0, 0)
+		button.bg:CreatePanel("Default", 1, 1, "CENTER")
+		button.bg:Point("TOPLEFT", -2, 2)
+		button.bg:Point("BOTTOMRIGHT", 2, -2)
 		button.bg:SetFrameLevel(button:GetFrameLevel() - 1)
 		button.bg:SetFrameStrata(button:GetFrameStrata())
 	end
 	
 	local name, _, texture, count, dtype, duration, expiration = UnitAura(header:GetAttribute("unit"), button:GetID(), header:GetAttribute("filter"))
 	
-	if(name) then
+	if(name) then	
 		button.texture:SetTexture(texture)
 		button.texture:SetTexCoord(.09, .91, .09, .91)		
 		button.count:SetText(count > 1 and count or "")

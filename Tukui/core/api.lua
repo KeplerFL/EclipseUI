@@ -75,7 +75,7 @@ local function CreateOverlay(f)
 	overlay:ClearAllPoints()
 	overlay:Point("TOPLEFT", 2, -2)
 	overlay:Point("BOTTOMRIGHT", -2, 2)
-	overlay:SetTexture(C["media"].blank)
+	overlay:SetTexture(unpack(T.Textures.interface))
 	overlay:SetVertexColor(.05, .05, .05)
 	f.overlay = overlay
 end
@@ -202,14 +202,14 @@ local function StyleButton(b, c)
 	local icontexture     = _G[name.."IconTexture"]
 	
 	local hover = b:CreateTexture("frame", nil, self) -- hover
-	hover:SetTexture(1,1,1,0.3)
+	hover:SetTexture(1, 1, 1, .3)
 	hover:Size(button:GetWidth(), button:GetHeight())
 	hover:Point("TOPLEFT", button, 2, -2)
 	hover:Point("BOTTOMRIGHT", button, -2, 2)
 	button:SetHighlightTexture(hover)
 
 	local pushed = b:CreateTexture("frame", nil, self) -- pushed
-	pushed:SetTexture(0.9,0.8,0.1,0.3)
+	pushed:SetTexture(.9, .8, .1, .3)
 	pushed:Size(button:GetWidth(), button:GetHeight())
 	pushed:Point("TOPLEFT", button, 2, -2)
 	pushed:Point("BOTTOMRIGHT", button, -2, 2)
@@ -217,7 +217,7 @@ local function StyleButton(b, c)
  
 	if c then
 		local checked = b:CreateTexture("frame", nil, self) -- checked
-		checked:SetTexture(0,1,0,0.3)
+		checked:SetTexture(0, 1, 0, .3)
 		checked:Size(button:GetWidth(), button:GetHeight())
 		checked:Point("TOPLEFT", button, 2, -2)
 		checked:Point("BOTTOMRIGHT", button, -2, 2)
@@ -245,6 +245,32 @@ end
 	
 local function FadeOut(f)
 	UIFrameFadeOut(f, .8, f:GetAlpha(), 0)
+end
+
+if C["datatext"].classcolor then
+	local color = RAID_CLASS_COLORS[T.myclass]
+	T.cStart = ("|cff%.2x%.2x%.2x"):format(color.r * 255, color.g * 255, color.b * 255)
+else
+	local r, g, b = unpack(C["datatext"].color)
+	T.cStart = ("|cff%.2x%.2x%.2x"):format(r * 255, g * 255, b * 255)
+end
+T.cEnd = "|r"
+
+function ColorGradient(perc, ...)
+	if perc >= 1 then
+		local r, g, b = select(select('#', ...) - 2, ...)
+		return r, g, b
+	elseif perc <= 0 then
+		local r, g, b = ...
+		return r, g, b
+	end
+	
+	local num = select('#', ...) / 3
+
+	local segment, relperc = math.modf(perc*(num-1))
+	local r1, g1, b1, r2, g2, b2 = select((segment*3)+1, ...)
+
+	return r1 + (r2-r1)*relperc, g1 + (g2-g1)*relperc, b1 + (b2-b1)*relperc
 end
 
 local function addapi(object)

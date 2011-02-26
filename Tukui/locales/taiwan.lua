@@ -218,4 +218,5 @@ if T.client == "zhTW" then
 	L.move_achievements = "移動成就介面"
 	L.move_roll = "移動Roll戰利品的介面"
 	L.move_vehicle = "移動載具坐位介面"
+	L.move_durability = "MOve Durability"
 end

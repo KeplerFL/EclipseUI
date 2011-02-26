@@ -17,7 +17,7 @@ AltPowerBar:EnableMouse(true)
 -- Create Status Bar and Text
 local AltPowerBarStatus = CreateFrame("StatusBar", "TukuiAltPowerBarStatus", AltPowerBar)
 AltPowerBarStatus:SetFrameLevel(AltPowerBar:GetFrameLevel() + 1)
-AltPowerBarStatus:SetStatusBarTexture(C["media"].normTex)
+AltPowerBarStatus:SetStatusBarTexture(unpack(T.Textures.statusBars))
 AltPowerBarStatus:SetMinMaxValues(0, 100)
 AltPowerBarStatus:Point("TOPLEFT", AltPowerBar, "TOPLEFT", 2, -2)
 AltPowerBarStatus:Point("BOTTOMRIGHT", AltPowerBar, "BOTTOMRIGHT", -2, 2)

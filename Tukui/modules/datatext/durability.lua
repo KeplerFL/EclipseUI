@@ -29,11 +29,13 @@ if C["datatext"].dur and C["datatext"].dur > 0 then
 		table.sort(L.Slots, function(a, b) return a[3] < b[3] end)
 		
 		if Total > 0 then
-			Text:SetText(floor(L.Slots[1][3]*100).."% " .. T.cStart .. L.datatext_armor)
-		else
-			Text:SetText("100% " .. T.cStart .. L.datatext_armor)
-		end
+			local r, g, b = ColorGradient(floor(L.Slots[1][3]*100)/100, .9, .2, .2, .9, .9, .2, .2, .9, .2)
 
+			Text:SetFormattedText('|cff%02x%02x%02x%s%%|r %s', r*255, g*255, b*255, floor(L.Slots[1][3]*100), T.cStart .. L.datatext_armor)
+		else
+			Text:SetFormattedText('|cff%02x%02x%02x100%%|r %s', 0.2*255, 0.8*255, 0.2*255, T.cStart .. L.datatext_armor)
+		end
+		
 		self:SetAllPoints(Text)
 		Total = 0
 	end
@@ -44,19 +46,17 @@ if C["datatext"].dur and C["datatext"].dur > 0 then
 	Stat:SetScript("OnMouseDown", function() ToggleCharacter("PaperDollFrame") end)
 	Stat:SetScript("OnEvent", OnEvent)
 	Stat:SetScript("OnEnter", function(self)
-		-- if not InCombatLockdown() then
-			local anchor, panel, xoff, yoff = T.DataTextTooltipAnchor(Text)
-			GameTooltip:SetOwner(panel, anchor, xoff, yoff)
-			GameTooltip:ClearLines()
-			for i = 1, 11 do
-				if L.Slots[i][3] ~= 1000 then
-					green = L.Slots[i][3]*2
-					red = 1 - green
-					GameTooltip:AddDoubleLine(L.Slots[i][2], floor(L.Slots[i][3]*100) .. "%",1 ,1 , 1, red + 1, green, 0)
-				end
+		local anchor, panel, xoff, yoff = T.DataTextTooltipAnchor(Text)
+		GameTooltip:SetOwner(panel, anchor, xoff, yoff)
+		GameTooltip:ClearLines()
+		for i = 1, 11 do
+			if L.Slots[i][3] ~= 1000 then
+				green = L.Slots[i][3]*2
+				red = 1 - green
+				GameTooltip:AddDoubleLine(L.Slots[i][2], floor(L.Slots[i][3]*100) .. "%",1 ,1 , 1, red + 1, green, 0)
 			end
-			GameTooltip:Show()
-		-- end
+		end
+		GameTooltip:Show()
 	end)
 	Stat:SetScript("OnLeave", function() GameTooltip:Hide() end)
 end
