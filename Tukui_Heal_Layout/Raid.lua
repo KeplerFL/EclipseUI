@@ -259,7 +259,7 @@ oUF:RegisterStyle('TukuiHealRaid', Shared)
 oUF:Factory(function(self)
 	oUF:SetActiveStyle("TukuiHealRaid")	
 
-	local raid = self:SpawnHeader("TukuiHealRaid", nil, "solo, raid",
+	local raid = self:SpawnHeader("TukuiHealRaid", nil, "raid",
 		'oUF-initialConfigFunction', [[
 			local header = self:GetParent()
 			self:SetWidth(header:GetAttribute('initial-width'))
@@ -276,8 +276,7 @@ oUF:Factory(function(self)
 		"maxColumns", 5,
 		"unitsPerColumn", 5,
 		"columnSpacing", T.Scale(3),
-		"columnAnchorPoint", "BOTTOM",
-		"showSolo", false
+		"columnAnchorPoint", "BOTTOM"
 	)
 	raid:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, TukuiDB.Scale(145))
 end)

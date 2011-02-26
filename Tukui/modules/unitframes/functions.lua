@@ -145,11 +145,11 @@ end
 T.PostUpdateHealthRaid = function(health, unit, min, max)
 	if not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) then
 		if not UnitIsConnected(unit) then
-			health.value:SetText("|cffD7BEA5"..L.unitframes_ouf_offline.."|r")
+			health.value:SetText("|cffe45050"..L.unitframes_ouf_offline.."|r")
 		elseif UnitIsDead(unit) then
-			health.value:SetText("|cffD7BEA5"..L.unitframes_ouf_dead.."|r")
+			health.value:SetText("|cffe45050"..L.unitframes_ouf_dead.."|r")
 		elseif UnitIsGhost(unit) then
-			health.value:SetText("|cffD7BEA5"..L.unitframes_ouf_ghost.."|r")
+			health.value:SetText("|cffe45050"..L.unitframes_ouf_ghost.."|r")
 		end
 	else
 		-- doing this here to force friendly unit (vehicle or pet) very far away from you to update color correcly

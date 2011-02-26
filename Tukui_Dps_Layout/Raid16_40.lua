@@ -112,7 +112,7 @@ oUF:RegisterStyle('TukuiDpsR25', Shared)
 oUF:Factory(function(self)
 	oUF:SetActiveStyle("TukuiDpsR25")
 
-	local raid = self:SpawnHeader("oUF_TukuiDpsR25", nil, "solo, custom [@raid16,exists] show;hide", 
+	local raid = self:SpawnHeader("oUF_TukuiDpsR25", nil, "custom [@raid16,exists] show;hide", 
 		'oUF-initialConfigFunction', [[
 			local header = self:GetParent()
 			self:SetWidth(header:GetAttribute('initial-width'))
@@ -130,7 +130,6 @@ oUF:Factory(function(self)
 		"unitsPerColumn", 5,
 		"columnSpacing", 1,
 		"columnAnchorPoint", "BOTTOM",
-		"showSolo", false
 	)
 	raid:SetPoint("BOTTOMLEFT", TukuiChatLeft, "TOPLEFT", 0, 2)
 end)

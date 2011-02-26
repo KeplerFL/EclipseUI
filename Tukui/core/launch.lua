@@ -159,6 +159,15 @@ local function install()
 	-- tell savedvariable that we installed Tukui perfectly
 	TukuiDataPerChar.install = true
 
+	-- we can reset this shit here :)
+	TukuiSaved = {} -- make sure we clear the table first, don't want any unnecessary values
+	TukuiSaved = {
+		["bottomrows"] = 1,
+		["rightbars"] = 1,
+		["splitbars"] = false,
+		["actionbarsLocked"] = false,
+	}
+
 	ReloadUI()
 end
 

@@ -218,5 +218,8 @@ if T.client == "zhTW" then
 	L.move_achievements = "移動成就介面"
 	L.move_roll = "移動Roll戰利品的介面"
 	L.move_vehicle = "移動載具坐位介面"
-	L.move_durability = "MOve Durability"
+	L.move_durability = "Move Durability"
+	
+	L.actionbars_locked = "Actionbars |cffe45050Locked|r"
+	L.actionbars_unlocked = "Actionbars |cff50e468Unlocked|r"
 end

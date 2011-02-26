@@ -263,7 +263,7 @@ oUF:RegisterStyle('TukuiHealParty', Shared)
 oUF:Factory(function(self)
 	oUF:SetActiveStyle("TukuiHealParty")
 
-	local raid = self:SpawnHeader("oUF_TukuiHealParty", nil, "solo, party", 
+	local raid = self:SpawnHeader("oUF_TukuiHealParty", nil, "party", 
 	'oUF-initialConfigFunction', [[
 		local header = self:GetParent()
 		self:SetWidth(header:GetAttribute('initial-width'))
@@ -277,8 +277,7 @@ oUF:Factory(function(self)
 	"groupingOrder", "1,2,3,4,5,6,7,8", 
 	"groupBy", "GROUP", 
 	"xOffset", T.Scale(7),
-	"point", "LEFT",
-	"showSolo", false
+	"point", "LEFT"
 	)
 	raid:Point("TOP", UIParent, "BOTTOM", 0, 230)
 	

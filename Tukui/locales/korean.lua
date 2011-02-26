@@ -225,5 +225,8 @@ if T.client == "koKR" then
 	L.move_achievements = "업적창 이동"
 	L.move_roll = "주사위 창 이동"
 	L.move_vehicle = "탈것 창 이동"
-	L.move_durability = "MOve Durability"
+	L.move_durability = "Move Durability"
+	
+	L.actionbars_locked = "Actionbars |cffe45050Locked|r"
+	L.actionbars_unlocked = "Actionbars |cff50e468Unlocked|r"
 end

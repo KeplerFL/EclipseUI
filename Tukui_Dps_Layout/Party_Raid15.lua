@@ -147,7 +147,7 @@ oUF:RegisterStyle("TukuiDpsPR10", Shared)
 oUF:Factory(function(self)
 	oUF:SetActiveStyle("TukuiDpsPR10")
 
-	local raid = self:SpawnHeader("oUF_TukuiDpsPR10", nil, "solo, custom [@raid16,exists] hide;show", 
+	local raid = self:SpawnHeader("oUF_TukuiDpsPR10", nil, "custom [@raid16,exists] hide;show", 
 		'oUF-initialConfigFunction', [[
 			local header = self:GetParent()
 			self:SetWidth(header:GetAttribute('initial-width'))
@@ -161,8 +161,7 @@ oUF:Factory(function(self)
 		"groupFilter", "1,2,3,4,5,6,7,8", 
 		"groupingOrder", "1,2,3,4,5,6,7,8",
 		"groupBy", "GROUP",
-		"yOffset", T.Scale(-5), 
-		"showSolo", false
+		"yOffset", T.Scale(-5),
 	)
 	raid:SetPoint('TOPLEFT', UIParent, 8, -320)
 end)

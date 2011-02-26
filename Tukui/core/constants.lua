@@ -22,6 +22,7 @@ if not TukuiSaved then
 		["bottomrows"] = 1,
 		["rightbars"] = 1,
 		["splitbars"] = false,
+		["actionbarsLocked"] = false,
 	}
 end
 

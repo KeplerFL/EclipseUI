@@ -240,7 +240,15 @@ local SplitBars = function()
 	end
 end
 
-for i = 1, 5 do
+local function LockCheck(index)
+	if TukuiSaved.actionbarsLocked == true then
+		Toggle[index].Text:SetText("|cff50e468Unlock")
+	elseif TukuiSaved.actionbarsLocked == false then
+		Toggle[index].Text:SetText("|cffe45050Lock")
+	end
+end
+
+for i = 1, 6 do
 	Toggle[i] = CreateFrame("Frame", "TukuiToggle"..i, Toggle)
 	Toggle[i]:EnableMouse(true)
 	Toggle[i]:SetAlpha(0)
@@ -251,7 +259,7 @@ for i = 1, 5 do
 	Toggle[i].Text:Point("CENTER", 2, 1)
 		
 	if i == 1 then
-		Toggle[i]:CreatePanel("Eclipse", TukuiBar1:GetWidth(), T.buttonsize / 2, "BOTTOM", TukuiBar1, "TOP", 0, 3)
+		Toggle[i]:CreatePanel("Default", TukuiBar1:GetWidth(), T.buttonsize / 2, "BOTTOM", TukuiBar1, "TOP", 0, 3)
 
 		Toggle[i]:SetScript("OnMouseDown", function()
 			if InCombatLockdown() then return end
@@ -266,7 +274,7 @@ for i = 1, 5 do
 		end)
 		Toggle[i]:SetScript("OnEvent", MainBars)
 	elseif i == 2 then
-		Toggle[i]:CreatePanel("Eclipse", T.buttonsize, TukuiTabsRight:GetHeight() - 6, "RIGHT", TukuiTabsRight, "RIGHT", -3, 0)
+		Toggle[i]:CreatePanel("Default", T.buttonsize, TukuiTabsRight:GetHeight() - 6, "RIGHT", TukuiTabsRight, "RIGHT", -3, 0)
 		Toggle[i]:SetFrameLevel(TukuiTabsRight:GetFrameLevel() + 1)
 		
 		if C["actionbar"].vertical_rightbars then
@@ -293,7 +301,7 @@ for i = 1, 5 do
 		end)
 		Toggle[i]:SetScript("OnEvent", RightBars)	
 	elseif i == 3 then
-		Toggle[i]:CreatePanel("Eclipse", Toggle[i-1]:GetWidth(), Toggle[i-1]:GetHeight(), "TOPRIGHT", Toggle[i-1], "TOPLEFT", -3, 0)
+		Toggle[i]:CreatePanel("Default", Toggle[i-1]:GetWidth(), Toggle[i-1]:GetHeight(), "TOPRIGHT", Toggle[i-1], "TOPLEFT", -3, 0)
 		Toggle[i]:SetFrameLevel(Toggle[i-1]:GetFrameLevel())
 		
 		if C["actionbar"].vertical_rightbars then
@@ -317,9 +325,29 @@ for i = 1, 5 do
 		end)
 		Toggle[i]:SetScript("OnEvent", RightBars)
 	elseif i == 4 then
-		Toggle[i]:CreatePanel("Eclipse", T.buttonsize / 2, TukuiSplitBarLeft:GetHeight(), "BOTTOMRIGHT", TukuiSplitBarLeft, "BOTTOMLEFT", -3, 0)
+		Toggle[i]:CreatePanel("Default", T.buttonsize / 2, TukuiSplitBarLeft:GetHeight(), "BOTTOMRIGHT", TukuiSplitBarLeft, "BOTTOMLEFT", -3, 0)
 	elseif i == 5 then
-		Toggle[i]:CreatePanel("Eclipse", T.buttonsize / 2, TukuiSplitBarRight:GetHeight(), "BOTTOMLEFT", TukuiSplitBarRight, "BOTTOMRIGHT", 3, 0)
+		Toggle[i]:CreatePanel("Default", T.buttonsize / 2, TukuiSplitBarRight:GetHeight(), "BOTTOMLEFT", TukuiSplitBarRight, "BOTTOMRIGHT", 3, 0)
+	elseif i == 6 then
+		Toggle[i]:CreatePanel("Default", 50, TukuiInfoLeft:GetHeight(), "BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 3)
+	
+		Toggle[i]:SetScript("OnMouseDown", function()	
+			if InCombatLockdown() then return end
+			
+			if TukuiSaved.actionbarsLocked == true then
+				TukuiSaved.actionbarsLocked = false
+				print(L.actionbars_unlocked)
+			elseif TukuiSaved.actionbarsLocked == false then
+				TukuiSaved.actionbarsLocked = true
+				print(L.actionbars_locked)
+			end
+
+			LockCheck(i)
+		end)
+
+		Toggle[i]:SetScript("OnEvent", function()
+			LockCheck(i)
+		end)
 	end
 	
 	if i == 4 or i == 5 then
@@ -347,4 +375,50 @@ for i = 1, 5 do
 	Toggle[i]:SetScript("OnLeave", function()
 		Toggle[i]:FadeOut()
 	end)
+	
+	Toggle[i]:SetScript("OnUpdate", function() 
+		if TukuiSaved.actionbarsLocked == true then
+			for i = 1, 5 do
+				Toggle[i]:EnableMouse(false)
+			end
+		elseif TukuiSaved.actionbarsLocked == false then
+			for i = 1, 5 do
+				Toggle[i]:EnableMouse(true)
+			end
+		end
+	end)		
 end
+
+-- local ff = CreateFrame("Frame", nil, UIParent)
+-- ff:CreatePanel("Default", 50, TukuiInfoLeft:GetHeight(), "BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 3)
+-- ff:EnableMouse(true)
+
+-- local tt = ff:CreateFontString(nil, "OVERLAY")
+-- tt:SetFont(TukuiCF["media"].pixel_font, 12, "MONOCHROMEOUTLINE")
+-- tt:SetPoint("CENTER", 1, 1)
+
+-- local function check()
+	-- if TukuiSaved.actionbarsLocked == true then
+		-- tt:SetText("|cff50e468Unlock")
+	-- elseif TukuiSaved.actionbarsLocked == false then
+		-- tt:SetText("|cffe45050Lock")
+	-- end
+-- end
+
+-- ff:SetScript("OnMouseDown", function()	
+	-- if TukuiSaved.actionbarsLocked == true then
+		-- TukuiSaved.actionbarsLocked = false
+		-- print(L.actionbars_unlocked)
+	-- elseif TukuiSaved.actionbarsLocked == false then
+		-- TukuiSaved.actionbarsLocked = true
+		-- print(L.actionbars_locked)
+	-- end
+
+	-- check()
+-- end)
+
+-- ff:SetScript("OnEvent", function()
+	-- check()
+-- end)
+-- ff:RegisterEvent("PLAYER_ENTERING_WORLD")
+

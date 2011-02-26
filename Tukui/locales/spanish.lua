@@ -218,5 +218,8 @@ if T.client == "esES" then
 	L.move_achievements = "Mover Logros"
 	L.move_roll = "Mover Marco de Lanzamiento de Dados por Objetos"
 	L.move_vehicle = "Mover Asiento del vehiculo"
-	L.move_durability = "MOve Durability"
+	L.move_durability = "Move Durability"
+	
+	L.actionbars_locked = "Actionbars |cffe45050Locked|r"
+	L.actionbars_unlocked = "Actionbars |cff50e468Unlocked|r"
 end
