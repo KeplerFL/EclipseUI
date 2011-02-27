@@ -1,5 +1,5 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">	
-	<Script file="autodez.lua"/>
+	<Script file="autode.lua"/>
 	<Script file="merchant.lua"/>
 	<Script file="lootframe.lua"/>
 	<Script file="rollframe.lua"/>
