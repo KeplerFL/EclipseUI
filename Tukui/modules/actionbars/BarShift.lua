@@ -6,13 +6,14 @@ if not C["actionbar"].enable == true then return end
 ---------------------------------------------------------------------------
 
 local TukuiShift = CreateFrame("Frame", "TukuiShiftBar", UIParent)
-if C["actionbar"].vertical_shapeshift then
+if T.myclass ~= "SHAMAN" and C["actionbar"].vertical_shapeshift then
 	TukuiShift:Width(T.stancebuttonsize + 10)
 else
 	TukuiShift:Height(T.stancebuttonsize + 10)
 end
 TukuiShift:Point("TOPLEFT",  TukuiMinimap, "TOPRIGHT", 3, 0)
-TukuiShift:SetFrameStrata("LOW")
+-- TukuiShift:SetFrameLevel(20)
+TukuiShift:SetFrameStrata("MEDIUM")
 TukuiShift:SetMovable(true)
 TukuiShift:SetClampedToScreen(true)
 TukuiShift:SetScript("OnEvent", function(self, event, ...)
@@ -92,7 +93,7 @@ bar:SetScript("OnEvent", function(self, event, ...)
 			button = _G["ShapeshiftButton"..i]
 			button:ClearAllPoints()
 			button:SetParent(self)
-			button:SetFrameStrata("LOW")
+			button:SetFrameStrata(TukuiShift:GetFrameStrata())
 			if i == 1 then
 				if C["actionbar"].vertical_shapeshift then
 					button:Point("TOPLEFT", 5, -5)

@@ -56,6 +56,7 @@ local function Shared(self, unit)
 	health:SetPoint("TOPRIGHT")
 	health:SetStatusBarTexture(unpack(T.Textures.statusBars))
 	health:SetFrameLevel(2)
+	health:SetFrameStrata("LOW")
 	self.Health = health
 
 	local healthBG = health:CreateTexture(nil, 'BORDER')
@@ -118,6 +119,7 @@ local function Shared(self, unit)
 	-- unitframe bg
 	local ufbg = CreateFrame("Frame", nil, self)
 	ufbg:SetFrameLevel(health:GetFrameLevel() - 1)
+	ufbg:SetFrameStrata(health:GetFrameStrata())
 	ufbg:Point("TOPLEFT", health, -2, 2)
 	ufbg:Point("BOTTOMRIGHT", power, 2, -2)
 	ufbg:SetBackdrop({
@@ -426,7 +428,7 @@ local function Shared(self, unit)
 					local TotemBar = {}
 					TotemBar.Destroy = true
 					
-					local TotemBarBG = CreateFrame("Frame", nil, self)
+					local TotemBarBG = CreateFrame("Frame", "TotemBarBG", self)
 					TotemBarBG:CreatePanel("Default", T.Player - 15, 9, "LEFT", health, "TOPLEFT", 7, 1)
 					if T.lowversion then
 						TotemBarBG:SetWidth(T.Player - 20)
@@ -440,9 +442,9 @@ local function Shared(self, unit)
 						TotemBar[i] = CreateFrame("StatusBar", self:GetName().."_TotemBar"..i, health)
 						TotemBar[i]:Height(TotemBarBG:GetHeight() -4)
 						if T.lowversion then
-							TotemBar[i]:Width((T.Player / 4) - 7)
+							TotemBar[i]:SetWidth((T.Player / 4) - 6.8)
 						else
-							TotemBar[i]:Width((T.Player / 4) - 5)
+							TotemBar[i]:SetWidth((T.Player / 4) - 5.5)
 						end
 						TotemBar[i]:SetFrameLevel(TotemBarBG:GetFrameLevel() + 1)
 						TotemBar[i]:SetFrameStrata(TotemBarBG:GetFrameStrata())
