@@ -26,15 +26,58 @@ end)
 GameTooltip:HookScript("OnTooltipSetSpell", function(self)
 	if (IsShiftKeyDown() or IsAltKeyDown()) and TukuiItemTooltip and not self.TukuiItemTooltip and (TukuiItemTooltip.spell) then
 		local id = select(3, self:GetSpell())
-		local left = ""
 				
-		if TukuiItemTooltip.spell and id ~= nil then
-			left = "|cFFCA3C3CSpell ID|r "..id
+		if id ~= nil then
+			self:AddLine' '
+			self:AddLine("|cFFCA3C3CSpell ID|r "..id)
 		end
 							
-		self:AddLine(" ")
-		self:AddLine(left)
 		self.TukuiItemTooltip = 1
+	end
+end)
+
+hooksecurefunc(GameTooltip, "SetUnitBuff", function(self, ...)
+	if (IsShiftKeyDown() or IsAltKeyDown()) and TukuiItemTooltip and not self.TukuiItemTooltip and (TukuiItemTooltip.buff) then
+		local name = select(1, UnitBuff(...))
+		local id = select(11, UnitBuff(...))
+		
+		if name ~= nil and id ~= nil then
+			self:AddLine' ' 
+			self:AddLine("|cFFCA3C3CBuff ID|r " .. id)
+			self:Show()
+		end
+		
+		print("Buff: " .. name, id)
+	end
+end)
+
+hooksecurefunc(GameTooltip, "SetUnitDebuff", function(self, ...)
+	if (IsShiftKeyDown() or IsAltKeyDown()) and TukuiItemTooltip and not self.TukuiItemTooltip and (TukuiItemTooltip.debuff) then
+		local name = select(1, UnitDebuff(...))
+		local id = select(11, UnitDebuff(...))
+		
+		if name ~= nil and id ~= nil then
+			self:AddLine' ' 
+			self:AddLine("|cFFCA3C3CDebuff ID|r " .. id)
+			self:Show()
+		end
+		
+		print("Debuff: " .. name, id)
+	end
+end)
+
+hooksecurefunc(GameTooltip, "SetUnitAura", function(self, ...)
+	if (IsShiftKeyDown() or IsAltKeyDown()) and TukuiItemTooltip and not self.TukuiItemTooltip and (TukuiItemTooltip.aura) then
+		local name = select(1, UnitAura(...))
+		local id = select(11, UnitAura(...))
+		
+		if name ~= nil and id ~= nil then
+			self:AddLine' ' 
+			self:AddLine("|cFFCA3C3CAura ID|r " .. id)
+			self:Show()
+		end
+		
+		print("Aura: " .. name, id)
 	end
 end)
 
@@ -44,5 +87,5 @@ f:SetScript("OnEvent", function(_, _, name)
 	if name ~= "Tukui" then return end
 	f:UnregisterEvent("ADDON_LOADED")
 	f:SetScript("OnEvent", nil)
-	TukuiItemTooltip = TukuiItemTooltip or {count=true,id=true,spell=true}
+	TukuiItemTooltip = TukuiItemTooltip or {count=true,id=true,spell=true,buff=true,debuff=true,aura=true}
 end)
