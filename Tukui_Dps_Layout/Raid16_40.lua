@@ -24,7 +24,7 @@ local function Shared(self, unit)
 	self.t = t		
 	
 	local health = CreateFrame('StatusBar', nil, self)
-	health:SetFrameLevel(t:GetFrameLevel())
+	health:SetFrameLevel(t:GetFrameLevel() + 1)
 	health:SetFrameStrata(t:GetFrameStrata())
 	health:Point("TOPLEFT", t, 2, -2)
 	health:Point("BOTTOMRIGHT", t, -2, 2)

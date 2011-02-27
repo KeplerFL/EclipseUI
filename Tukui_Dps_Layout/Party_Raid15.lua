@@ -22,7 +22,7 @@ local function Shared(self, unit)
 	self.t = t		
 
 	local health = CreateFrame('StatusBar', nil, self)
-	health:SetFrameLevel(t:GetFrameLevel())
+	health:SetFrameLevel(t:GetFrameLevel() + 1)
 	health:SetFrameStrata(t:GetFrameStrata())
 	health:Point("TOPLEFT", t, 2, -2)
 	health:Point("BOTTOMRIGHT", t, -2, 2)
@@ -56,13 +56,12 @@ local function Shared(self, unit)
 	if not C["unitframes"].hidepower then
 		local tt = CreateFrame("Frame", nil, self)
 		tt:CreatePanel("Default", 60, 7, "LEFT", t, "BOTTOMLEFT", 5, 0)
-		tt:SetFrameLevel(t:GetFrameLevel() + 2)
+		tt:SetFrameLevel(health:GetFrameLevel() + 2)
 		tt.shadow:SetFrameLevel(0)
 		self.tt = tt
 
 		local power = CreateFrame("StatusBar", nil, self)
-		power:SetFrameLevel(tt:GetFrameLevel() + 1)
-		power:SetFrameStrata(tt:GetFrameStrata())
+		power:SetFrameLevel(health:GetFrameLevel() + 1)
 		power:Height(3)
 		power:Point("TOPLEFT", tt, "TOPLEFT", 2, -2)
 		power:Point("BOTTOMRIGHT", tt, "BOTTOMRIGHT", -2, 2)
