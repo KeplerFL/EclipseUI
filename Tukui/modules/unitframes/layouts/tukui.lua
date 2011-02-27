@@ -142,8 +142,7 @@ local function Shared(self, unit)
 		panel:SetBackdropBorderColor(unpack(C["media"].bordercolor))
 		self.panel = panel
 	end
-	
-	
+		
 	-- castbar of player and target
 	local castbar = CreateFrame("StatusBar", self:GetName().."CastBar", self)
 	castbar:SetStatusBarTexture(unpack(T.Textures.statusBars))

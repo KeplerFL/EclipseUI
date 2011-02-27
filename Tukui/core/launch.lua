@@ -9,7 +9,7 @@ local function install()
 	SetCVar("mapQuestDifficulty", 1)
 	SetCVar("scriptErrors", 1)
 	SetCVar("ShowClassColorInNameplate", 1)
-	SetCVar("screenshotQuality", 8)
+	SetCVar("screenshotQuality", 10)
 	SetCVar("chatMouseScroll", 1)
 	SetCVar("chatStyle", "im")
 	SetCVar("WholeChatWindowClickable", 0)
@@ -52,16 +52,13 @@ local function install()
 				frame:ClearAllPoints()
 				frame:Point("TOPLEFT", TukuiTabsLeft, "BOTTOMLEFT", 0, -4)
 				frame:Point("BOTTOMRIGHT", TukuiInfoLeft, "TOPRIGHT", 0, 4)
-				FCF_RestorePositionAndDimensions(frame)
-			elseif i == 4 and chatName == LOOT then
+				FCF_SavePositionAndDimensions(frame)
+			elseif i == 4 then
 				frame:ClearAllPoints()
 				frame:Point("TOPLEFT", TukuiTabsRight, "BOTTOMLEFT", 0, -4)
 				frame:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 4)
-				FCF_RestorePositionAndDimensions(frame)
+				FCF_SavePositionAndDimensions(frame)
 			end
-
-			-- save new default position and dimension
-			FCF_SavePositionAndDimensions(frame)
 			
 			-- set default tukui font size
 			FCF_SetChatWindowFontSize(nil, frame, fontSize)

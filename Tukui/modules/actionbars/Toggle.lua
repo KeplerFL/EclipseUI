@@ -75,13 +75,21 @@ local RightBars = function()
 	if TukuiSaved.rightbars >= 1 then
 		TukuiPetBar:ClearAllPoints()
 		if C["actionbar"].vertical_rightbars == true then
-			TukuiPetBar:Point("BOTTOMRIGHT", TukuiRightBar, "BOTTOMLEFT", -3, 0)
+			if not C["chat"].background then
+				TukuiPetBar:Point("RIGHT", TukuiRightBar, "LEFT", -3, 0)
+			else
+				TukuiPetBar:Point("BOTTOMRIGHT", TukuiRightBar, "BOTTOMLEFT", -3, 0)
+			end
 		else
 			TukuiPetBar:Point("BOTTOMRIGHT", TukuiRightBar, "TOPRIGHT", 0, 3)
 		end
 	else
 		TukuiPetBar:ClearAllPoints()
-		TukuiPetBar:Point("BOTTOMRIGHT", TukuiChatRight, "TOPRIGHT", 0, 3)
+		if not C["chat"].background then
+			TukuiPetBar:Point("RIGHT", UIParent, "RIGHT", -8, 0)
+		else
+			TukuiPetBar:Point("BOTTOMRIGHT", TukuiChatRight, "TOPRIGHT", 0, 3)
+		end
 	end
 
 	if TukuiSaved.rightbars == 1 then

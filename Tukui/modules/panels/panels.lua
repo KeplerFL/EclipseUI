@@ -18,6 +18,13 @@ TukuiTabsRight:CreatePanel("Default", 1, 23, "TOPLEFT", TukuiChatRight, "TOPLEFT
 TukuiTabsRight:Point("TOPRIGHT", TukuiChatRight, "TOPRIGHT", -5, -5)
 TukuiTabsRight:SetFrameLevel(TukuiChatRight:GetFrameLevel() + 1)
 
+if not C["chat"].background then
+	TukuiChatLeft:SetAlpha(0)
+	TukuiChatRight:SetAlpha(0)
+	TukuiTabsLeft:SetAlpha(0)
+	TukuiTabsRight:SetAlpha(0)
+end
+
 -- Data Frames
 local TukuiInfoLeft = CreateFrame("Frame", "TukuiInfoLeft", UIParent)
 TukuiInfoLeft:CreatePanel("Default", 1, 23, "BOTTOMLEFT", TukuiChatLeft, "BOTTOMLEFT", 5, 5)
@@ -51,7 +58,11 @@ if C["actionbar"].enable then
 
 	local TukuiRightBar = CreateFrame("Frame", "TukuiRightBar", UIParent)
 	TukuiRightBar:CreatePanel("Transparent", (T.buttonsize * 12 + T.buttonspacing * 13) + 2,  (T.buttonsize * 12 + T.buttonspacing * 13) + 2, "BOTTOMRIGHT", TukuiChatRight, "TOPRIGHT", 0, 3)
-
+	if not C["chat"].background then
+		TukuiRightBar:ClearAllPoints()
+		TukuiRightBar:Point("RIGHT", UIParent, "RIGHT", -8, 0)
+	end
+	
 	local TukuiPetBar = CreateFrame("Frame", "TukuiPetBar", UIParent)
 	TukuiPetBar:CreatePanel("Transparent", 1, 1, "BOTTOMRIGHT", TukuiRightBar, "TOPRIGHT", 0, 3)
 	if C["actionbar"].vertical_rightbars == true then

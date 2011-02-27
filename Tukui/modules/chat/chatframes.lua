@@ -57,6 +57,15 @@ local function SetChatStyle(frame)
 	tab:SetAlpha(1)
 	tab.SetAlpha = UIFrameFadeRemoveFrame
 	
+	if not C["chat"].background then
+		-- hide text when setting chat
+		_G[chat.."TabText"]:Hide()
+		
+		-- now show text if mouse is found over tab.
+		tab:HookScript("OnEnter", function() _G[chat.."TabText"]:Show() end)
+		tab:HookScript("OnLeave", function() _G[chat.."TabText"]:Hide() end)
+	end
+
 	-- yeah baby
 	_G[chat]:SetClampRectInsets(0,0,0,0)
 	
@@ -158,25 +167,21 @@ local function SetChatStyle(frame)
 		_G[chat].AddMessage = AddMessage
 	end
 	
-	hooksecurefunc("FCFTab_UpdateColors", function(chatTab, isSelected) 
-		chatTab:GetFontString():SetTextColor(unpack(C["datatext"].color))
-		if isSelected then 
-			FCFTab_UpdateColors(chatTab, false) 
-		end 
-	end)
+	_G[chat.."TabText"]:SetFont(unpack(T.Fonts.cTab.setfont))
+	_G[chat.."TabText"]:SetTextColor(unpack(C["datatext"].color))
+	_G[chat.."TabText"].SetTextColor = T.dummy
+	_G[chat.."TabText"]:SetShadowOffset(0, 0)
+	_G[chat.."TabText"]:ClearAllPoints()
+	_G[chat.."TabText"]:Point("CENTER", _G[chat.."Tab"], "CENTER", 0, -3)
+	_G[chat.."TabText"].SetPoint = T.dummy
+	_G[chat]:SetFont(unpack(T.Fonts.cGeneral.setfont))
 end
 -- Setup chatframes 1 to 10 on login.
 local function SetupChat(self)	
 	for i = 1, NUM_CHAT_WINDOWS do
 		local frame = _G[format("ChatFrame%s", i)]
 		SetChatStyle(frame)
-		FCFTab_UpdateColors(_G["ChatFrame"..i.."Tab"], false)
-		_G["ChatFrame"..i.."TabText"]:SetFont(unpack(T.Fonts.cTab.setfont))
-		_G["ChatFrame"..i.."TabText"]:SetShadowOffset(0, 0)
-		_G["ChatFrame"..i.."TabText"]:ClearAllPoints()
-		_G["ChatFrame"..i.."TabText"]:Point("CENTER", _G["ChatFrame"..i.."Tab"], "CENTER", 0, -3)
-		
-		_G["ChatFrame"..i]:SetFont(unpack(T.Fonts.cGeneral.setfont))
+		-- FCFTab_UpdateColors(_G["ChatFrame"..i.."Tab"], false)
 	end
 
 	-- Remember last channel
@@ -211,11 +216,11 @@ local function SetupChatPosAndFont(self)
 				chat:ClearAllPoints()
 				chat:Point("TOPLEFT", TukuiTabsRight, "BOTTOMLEFT", 0, -4)
 				chat:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 4)
-				
-				-- if C["chat"].justifyright == true then
-					-- chat:SetJustifyH("RIGHT") 
-				-- end
 				FCF_SavePositionAndDimensions(chat)
+				
+				if C["chat"].justifyRight == true then
+					chat:SetJustifyH("RIGHT") 
+				end
 			end
 		end
 	end

@@ -161,6 +161,8 @@ C["chat"] = {
 	["enable"] = true,                                  -- blah
 	["whispersound"] = true,                            -- play a sound when receiving whisper
 	["height"] = 165,									-- adjust the chatframe height
+	["background"] = false,								-- chat frame backgrounds
+	["justifyRight"] = false,							-- set right chat frame text to the right
 }
 
 C["nameplate"] = {

@@ -49,3 +49,7 @@ if not C["unitframes"].classbar then
 	C["unitframes"].paladin = false
 	C["unitframes"].shaman = false
 end
+
+if not C["chat"].background then
+	C["actionbar"].vertical_rightbars = true
+end

@@ -117,10 +117,18 @@ local function Shared(self, unit)
 		name:SetPoint("CENTER", health, "CENTER", 0, 6)
 	end
 	name:SetFont(unpack(T.Fonts.uName.setfont))
-	if C["unitframes"].unicolor then
-		self:Tag(name, "[Tukui:leader][Tukui:getnamecolor][Tukui:name_short][Tukui:masterlooter][Tukui:dead][Tukui:afk]")
+	if C["unitframes"].healthdeficit then
+		if C["unitframes"].unicolor then
+			self:Tag(name, "[Tukui:leader][Tukui:getnamecolor][Tukui:nameshort][Tukui:masterlooter]")
+		else
+			self:Tag(name, "[Tukui:leader][Tukui:nameshort][Tukui:masterlooter]")
+		end
 	else
-		self:Tag(name, "[Tukui:leader][Tukui:name_short][Tukui:masterlooter][Tukui:dead][Tukui:afk]")
+		if C["unitframes"].unicolor then
+			self:Tag(name, "[Tukui:leader][Tukui:getnamecolor][Tukui:name_short][Tukui:masterlooter][Tukui:dead][Tukui:afk]")
+		else
+			self:Tag(name, "[Tukui:leader][Tukui:name_short][Tukui:masterlooter][Tukui:dead][Tukui:afk]")
+		end
 	end
 	self.Name = name
 	
@@ -139,7 +147,7 @@ local function Shared(self, unit)
     end
 	
 	if C["unitframes"].showsymbols == true then
-		local RaidIcon = health:CreateTexture(nil, 'OVERLAY')
+		local RaidIcon = health.oborder:CreateTexture(nil, 'OVERLAY')
 		RaidIcon:Height(18)
 		RaidIcon:Width(18)
 		RaidIcon:SetPoint('CENTER', self, 'TOP')

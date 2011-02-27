@@ -416,12 +416,22 @@ function Stuffing:CreateBagFrame(w)
 
 	local function bagUpdate(f, ...)
 		if w == "Bank" then
-			f:SetPoint("BOTTOMLEFT", TukuiChatLeft, "TOPLEFT", 0, 3)
+			if not C["chat"].background then
+				f:SetPoint("BOTTOMLEFT", TukuiInfoLeft, "TOPLEFT", 0, 3)
+			else
+				f:SetPoint("BOTTOMLEFT", TukuiChatLeft, "TOPLEFT", 0, 3)
+			end
 		else
 			if not C["actionbar"].enable then
-				f:SetPoint("BOTTOMRIGHT", TukuiChatRight, "TOPRIGHT", 0, 3)
+				if not C["chat"].background then
+					f:SetPoint("BOTTOMLEFT", TukuiInfoRight, "TOPLEFT", 0, 3)
+				else
+					f:SetPoint("BOTTOMRIGHT", TukuiChatRight, "TOPRIGHT", 0, 3)
+				end
 			else
-				if HasPetUI() then
+				if not C["chat"].background then
+					f:SetPoint("BOTTOMLEFT", TukuiInfoRight, "TOPLEFT", 0, 3)
+				elseif HasPetUI() then
 					if C["actionbar"].vertical_rightbars then
 						f:SetPoint("BOTTOMRIGHT", TukuiChatRight, "TOPRIGHT", 0, 3)
 					else
@@ -613,14 +623,19 @@ function Stuffing:Layout(lb)
 	local cols
 	local f
 	local bs
-
+	
+	local bgvalue = 0
+	if not C["chat"].background then
+		bgvalue = 10
+	end
+	
 	if lb then
 		bs = bags_BANK
-		cols = (floor(T.InfoLeftRightWidth/370 * 10) + 1)		
+		cols = (floor((T.InfoLeftRightWidth - bgvalue)/370 * 10) + 1)
 		f = self.bankFrame
 	else
 		bs = bags_BACKPACK
-		cols = (floor(T.InfoLeftRightWidth/370 * 10) + 1)		
+		cols = (floor((T.InfoLeftRightWidth - bgvalue)/370 * 10) + 1)
 		f = self.frame
 
 		f.gold:SetText(GetMoneyString(GetMoney(), 12))
@@ -708,8 +723,8 @@ function Stuffing:Layout(lb)
 	if (slots % cols) ~= 0 then
 		rows = rows + 1
 	end
-
-	f:Width(T.InfoLeftRightWidth)
+	
+	f:Width(T.InfoLeftRightWidth - bgvalue)
 	f:Height(rows * 30 + (rows - 1) * 2 + off + 12 * 2)
 
 	local sf = CreateFrame("Frame", "SlotFrame", f)
