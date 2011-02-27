@@ -129,7 +129,7 @@ oUF:Factory(function(self)
 		"maxColumns", 8,
 		"unitsPerColumn", 5,
 		"columnSpacing", 1,
-		"columnAnchorPoint", "BOTTOM",
+		"columnAnchorPoint", "BOTTOM"
 	)
 	raid:SetPoint("BOTTOMLEFT", TukuiChatLeft, "TOPLEFT", 0, 2)
 end)

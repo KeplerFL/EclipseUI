@@ -161,7 +161,7 @@ oUF:Factory(function(self)
 		"groupFilter", "1,2,3,4,5,6,7,8", 
 		"groupingOrder", "1,2,3,4,5,6,7,8",
 		"groupBy", "GROUP",
-		"yOffset", T.Scale(-5),
+		"yOffset", T.Scale(-5)
 	)
 	raid:SetPoint('TOPLEFT', UIParent, 8, -320)
 end)
