@@ -181,7 +181,6 @@ local function SetupChat(self)
 	for i = 1, NUM_CHAT_WINDOWS do
 		local frame = _G[format("ChatFrame%s", i)]
 		SetChatStyle(frame)
-		-- FCFTab_UpdateColors(_G["ChatFrame"..i.."Tab"], false)
 	end
 
 	-- Remember last channel
@@ -195,10 +194,7 @@ end
 local function SetupChatPosAndFont(self)	
 	for i = 1, NUM_CHAT_WINDOWS do
 		local chat = _G[format("ChatFrame%s", i)]
-		local tab = _G[format("ChatFrame%sTab", i)]
 		local id = chat:GetID()
-		local name = FCF_GetChatWindowInfo(id)
-		local point = GetChatWindowSavedPosition(id)
 		local _, fontSize = FCF_GetChatWindowInfo(id)
 		
 		FCF_SetChatWindowFontSize(nil, chat, fontSize)
@@ -206,6 +202,7 @@ local function SetupChatPosAndFont(self)
 		-- force chat position on #1 and #4, needed if we change ui scale or resolution
 		-- also set original width and height of chatframes 1 and 4 if first time we run tukui.
 		-- doing resize of chat also here for users that hit "cancel" when default installation is show.
+				
 		if i == 1 then
 			chat:ClearAllPoints()
 			chat:Point("TOPLEFT", TukuiTabsLeft, "BOTTOMLEFT", 0, -4)
@@ -223,6 +220,8 @@ local function SetupChatPosAndFont(self)
 				end
 			end
 		end
+		chat:SetHeight(0)
+		chat:SetWidth(0)
 	end
 
 	-- reposition battle.net popup over chat #1
@@ -233,6 +232,7 @@ local function SetupChatPosAndFont(self)
 end
 
 TukuiChat:RegisterEvent("ADDON_LOADED")
+TukuiChat:RegisterEvent("UPDATE_CHAT_WINDOWS")
 TukuiChat:RegisterEvent("PLAYER_ENTERING_WORLD")
 TukuiChat:SetScript("OnEvent", function(self, event, ...)
 	local addon = ...
@@ -243,6 +243,8 @@ TukuiChat:SetScript("OnEvent", function(self, event, ...)
 		end
 	elseif event == "PLAYER_ENTERING_WORLD" then
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+		SetupChatPosAndFont(self)
+	elseif event == "UPDATE_CHAT_WINDOWS" then
 		SetupChatPosAndFont(self)
 	end
 end)

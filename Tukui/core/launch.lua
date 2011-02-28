@@ -43,29 +43,36 @@ local function install()
 		ChatFrame4:Show()
 
 		for i = 1, NUM_CHAT_WINDOWS do
-			local frame = _G[format("ChatFrame%s", i)]
-			local chatFrameId = frame:GetID()
-			local chatName, fontSize = FCF_GetChatWindowInfo(chatFrameId)
-			
-			-- move general bottom left or Loot (if found) on right
-			if i == 1 then
-				frame:ClearAllPoints()
-				frame:Point("TOPLEFT", TukuiTabsLeft, "BOTTOMLEFT", 0, -4)
-				frame:Point("BOTTOMRIGHT", TukuiInfoLeft, "TOPRIGHT", 0, 4)
-				FCF_SavePositionAndDimensions(frame)
-			elseif i == 4 then
-				frame:ClearAllPoints()
-				frame:Point("TOPLEFT", TukuiTabsRight, "BOTTOMLEFT", 0, -4)
-				frame:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 4)
-				FCF_SavePositionAndDimensions(frame)
-			end
-			
+			local chat = _G[format("ChatFrame%s", i)]
+			local id = chat:GetID()
+			local _, fontSize = FCF_GetChatWindowInfo(id)
+					
 			-- set default tukui font size
-			FCF_SetChatWindowFontSize(nil, frame, fontSize)
+			FCF_SetChatWindowFontSize(nil, chat, fontSize)
 			
+			if i == 1 then
+				chat:ClearAllPoints()
+				chat:Point("TOPLEFT", TukuiTabsLeft, "BOTTOMLEFT", 0, -4)
+				chat:Point("BOTTOMRIGHT", TukuiInfoLeft, "TOPRIGHT", 0, 4)
+				FCF_SavePositionAndDimensions(chat)
+			elseif i == 4 then
+				if not chat.isDocked then
+					chat:ClearAllPoints()
+					chat:Point("TOPLEFT", TukuiTabsRight, "BOTTOMLEFT", 0, -4)
+					chat:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 4)
+					FCF_SavePositionAndDimensions(chat)
+					
+					if C["chat"].justifyRight == true then
+						chat:SetJustifyH("RIGHT") 
+					end
+				end
+			end
+			chat:SetHeight(0)
+			chat:SetWidth(0)
+
 			-- rename windows general and combat log
-			if i == 1 then FCF_SetWindowName(frame, "G, S, W") end
-			if i == 2 then FCF_SetWindowName(frame, "Log") end
+			if i == 1 then FCF_SetWindowName(chat, "G, S, W") end
+			if i == 2 then FCF_SetWindowName(chat, "Log") end
 		end
 		
 		ChatFrame_RemoveAllMessageGroups(ChatFrame1)
@@ -278,10 +285,7 @@ TukuiOnLogon:SetScript("OnEvent", function(self, event)
 	end
 	
 	
-	--temp fix
 	print("Welcome to |cffe45050EclipseUI|r - " .. T.version)
-	-- print(L.core_welcome1..T.version)
-	-- print(L.core_welcome2)
 end)
 
 ------------------------------------------------------------------------
