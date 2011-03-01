@@ -147,6 +147,19 @@ local function SetChatStyle(frame)
 		EditBoxBackground:SetBackdropBorderColor(r, g, b)
 	end
 	
+	-- derp blizzard
+	local func = ChatEdit_UpdateHeader
+	
+	ChatEdit_UpdateHeader = function(editBox)
+		local header = _G[editBox:GetName().."Header"]
+		header:ClearAllPoints()
+		header:SetPoint("LEFT", editBox, "LEFT", 15, 0)
+		
+		if header:GetRight() ~= nil and header:GetLeft() ~= nil then
+			func(editBox)
+		end
+	end
+	
 	-- update border color according where we talk
 	hooksecurefunc("ChatEdit_UpdateHeader", function()
 		local type = _G[chat.."EditBox"]:GetAttribute("chatType")
