@@ -29,7 +29,7 @@ GameTooltip:HookScript("OnTooltipSetSpell", function(self)
 				
 		if id ~= nil then
 			self:AddLine' '
-			self:AddLine("|cFFCA3C3CSpell ID|r "..id)
+			self:AddLine("|cffCA3C3CSpell ID|r "..id)
 		end
 							
 		self.TukuiItemTooltip = 1
@@ -38,46 +38,43 @@ end)
 
 hooksecurefunc(GameTooltip, "SetUnitBuff", function(self, ...)
 	if (IsShiftKeyDown() or IsAltKeyDown()) and TukuiItemTooltip and not self.TukuiItemTooltip and (TukuiItemTooltip.buff) then
-		local name = select(1, UnitBuff(...))
-		local id = select(11, UnitBuff(...))
+		local name, _, _, _, _, _, _, _, _, _, id = UnitBuff(...) 
 		
 		if name ~= nil and id ~= nil then
 			self:AddLine' ' 
-			self:AddLine("|cFFCA3C3CBuff ID|r " .. id)
+			self:AddLine("|cff50e468Buff ID|r " .. id)
 			self:Show()
 		end
 		
-		print("Buff: " .. name, id)
+		print("|cff50e468Buff: |cff71d5ff|Hspell:"..id.."|h["..name.."]|h|r - " .. id)
 	end
 end)
 
 hooksecurefunc(GameTooltip, "SetUnitDebuff", function(self, ...)
 	if (IsShiftKeyDown() or IsAltKeyDown()) and TukuiItemTooltip and not self.TukuiItemTooltip and (TukuiItemTooltip.debuff) then
-		local name = select(1, UnitDebuff(...))
-		local id = select(11, UnitDebuff(...))
+		local name, _, _, _, _, _, _, _, _, _, id = UnitDebuff(...) 
 		
 		if name ~= nil and id ~= nil then
 			self:AddLine' ' 
-			self:AddLine("|cFFCA3C3CDebuff ID|r " .. id)
+			self:AddLine("|cffe45050Debuff ID|r " .. id)
 			self:Show()
 		end
 		
-		print("Debuff: " .. name, id)
+		print("|cffe45050Debuff: |cff71d5ff|Hspell:"..id.."|h["..name.."]|h|r - " .. id)
 	end
 end)
 
 hooksecurefunc(GameTooltip, "SetUnitAura", function(self, ...)
 	if (IsShiftKeyDown() or IsAltKeyDown()) and TukuiItemTooltip and not self.TukuiItemTooltip and (TukuiItemTooltip.aura) then
-		local name = select(1, UnitAura(...))
-		local id = select(11, UnitAura(...))
-		
+		local name, _, _, _, _, _, _, _, _, _, id = UnitAura(...) 
+
 		if name ~= nil and id ~= nil then
 			self:AddLine' ' 
-			self:AddLine("|cFFCA3C3CAura ID|r " .. id)
+			self:AddLine("|cff5065e4Aura ID|r " .. id)
 			self:Show()
 		end
 		
-		print("Aura: " .. name, id)
+		print("|cff5065e4Aura: |cff71d5ff|Hspell:"..id.."|h["..name.."]|h|r - " .. id)
 	end
 end)
 
