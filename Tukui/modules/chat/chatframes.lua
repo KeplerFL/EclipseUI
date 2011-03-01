@@ -232,17 +232,17 @@ local function SetupChatPosAndFont(self)
 	
 		
 	-- derp blizzard
-	-- local func = ChatEdit_UpdateHeader
+	local func = ChatEdit_UpdateHeader
 	
-	-- ChatEdit_UpdateHeader = function(editBox)
-		-- local header = _G[editBox:GetName().."Header"]
-		-- header:ClearAllPoints()
-		-- header:SetPoint("LEFT", editBox, "LEFT", 15, 0)
+	ChatEdit_UpdateHeader = function(editBox)
+		local header = _G[editBox:GetName().."Header"]
+		header:ClearAllPoints()
+		header:SetPoint("LEFT", editBox, "LEFT", 15, 0)
 		
-		-- if header:GetRight() ~= nil and header:GetLeft() ~= nil then
-			-- func(editBox)
-		-- end
-	-- end
+		if header:GetRight() ~= nil and header:GetLeft() ~= nil then
+			func(editBox)
+		end
+	end
 end
 
 TukuiChat:RegisterEvent("ADDON_LOADED")
