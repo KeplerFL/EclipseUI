@@ -950,13 +950,14 @@ function Stuffing:PLAYER_ENTERING_WORLD()
 			t:Point("TOPLEFT", slot, 2, -2)
 			t:Point("BOTTOMRIGHT", slot, -2, 2)
 			slot:SetTemplate("Default")
-			slot:SetBackdropColor(0, 0, 0, 0)
+			slot.overlay:Kill()
+			slot:SetBackdropColor(.05, .05, .05)
 			slot:StyleButton()
 		end		
 	end)
 	
 	ContainerFrame1:ClearAllPoints()
-	ContainerFrame1:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 4, 5)
+	ContainerFrame1:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 4, 3)
 	ContainerFrame1.ClearAllPoints = T.dummy
 	ContainerFrame1.SetPoint = T.dummy
 end
