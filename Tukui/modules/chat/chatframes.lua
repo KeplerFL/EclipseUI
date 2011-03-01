@@ -147,19 +147,6 @@ local function SetChatStyle(frame)
 		EditBoxBackground:SetBackdropBorderColor(r, g, b)
 	end
 	
-	-- derp blizzard
-	local func = ChatEdit_UpdateHeader
-	
-	ChatEdit_UpdateHeader = function(editBox)
-		local header = _G[editBox:GetName().."Header"]
-		header:ClearAllPoints()
-		header:SetPoint("LEFT", editBox, "LEFT", 15, 0)
-		
-		if header:GetRight() ~= nil and header:GetLeft() ~= nil then
-			func(editBox)
-		end
-	end
-	
 	-- update border color according where we talk
 	hooksecurefunc("ChatEdit_UpdateHeader", function()
 		local type = _G[chat.."EditBox"]:GetAttribute("chatType")
@@ -242,13 +229,26 @@ local function SetupChatPosAndFont(self)
 		self:ClearAllPoints()
 		self:Point("BOTTOMLEFT", TukuiChatLeft, "TOPLEFT", 0, 3)
 	end)
+	
+		
+	-- derp blizzard
+	-- local func = ChatEdit_UpdateHeader
+	
+	-- ChatEdit_UpdateHeader = function(editBox)
+		-- local header = _G[editBox:GetName().."Header"]
+		-- header:ClearAllPoints()
+		-- header:SetPoint("LEFT", editBox, "LEFT", 15, 0)
+		
+		-- if header:GetRight() ~= nil and header:GetLeft() ~= nil then
+			-- func(editBox)
+		-- end
+	-- end
 end
 
 TukuiChat:RegisterEvent("ADDON_LOADED")
 TukuiChat:RegisterEvent("UPDATE_CHAT_WINDOWS")
 TukuiChat:RegisterEvent("PLAYER_ENTERING_WORLD")
-TukuiChat:SetScript("OnEvent", function(self, event, ...)
-	local addon = ...
+TukuiChat:SetScript("OnEvent", function(self, event, addon)
 	if event == "ADDON_LOADED" then
 		if addon == "Blizzard_CombatLog" then
 			self:UnregisterEvent("ADDON_LOADED")
