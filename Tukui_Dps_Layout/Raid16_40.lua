@@ -61,9 +61,9 @@ local function Shared(self, unit)
 	name:SetFont(unpack(T.Fonts.uName.setfont))
 	name:Point("CENTER", health, "CENTER", 0, 1)
 	if C["unitframes"].unicolor then
-		self:Tag(name, '[Tukui:leader][Tukui:getnamecolor][Tukui:name_medium][Tukui:masterlooter][Tukui:dead][Tukui:afk]')
+		self:Tag(name, '[Tukui:leader][Tukui:getnamecolor][Tukui:name_short][Tukui:masterlooter][Tukui:dead][Tukui:afk]')
 	else
-		self:Tag(name, '[Tukui:leader][Tukui:name_medium][Tukui:masterlooter][Tukui:dead][Tukui:afk]')
+		self:Tag(name, '[Tukui:leader][Tukui:name_short][Tukui:masterlooter][Tukui:dead][Tukui:afk]')
 	end
 	self.Name = name
 	
