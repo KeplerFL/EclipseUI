@@ -14,7 +14,7 @@ else
 end
 
 local xp = CreateFrame("Frame", "TukuiExperience", UIParent)
-if C["datatext"].bars then
+if C["datatext"].exprepbars then
 	xp:CreatePanel("Default", TukuiMinimap:GetWidth(), height, "TOPLEFT", TukuiMinimap, "BOTTOMLEFT", 0, -10)
 	xp:HookScript("OnUpdate", function(self) xp:SetPoint("TOPLEFT", TukuiMinimap, "BOTTOMLEFT", 0, -10) end)
 else

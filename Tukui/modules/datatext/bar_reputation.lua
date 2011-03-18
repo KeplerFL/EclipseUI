@@ -17,7 +17,7 @@ local rep = CreateFrame("Frame", "TukuiReputation", UIParent)
 if T.level ~= 85 then
 	rep:CreatePanel("Default", TukuiMinimap:GetWidth(), height, "TOPLEFT", TukuiExperience, "BOTTOMLEFT", 0, -3)
 else
-	if C["datatext"].bars then
+	if C["datatext"].exprepbars then
 		rep:CreatePanel("Default", TukuiMinimap:GetWidth(), height, "TOPLEFT", TukuiMinimap, "BOTTOMLEFT", 0, -10)
 	else
 		rep:CreatePanel("Default", TukuiMinimap:GetWidth(), height, "TOPLEFT", UIParent, "TOPLEFT", 8, -13)
