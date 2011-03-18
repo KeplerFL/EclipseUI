@@ -6,7 +6,7 @@ TukuiL.option_update = "You need to update your Tukui ConfigUI addon because of 
 -- general
 TukuiL.option_general = "General"
 TukuiL.option_general_uiscale = "Auto UI Scale"
-TukuiL.option_general_override = "Use High resolution  layout on a Lower resolution"
+TukuiL.option_general_override = "Use High resolution layout on a Lower resolution"
 TukuiL.option_general_multisample = "Multisampling protection (clean 1px border)"
 TukuiL.option_general_customuiscale = "UI Scale (if auto-scale is disabled)"
  
@@ -68,6 +68,10 @@ TukuiL.option_datatext_mastery = "Mastery position (0 for disabled)"
 TukuiL.option_datatext_classcolor = "Enable classcolored datatext"
 TukuiL.option_datatext_color = "Choose the color of the datatext"
 TukuiL.option_datatext_style = "Choose the sytle of the datatext"
+TukuiL.option_datatext_expreptext = "Enable text on experience and reputation bars"
+TukuiL.option_datatext_location_coords = "Enable coordinates on location panel"
+TukuiL.option_datatext_location = "Enable location panel"
+TukuiL.option_datatext_exprepbars = "Enable experience and reputation bars"
  
 -- unit frames
 TukuiL.option_unitframes_unitframes = "Unit Frames"

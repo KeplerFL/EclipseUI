@@ -100,6 +100,10 @@ local function Local(o)
 	if o == "TukuiConfigUIdatatextclasscolor" then o = TukuiL.option_datatext_classcolor end
 	if o == "TukuiConfigUIdatatextcolor" then o = TukuiL.option_datatext_color end
 	if o == "TukuiConfigUIdatatextstyle" then o = TukuiL.option_datatext_style end
+	if o == "TukuiConfigUIdatatextexpreptext" then o = TukuiL.option_datatext_expreptext end
+	if o == "TukuiConfigUIdatatextlocation_coords" then o = TukuiL.option_datatext_location_coords end
+	if o == "TukuiConfigUIdatatextlocation" then o = TukuiL.option_datatext_location end
+	if o == "TukuiConfigUIdatatextexprepbars" then o = TukuiL.option_datatext_exprepbars end
 	
 	-- unit frames
 	if o == "TukuiConfigUIunitframes" then o = TukuiL.option_unitframes_unitframes end
