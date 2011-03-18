@@ -1,5 +1,5 @@
 local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
-if not C["datatext"].bars == true then return end
+if not C["datatext"].exprepbars == true then return end
 
 local font = C["media"].pixel_font or C["media"].font
 local fontsize = 12
