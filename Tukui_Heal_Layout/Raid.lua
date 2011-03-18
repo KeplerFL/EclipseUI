@@ -260,6 +260,15 @@ local function Shared(self, unit)
 		self.RaidDebuffs = RaidDebuffs
     end
 
+	-- Mouseover Highlight
+	self:HookScript("OnEnter", function(self)
+		if not UnitIsPlayer(self.unit) then return end
+		local color = RAID_CLASS_COLORS[select(2, UnitClass(self.unit))]
+		self.shadow:SetBackdropBorderColor(color.r,color.g,color.b,0.7)
+		self.shadow:Show()
+	end)
+	self:HookScript("OnLeave", function(self) self.shadow:Hide() end)
+	
 	return self
 end
 

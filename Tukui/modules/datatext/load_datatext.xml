@@ -20,4 +20,5 @@
 	<Script file="hit.lua"/>
 	<Script file="micromenu.lua"/>
 	<Script file="mastery.lua"/>
+	<Script file="location.lua"/>
 </Ui>

@@ -133,15 +133,8 @@ local function Shared(self, unit)
 
 	-- create a panel
 	local panel = CreateFrame("Frame", nil, self)
-	if (unit == "player" or unit == "target") or (not T.lowversion and unit == "pet" or not T.lowversion and unit == "targettarget") then
-		panel:CreatePanel("Default", 1, 19, "TOPLEFT", ufbg, "BOTTOMLEFT", 0, -3)
-		if T.lowversion then
-			panel:Height(17)
-		end
-		panel:Point("TOPRIGHT", ufbg, "BOTTOMRIGHT", 0, -3)
-		panel:SetBackdropBorderColor(unpack(C["media"].bordercolor))
-		self.panel = panel
-	end
+	TukuiDB.CreatePanel(panel, 1, 1, "CENTER", ufbg, "CENTER", 0, 0)
+	self.panel = panel
 		
 	-- castbar of player and target
 	local castbar = CreateFrame("StatusBar", self:GetName().."CastBar", self)
@@ -193,19 +186,19 @@ local function Shared(self, unit)
 		end
 		power:Height(5)
 	
-		health.value = T.SetFontString(panel, unpack(T.Fonts.uHealth.setfont))
-		health.value:Point("RIGHT", panel, "RIGHT", -4, 1)
+		health.value = T.SetFontString(health, unpack(T.Fonts.uHealth.setfont))
+		health.value:Point("RIGHT", health, "RIGHT", -4, 1)
 		health.PostUpdate = T.PostUpdateHealth
 
-		power.value = T.SetFontString(panel, unpack(T.Fonts.uPower.setfont))
-		power.value:Point("LEFT", panel, "LEFT", 7, 1)
+		power.value = T.SetFontString(health, unpack(T.Fonts.uPower.setfont))
+		power.value:Point("LEFT", health, "LEFT", 7, 1)
 		power.PreUpdate = T.PreUpdatePower
 		power.PostUpdate = T.PostUpdatePower
 	
 		-- portraits
 		if (C["unitframes"].charportrait == true) then
 			local portrait = CreateFrame("PlayerModel", self:GetName().."_Portrait", self)
-			portrait:Height( ((health:GetHeight()) + (power:GetHeight() + 4) + (panel:GetHeight()) + 6))
+			portrait:Height( ((health:GetHeight()) + (power:GetHeight() + 4) + (panel:GetHeight()) + 2))
 			portrait:SetWidth(portrait:GetHeight())
 			portrait:SetAlpha(1)
 			portrait:SetFrameLevel(0)
@@ -260,7 +253,8 @@ local function Shared(self, unit)
 			local Combat = health:CreateTexture(nil, "OVERLAY")
 			Combat:Height(19)
 			Combat:Width(19)
-			Combat:SetPoint("LEFT",0,1)
+			--Combat:SetPoint("LEFT",7,1)
+			Combat:SetPoint("CENTER",0,-10)
 			Combat:SetVertexColor(0.69, 0.31, 0.31)
 			self.Combat = Combat
 
@@ -270,7 +264,7 @@ local function Shared(self, unit)
 			FlashInfo.parent = self
 			FlashInfo:SetAllPoints(panel)
 			FlashInfo.ManaLevel = T.SetFontString(FlashInfo, unpack(T.Fonts.uGeneral.setfont))
-			FlashInfo.ManaLevel:SetPoint("CENTER", panel, "CENTER", 0, 1)
+			FlashInfo.ManaLevel:SetPoint("CENTER", health, "CENTER", 0, 1)
 			self.FlashInfo = FlashInfo
 			
 			-- pvp status text
@@ -738,7 +732,7 @@ local function Shared(self, unit)
 			Name:SetPoint("CENTER", health, "CENTER", 0, 0)
 			Name:SetFont(unpack(T.Fonts.uName.setfont))
 		else
-			Name:SetPoint("CENTER", panel, "CENTER", 0, 1)
+			Name:SetPoint("CENTER", health, "CENTER", 0, 0)
 			Name:SetFont(unpack(T.Fonts.uName.setfont))
 		end
 		Name:SetJustifyH("CENTER")
@@ -787,7 +781,7 @@ local function Shared(self, unit)
 			Name:SetPoint("CENTER", health, "CENTER", 0, 0)
 			Name:SetFont(unpack(T.Fonts.uName.setfont))
 		else
-			Name:SetPoint("CENTER", panel, "CENTER", 0, 1)
+			Name:SetPoint("CENTER", health, "CENTER", 0, 0)
 			Name:SetFont(unpack(T.Fonts.uName.setfont))
 		end
 		Name:SetJustifyH("CENTER")

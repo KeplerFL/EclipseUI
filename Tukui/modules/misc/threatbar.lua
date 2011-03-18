@@ -72,11 +72,11 @@ local function OnUpdate(self, event, unit)
 			self:SetStatusBarColor(unpack(self.Colors[3]))
 		end
 
-		if threatval > 0 then
+		--if threatval > 0 then
 			self:SetAlpha(1)
-		else
-			self:SetAlpha(0) -- 0
-		end		
+		--else
+		--	self:SetAlpha(0) -- 0
+		--end		
 	end
 end
 

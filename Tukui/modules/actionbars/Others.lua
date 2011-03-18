@@ -44,6 +44,7 @@ end)
 
 local vehicle = CreateFrame("Button", "TukuiExitVehicleButton", UIParent, "SecureHandlerClickTemplate")
 vehicle:CreatePanel("Default", T.buttonsize * 2, T.buttonsize + 1, "BOTTOMRIGHT", TukuiChatRight, "BOTTOMLEFT", -3, 0)
+--vehicle:CreatePanel("Default", T.buttonsize * 2, T.buttonsize + 1, "TOPLEFT", TukuiMinimap, "BOTTOMLEFT", 0, -3)
 vehicle:RegisterForClicks("AnyUp")
 vehicle:SetScript("OnClick", function() VehicleExit() end)
 vehicle.text = T.SetFontString(vehicle, unpack(T.Fonts.movers.setfont))

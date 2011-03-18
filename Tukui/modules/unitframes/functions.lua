@@ -118,23 +118,29 @@ T.PostUpdateHealth = function(health, unit, min, max)
 					health.value:SetFormattedText("|cff559655%s|r |cffD7BEA5|||r |cff559655%s|r", ShortValue(min), ShortValue(max))
 				else
 					health.value:SetFormattedText("|cffAF5050%d|r |cffD7BEA5-|r |cff%02x%02x%02x%d%%|r", min, r * 255, g * 255, b * 255, floor(min / max * 100))
+					--health.value:SetText("|cff559655"..floor(min / max * 100).."%".."|r")
 				end
 			elseif unit == "target" or (unit and unit:find("boss%d")) then
 				if C["unitframes"].showtotalhpmp == true then
 					health.value:SetFormattedText("|cff559655%s|r |cffD7BEA5|||r |cff559655%s|r", ShortValue(min), ShortValue(max))
 				else
 					health.value:SetFormattedText("|cffAF5050%s|r |cffD7BEA5-|r |cff%02x%02x%02x%d%%|r", ShortValue(min), r * 255, g * 255, b * 255, floor(min / max * 100))
+					--health.value:SetText("|cff559655"..floor(min / max * 100).."%".."|r")
 				end
 			elseif (unit and unit:find("arena%d")) or unit == "focus" or unit == "focustarget" then
 				health.value:SetText("|cff559655"..ShortValue(min).."|r")
+				--health.value:SetText("|cff559655"..floor(min / max * 100).."%".."|r")
 			else
 				health.value:SetText("|cff559655-"..ShortValueNegative(max-min).."|r")
+				--health.value:SetText("|cff559655-"..floor(min / max * 100).."%".."|r")
 			end
 		else
 			if unit == "player" and health:GetAttribute("normalUnit") ~= "pet" then
 				health.value:SetText("|cff559655"..max.."|r")
+				--health.value:SetText("|cff559655"..floor(min / max * 100).."%".."|r")
 			elseif unit == "target" or unit == "focus"  or unit == "focustarget" or (unit and unit:find("arena%d")) then
 				health.value:SetText("|cff559655"..ShortValue(max).."|r")
+				--health.value:SetText("|cff559655"..floor(min / max * 100).."%".."|r")
 			else
 				health.value:SetText(" ")
 			end
@@ -183,11 +189,15 @@ end
 
 T.PostNamePosition = function(self)
 	self.Name:ClearAllPoints()
-	if (self.Power.value:GetText() and UnitIsEnemy("player", "target") and C["unitframes"].targetpowerpvponly == true) or (self.Power.value:GetText() and C["unitframes"].targetpowerpvponly == false) then
-		self.Name:SetPoint("CENTER", self.panel, "CENTER", 0, 1)
+	self.Name:SetShadowOffset(1.25, -1.25)
+	if (self.Power.value:GetText() and UnitIsEnemy("player", "target") and TukuiCF["unitframes"].targetpowerpvponly == true) or (self.Power.value:GetText() and TukuiCF["unitframes"].targetpowerpvponly == false) then
+		self.Name:SetPoint("CENTER", self.Health, "CENTER", 0, 1)
+		self.Power:SetPoint("LEFT", self.Health, "LEFT", 7, 1)
 	else
 		self.Power.value:SetAlpha(0)
-		self.Name:SetPoint("LEFT", self.panel, "LEFT", 4, 1)
+		self.Name:SetPoint("LEFT", self.Health, "LEFT", 7, 1)
+		--self.Power:SetPoint("LEFT", self.Health, "LEFT", 7, 1)
+		--self.Name:SetPoint("CENTER", self.Health, "CENTER", 0, 1)
 	end
 end
 
@@ -221,12 +231,14 @@ T.PostUpdatePower = function(power, unit, min, max)
 						power.value:SetFormattedText("%s |cffD7BEA5|||r %s", ShortValue(max - (max - min)), ShortValue(max))
 					else
 						power.value:SetFormattedText("%d%% |cffD7BEA5-|r %s", floor(min / max * 100), ShortValue(max - (max - min)))
+						--power.value:SetText(floor(min / max * 100).."%")
 					end
 				elseif unit == "player" and self:GetAttribute("normalUnit") == "pet" or unit == "pet" then
 					if C["unitframes"].showtotalhpmp == true then
 						power.value:SetFormattedText("%s |cffD7BEA5|||r %s", ShortValue(max - (max - min)), ShortValue(max))
 					else
 						power.value:SetFormattedText("%d%%", floor(min / max * 100))
+						--power.value:SetText(floor(min / max * 100).."%")
 					end
 				elseif (unit and unit:find("arena%d")) or unit == "focus" or unit == "focustarget" then
 					power.value:SetText(ShortValue(min))
@@ -235,16 +247,23 @@ T.PostUpdatePower = function(power, unit, min, max)
 						power.value:SetFormattedText("%s |cffD7BEA5|||r %s", ShortValue(max - (max - min)), ShortValue(max))
 					else
 						power.value:SetFormattedText("%d%% |cffD7BEA5-|r %d", floor(min / max * 100), max - (max - min))
+						--power.value:SetText(floor(min / max * 100).."%")
 					end
 				end
 			else
 				power.value:SetText(max - (max - min))
 			end
 		else
-			if unit == "pet" or unit == "target" or unit == "focus" or unit == "focustarget" or (unit and unit:find("arena%d")) then
-				power.value:SetText(ShortValue(min))
+			if pType == 0 then
+				if unit == "pet" or unit == "target" or unit == "focus" or unit == "focustarget" or (unit and unit:find("arena%d")) then
+					power.value:SetText(ShortValue(min))
+					--power.value:SetText(floor(min / max * 100).."%")
+				else
+					power.value:SetText(min)
+					--power.value:SetText(floor(min / max * 100).."%")
+				end
 			else
-				power.value:SetText(min)
+				power.value:SetText(max - (max - min))
 			end
 		end
 	end

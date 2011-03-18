@@ -19,8 +19,8 @@ C["unitframes"] = {
 		["healthBgColor"] = { .05, .05, .05 },
 	
 	-- Castbar
-	["unitcastbar"] = true,                             -- enable tukui castbar
-	["cblatency"] = false,                              -- enable castbar latency
+	["unitcastbar"] = false,                             -- enable tukui castbar
+	["cblatency"] = true,                              	-- enable castbar latency
 	["cbicons"] = true,                                 -- enable icons on castbar
 	["cbclasscolor"] = false,
 		-- if cbclasscolor == false then it uses this color
@@ -32,15 +32,15 @@ C["unitframes"] = {
 	["playerauras"] = false,                            -- enable auras
 	["targetauras"] = true,                             -- enable auras on target unit frame
 	["totdebuffs"] = false,                             -- enable tot debuffs (high reso only)
-	["focusdebuffs"] = true,                             -- enable focus debuffs
-	["focusbuffs"] = true,                             -- enable focus buffs
-	["onlyselfdebuffs"] = true,                        -- display only our own debuffs applied on target
+	["focusdebuffs"] = false,                             -- enable focus debuffs
+	["focusbuffs"] = false,                             -- enable focus buffs
+	["onlyselfdebuffs"] = false,                        -- display only our own debuffs applied on target
 	["onlyselfbuffs"] = false,                        -- display only our own buffs applied on target
 	["buffrows"] = 2,                       			-- change how many buff rows are displayed
 	["debuffrows"] = 2,                        			-- change how many debuff rows are displayed
 	
 	-- Misc.
-	["charportrait"] = false,                           -- do i really need to explain this?
+	["charportrait"] = true,                           -- do i really need to explain this?
 	["showtotalhpmp"] = false,                          -- change the display of info text on player and target with XXXX/Total.
 	["targetpowerpvponly"] = true,                      -- enable power text on pvp target only
 	["showsmooth"] = true,                              -- enable smooth bar
@@ -57,13 +57,13 @@ C["unitframes"] = {
 		["aggro"] = true,                                   -- show aggro on all raids layouts
 		["raidunitdebuffwatch"] = true,                     -- track important spell to watch in pve for grid mode.
 		["healcomm"] = true,                               -- enable healprediction support.
-		["debuffHighlightFilter"] = false,					-- filter debuff border coloring
+		["debuffHighlightFilter"] = true,					-- filter debuff border coloring
 			-- enable player / target debuff highlight
 			["playerHighlight"] = true,				
 		
 		-- Heal
 		["healthvertical"] = true,						-- change orientation of health bars in heal mode
-		["healthdeficit"] = false,						-- show health deficit values in heal mode
+		["healthdeficit"] = true,						-- show health deficit values in heal mode
 		
 		-- Dps
 		["hidepower"] = false,							-- hide power bar in dps party/raid15 mode
@@ -131,45 +131,48 @@ C["cooldown"] = {
 C["datatext"] = {
 	["armor"] = 0,                                      -- show your armor value against the level mob you are currently targeting
 	["avd"] = 0,                                        -- show your current avoidance against the level of the mob your targeting
-	["bags"] = 0,                                       -- show space used in bags on panels
+	["bags"] = 6,                                       -- show space used in bags on panels
 	["crit"] = 0,                                       -- show your crit rating on panels.
-	["currency"] = 0,                                   -- show your tracked currency on panels
+	["currency"] = 2,                                   -- show your tracked currency on panels
 	["dps_text"] = 0,                                   -- show a dps meter on panels
-	["dur"] = 6,                                        -- show your equipment durability on panels.
-	["fps_ms"] = 4,                                     -- show fps and ms on panels
+	["dur"] = 7,                                        -- show your equipment durability on panels.
+	["fps_ms"] = 8,                                     -- show fps and ms on panels
 	["friends"] = 3,                                    -- show number of friends connected.
-	["gold"] = 0,                                       -- show your current gold on panels
-	["guild"] = 2,                                      -- show number on guildmate connected on panels
+	["gold"] = 5,                                       -- show your current gold on panels
+	["guild"] = 1,                                      -- show number on guildmate connected on panels
 	["haste"] = 0,                                      -- show your haste rating on panels.
 	["hit"] = 0,										-- show your hit on panels
 	["hps_text"] = 0,                                   -- show a heal meter on panels
 	["mastery"] = 0,									-- show mastery on panels
 	["micromenu"] = 0,									-- game menu attached to panels
-	["power"] = 0,                                      -- show your attackpower/spellpower/healpower/rangedattackpower whatever stat is higher gets displayed
-	["system"] = 5,                                      -- show total memory and others systems infos on panels
-	["wowtime"] = 1,                                    -- show time on panels
+	["power"] = 4,                                      -- show your attackpower/spellpower/healpower/rangedattackpower whatever stat is higher gets displayed
+	["system"] = 9,                                     -- show total memory and others systems infos on panels
+	["wowtime"] = 10,                                    -- show time on panels
+	["location"] = true,								-- enable location panel
+		-- coordinates display only if location == true
+		["location_coords"] = true,						-- display location coordinates
 
 	-- ["battleground"] = true,                            -- enable 3 stats in battleground only that replace stat1,stat2,stat3.
 	["time24"] = false,                                  -- set time to 24h format.
 	["localtime"] = true,                              -- set time to local time instead of server time.
 	
-	["classcolor"] = false,
-		["color"] = { .4, .4, .4 },
+	["classcolor"] = true,
+		["color"] = { .2, .4, .7 },
 }
 
 C["chat"] = {
 	["enable"] = true,                                  -- blah
 	["whispersound"] = true,                            -- play a sound when receiving whisper
 	["height"] = 165,									-- adjust the chatframe height
-	["background"] = false,								-- chat frame backgrounds
+	["background"] = true,								-- chat frame backgrounds
 	["justifyRight"] = false,							-- set right chat frame text to the right
 }
 
 C["nameplate"] = {
 	["enable"] = true,                                  -- enable nice skinned nameplates that fit into tukui
-	["showhealth"] = false,				                -- show health text on nameplate
-	["enhancethreat"] = false,			                -- threat features based on if your a tank or not
-	["overlap"] = false,				                -- allow nameplates to overlap
+	["showhealth"] = true,				                -- show health text on nameplate
+	["enhancethreat"] = true,			                -- threat features based on if your a tank or not
+	["overlap"] = true,				                	-- allow nameplates to overlap
 	["combat"] = false,					                -- only show enemy nameplates in-combat.
 	["goodcolor"] = {75/255,  175/255, 76/255},	        -- good threat color (tank shows this with threat, everyone else without)
 	["badcolor"] = {0.78, 0.25, 0.25},			        -- bad threat color (opposite of above)
@@ -203,5 +206,23 @@ C["invite"] = {
 
 C["buffreminder"] = {
 	["enable"] = true,                                  -- this is now the new innerfire warning script for all armor/aspect class.
-	["sound"] = true,                                   -- enable warning sound notification for reminder.
+	["sound"] = false,                                   -- enable warning sound notification for reminder.
+}
+
+C["combo"] = {											-- credit to Dajova
+	["display"] = true,									-- enable numeric combo display
+	-- combo setup
+		["dknight"] = false,                   			-- enable death knight combo module (odd behaviour and not updating correctly, disabled until further notice)
+		["druid"] = false,                    			-- enable druid combo module (odd behaviour and not updating correctly, disabled until further notice)
+		["hunter"] = true,                   			-- enable hunter combo module
+		["mage"] = true,                     			-- enable mage combo module
+		["paladin"] = true,                  			-- enable paladin combo module (will turn into bar above the playerframe if false)
+		["priest"] = true,                   			-- enable priest combo module
+		["shaman"] = true,                   			-- enable shaman combo module
+		["warlock"] = true,                  			-- enable warlock combo module (will turn into bar above the playerframe if false)
+		["warrior"] = true,                  			-- enable warrior combo module
+} 
+
+C["others"] = {
+	["autoquest"] = true,								-- enable autoquest feature (credit to Dajova)
 }

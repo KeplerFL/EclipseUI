@@ -3,6 +3,10 @@ local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, vari
 T.PP = function(p, obj)
 	local TukuiInfoLeft = TukuiInfoLeft
 	local TukuiInfoRight = TukuiInfoRight
+	local TukuiTopStatCenter = TukuiTopStatCenter
+	local TukuiTopStatLeft = TukuiTopStatLeft
+	local TukuiTopStatRight = TukuiTopStatRight
+	local TukuiMinimapTime = TukuiMinimapTime
 	
 	if p == 1 then
 		obj:SetParent(TukuiInfoLeft)
@@ -28,5 +32,21 @@ T.PP = function(p, obj)
 		obj:SetParent(TukuiInfoRight)
 		obj:Height(TukuiInfoRight:GetHeight())
 		obj:Point("RIGHT", TukuiInfoRight, -20, 1)
+	elseif p == 7 then
+		obj:SetParent(TukuiInfoTop)
+		obj:Height(TukuiInfoTop:GetHeight())
+		obj:Point("LEFT", TukuiInfoTop, 20, 1)
+	elseif p == 8 then
+		obj:SetParent(TukuiInfoTop)
+		obj:Height(TukuiInfoTop:GetHeight())
+		obj:Point("CENTER", TukuiInfoTop, 0, 1)
+	elseif p == 9 then
+		obj:SetParent(TukuiInfoTop)
+		obj:Height(TukuiInfoTop:GetHeight())
+		obj:Point("RIGHT", TukuiInfoTop, -20, 1)
+	elseif p == 10 then
+		obj:SetParent(TukuiMinimapTime)
+		obj:Height(TukuiMinimapTime:GetHeight())
+		obj:Point("CENTER", TukuiMinimapTime, 0, 1)
 	end
 end

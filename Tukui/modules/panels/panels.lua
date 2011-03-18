@@ -73,3 +73,31 @@ if C["actionbar"].enable then
 		TukuiPetBar:Height((T.petbuttonsize + T.buttonspacing * 2) + 2)
 	end
 end
+
+-- Top Data Frames
+-- local TukuiTopStatCenter = CreateFrame("Frame", "TukuiTopStatCenter", UIParent)
+-- TukuiTopStatCenter:CreatePanel(TukuiTopStatCenter, 115, 23, "TOP", UIParent, "TOP", 0, -7)
+-- TukuiTopStatCenter:CreateShadow(TukuiTopStatCenter)
+-- TukuiTopStatCenter:SetFrameLevel(2)
+
+-- local TukuiTopStatLeft = CreateFrame("Frame", "TukuiTopStatLeft", UIParent)
+-- TukuiTopStatLeft:CreatePanel(TukuiTopStatLeft, 89, 23, "RIGHT", TukuiTopStatCenter, "LEFT", -3, 0)
+-- TukuiTopStatLeft:CreateShadow(TukuiTopStatLeft)
+-- TukuiTopStatLeft:SetFrameLevel(2)
+
+-- local TukuiTopStatRight = CreateFrame("Frame", "TukuiTopStatRight", UIParent)
+-- TukuiTopStatRight:CreatePanel(TukuiTopStatRight, 89, 23, "LEFT", TukuiTopStatCenter, "RIGHT", 3, 0)
+-- TukuiTopStatRight:CreateShadow(TukuiTopStatRight)
+-- TukuiTopStatRight:SetFrameLevel(2)
+
+-- Top Data Frame
+local TukuiInfoTop = CreateFrame("Frame", "TukuiInfoTop", UIParent)
+TukuiInfoTop:CreatePanel(TukuiInfoTop, T.InfoLeftRightWidth - (T.InfoLeftRightWidth / 5), 23, "TOP", UIParent, "TOP", 0, -7)
+TukuiInfoTop:CreateShadow(TukuiInfoTop)
+TukuiInfoLeft:SetFrameLevel(2)
+
+-- Time Panel
+local TukuiMinimapTime = CreateFrame("Frame", "TukuiMinimapTime", UIParent)
+TukuiMinimapTime:CreatePanel(TukuiMinimapTime, 73, 23, "TOP", Minimap, "BOTTOM", 0, 10)
+TukuiMinimapTime:CreateShadow(TukuiMinimapTime)
+TukuiMinimapTime:SetFrameLevel(3)
