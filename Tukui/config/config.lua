@@ -151,6 +151,8 @@ C["datatext"] = {
 	["location"] = true,								-- enable location panel
 		-- coordinates display only if location == true
 		["location_coords"] = true,						-- display location coordinates
+	["exprepbars"] = true,								-- enable experience and reputation bar
+		["expreptext"] = false,							-- enable text on experience and reputation bars
 
 	-- ["battleground"] = true,                            -- enable 3 stats in battleground only that replace stat1,stat2,stat3.
 	["time24"] = false,                                  -- set time to 24h format.

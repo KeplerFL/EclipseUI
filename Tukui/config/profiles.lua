@@ -16,3 +16,8 @@ end
 if T.myname == "Aereos" then
 	C.datatext.classcolor = false
 end
+
+if T.myname == "Fraiality" then
+	C.datatext.power = 0
+	C.datatext.avd = 4
+end

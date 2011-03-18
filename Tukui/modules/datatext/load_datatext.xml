@@ -21,4 +21,6 @@
 	<Script file="micromenu.lua"/>
 	<Script file="mastery.lua"/>
 	<Script file="location.lua"/>
+	<Script file="bar_experience.lua"/>
+	<Script file="bar_reputation.lua"/>
 </Ui>
