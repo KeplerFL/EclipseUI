@@ -11,7 +11,7 @@ if T.myclass ~= "SHAMAN" and C["actionbar"].vertical_shapeshift then
 else
 	TukuiShift:Height(T.stancebuttonsize + 10)
 end
-TukuiShift:Point("TOPLEFT",  TukuiMinimap, "TOPRIGHT", 3, 0)
+TukuiShift:Point("BOTTOMLEFT",  TukuiChatLeft, "BOTTOMRIGHT", 16, 0)
 -- TukuiShift:SetFrameLevel(20)
 TukuiShift:SetFrameStrata("MEDIUM")
 TukuiShift:SetMovable(true)
