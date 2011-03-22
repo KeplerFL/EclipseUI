@@ -25,6 +25,7 @@ TukuiL.option_merchant = "Merchant"
 TukuiL.option_merchant_autosell = "Auto sell grey items"
 TukuiL.option_merchant_autorepair = "Auto Repair items"
 TukuiL.option_merchant_sellmisc = "Sell some defined (craps not grey) items automatically"
+TukuiL.option_merchant_guildrepair = "Auto Repair from guild bank (if available)"
 
 --skin
 -- TukuiL.option_skin = "Addon-Skins"
