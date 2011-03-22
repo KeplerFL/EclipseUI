@@ -192,6 +192,8 @@ C["tooltip"] = {
 C["merchant"] = {
 	["sellgrays"] = true,                               -- automaticly sell grays?
 	["autorepair"] = true,                              -- automaticly repair?
+		-- guild repair only if autorepair == true
+		["guildrepair"] = true,							-- automatically use guild funds to repair (if available)
 	["sellmisc"] = true,                                -- sell defined items automatically
 }
 
