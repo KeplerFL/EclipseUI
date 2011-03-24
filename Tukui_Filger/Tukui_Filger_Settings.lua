@@ -1122,6 +1122,8 @@ ns.Filger_Spells = {
 			{ spellID = 77699, size = 65, unitId = "player", caster = "all", filter = "DEBUFF" },
 			-- Consuming Flames/Verzehrende Flammen (Maloriak)
 			{ spellID = 77786, size = 65, unitId = "player", caster = "all", filter = "DEBUFF" },
+			-- Dark Sludge (Heroic Maloriak)
+			{ spellID = 92988, size = 65, unitId = "player", caster = "all", filter = "DEBUFF" },
 			-- Finkle's Mixture/Finkels Mixtur (Chimaeron)
 			{ spellID = 82705, size = 65, unitId = "player", caster = "all", filter = "DEBUFF" },
 			-- Shadow Conductor/Schattenleiter (Nefarian)
