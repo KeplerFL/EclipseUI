@@ -230,13 +230,14 @@ local function FontString(parent, name, fontName, fontHeight, fontStyle)
 	return fs
 end
 
-local function FadeIn(f)
-	UIFrameFadeIn(f, .4, f:GetAlpha(), 1)
-end
+-- errors with FadeIn and FadeOut
+-- local function FadeIn(f)
+	-- UIFrameFadeIn(f, .4, f:GetAlpha(), 1)
+-- end
 	
-local function FadeOut(f)
-	UIFrameFadeOut(f, .8, f:GetAlpha(), 0)
-end
+-- local function FadeOut(f)
+	-- UIFrameFadeOut(f, .8, f:GetAlpha(), 0)
+-- end
 
 if C["datatext"].classcolor then
 	local color = RAID_CLASS_COLORS[T.myclass]
@@ -278,8 +279,8 @@ local function addapi(object)
 	mt.Kill = Kill
 	mt.StyleButton = StyleButton
 	mt.FontString = FontString
-	mt.FadeIn = FadeIn
-	mt.FadeOut = FadeOut
+	-- mt.FadeIn = FadeIn		-- errors with fading
+	-- mt.FadeOut = FadeOut		-- errors with fading
 end
 
 local handled = {["Frame"] = true}
