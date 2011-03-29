@@ -1,3 +1,5 @@
+-- Credits to Gsuz
+
 local T, C, L = unpack(Tukui)
 if C.tooltip.enable ~= true then return end
 
