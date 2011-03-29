@@ -20,4 +20,6 @@
 	<Script file="notifications\pethappiness.lua"/>	
 	<Script file="skins\blizzardframes.lua"/>
 	<Script file="skins\chatbubbles.lua"/>	
+	
+	<Script file="tooltip\tooltipilvl.lua"/>
 </Ui>
