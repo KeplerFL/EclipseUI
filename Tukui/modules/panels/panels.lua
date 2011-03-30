@@ -92,7 +92,7 @@ end
 
 -- Top Data Frame
 local TukuiInfoTop = CreateFrame("Frame", "TukuiInfoTop", UIParent)
-TukuiInfoTop:CreatePanel(TukuiInfoTop, T.InfoLeftRightWidth - (T.InfoLeftRightWidth / 5), 23, "TOP", UIParent, "TOP", 0, -7)
+TukuiInfoTop:CreatePanel(TukuiInfoTop, T.InfoLeftRightWidth - (T.InfoLeftRightWidth / 5), 23, "TOPLEFT", UIParent, "TOPLEFT", 8, -8)
 TukuiInfoTop:CreateShadow(TukuiInfoTop)
 TukuiInfoLeft:SetFrameLevel(2)
 
