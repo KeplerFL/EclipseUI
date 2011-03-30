@@ -84,7 +84,7 @@ ClearTargetButton:SetScript("OnLeave", ButtonLeave)
 ClearTargetButton:SetScript("OnMouseUp", function() SetRaidTarget("target", 0) end)
 ClearTargetButton:SetFrameStrata("HIGH")
 
-ClearTargetButtonText = T.SetFontString(ClearTargetButton, Options.font, Options.fontsize, "OUTLINE")
+ClearTargetButtonText = T.SetFontString(ClearTargetButton, Options.font, Options.fontsize, "MONOCHROMEOUTLINE")
 ClearTargetButtonText:SetText(MarkBarLocal.button_Clear)
 ClearTargetButtonText:SetPoint("CENTER")
 ClearTargetButtonText:SetJustifyH("CENTER", 1, 0)
