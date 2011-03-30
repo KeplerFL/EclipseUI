@@ -13,7 +13,7 @@ local Options = {
 -- Default position of toggle button and background
 local anchor = {}
 if Options.toplayout then
-	anchor = {"TOPRIGHT", TukuiInfoTop, "TOPLEFT", -3, 0}
+	anchor = {"TOPLEFT", TukuiInfoTop, "TOPRIGHT", 3, 0}
 else
 	anchor = {"BOTTOMLEFT", TukuiInfoRight, "TOPLEFT", 0, 3}
 end
@@ -92,7 +92,7 @@ ClearTargetButtonText:SetJustifyH("CENTER", 1, 0)
 if Options.datatext == false then
 --Create toggle button
 	local ToggleButton = CreateFrame("Frame", "ToggleButton", UIParent)
-	ToggleButton:CreatePanel("Default", 100, 20, "CENTER", UIParent, "CENTER", 0, 0)
+	ToggleButton:CreatePanel("Default", 100, 23, "CENTER", UIParent, "CENTER", 0, 0)
 	ToggleButton:ClearAllPoints()
 	ToggleButton:SetPoint(unpack(anchor))
 	ToggleButton:EnableMouse(true)
@@ -106,7 +106,7 @@ if Options.datatext == false then
 	
 	--Create close button
 	local CloseButton = CreateFrame("Frame", "CloseButton", MarkBarBackground)
-	CloseButton:CreatePanel("Default", 15, 15, "TOPRIGHT", MarkBarBackground, "TOPLEFT", T.Scale(-3), 0)
+	CloseButton:CreatePanel("Default", 15, 15, "TOPLEFT", MarkBarBackground, "TOPRIGHT", T.Scale(3), 0)
 	CloseButton:EnableMouse(true)
 	CloseButton:SetScript("OnEnter", ButtonEnter)
 	CloseButton:SetScript("OnLeave", ButtonLeave)
