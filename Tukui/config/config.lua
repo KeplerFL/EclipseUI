@@ -135,7 +135,7 @@ C["datatext"] = {
 	["crit"] = 0,                                       -- show your crit rating on panels.
 	["currency"] = 2,                                   -- show your tracked currency on panels
 	["dps_text"] = 0,                                   -- show a dps meter on panels
-	["dur"] = 7,                                        -- show your equipment durability on panels.
+	["dur"] = 9,                                        -- show your equipment durability on panels.
 	["fps_ms"] = 8,                                     -- show fps and ms on panels
 	["friends"] = 3,                                    -- show number of friends connected.
 	["gold"] = 5,                                       -- show your current gold on panels
@@ -146,7 +146,7 @@ C["datatext"] = {
 	["mastery"] = 0,									-- show mastery on panels
 	["micromenu"] = 0,									-- game menu attached to panels
 	["power"] = 4,                                      -- show your attackpower/spellpower/healpower/rangedattackpower whatever stat is higher gets displayed
-	["system"] = 9,                                     -- show total memory and others systems infos on panels
+	["system"] = 7,                                     -- show total memory and others systems infos on panels
 	["wowtime"] = 10,                                    -- show time on panels
 	["location"] = true,								-- enable location panel
 		-- coordinates display only if location == true
