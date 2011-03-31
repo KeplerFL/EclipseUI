@@ -106,12 +106,12 @@ if Options.datatext == false then
 	
 	--Create close button
 	local CloseButton = CreateFrame("Frame", "CloseButton", MarkBarBackground)
-	CloseButton:CreatePanel("Default", 15, 15, "TOPLEFT", MarkBarBackground, "TOPRIGHT", T.Scale(3), 0)
+	CloseButton:CreatePanel("Default", 25, Options.buttonheight * 3 + T.Scale(2), "TOPLEFT", MarkBarBackground, "TOPRIGHT", T.Scale(2), 0)
 	CloseButton:EnableMouse(true)
 	CloseButton:SetScript("OnEnter", ButtonEnter)
 	CloseButton:SetScript("OnLeave", ButtonLeave)
 	
-	local CloseButtonText = T.SetFontString(CloseButton, Options.font, Options.fontsize, "MONOCHROMEOUTLINE")
+	local CloseButtonText = T.SetFontString(CloseButton, C["media"].font, 20, "OUTLINE")
 	CloseButtonText:SetText("x")
 	CloseButtonText:SetPoint("CENTER", CloseButton, "CENTER")
 
