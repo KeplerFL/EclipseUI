@@ -267,18 +267,16 @@ end
 
 local function addapi(object)
 	local mt = getmetatable(object).__index
-	mt.Width = Width
-	mt.Height = Height
-	mt.Size = Size
-	mt.Point = Point
-	mt.SetTemplate = SetTemplate
-	mt.CreatePanel = CreatePanel
-	mt.CreateShadow = CreateShadow
-	mt.CreateOverlay = CreateOverlay
-	mt.CreateBorder = CreateBorder
-	mt.Kill = Kill
-	mt.StyleButton = StyleButton
-	mt.FontString = FontString
+	if not object.Size then mt.Size = Size end
+	if not object.Point then mt.Point = Point end
+	if not object.SetTemplate then mt.SetTemplate = SetTemplate end
+	if not object.CreatePanel then mt.CreatePanel = CreatePanel end
+	if not object.CreateShadow then mt.CreateShadow = CreateShadow end
+	if not object.Kill then mt.Kill = Kill end
+	if not object.StyleButton then mt.StyleButton = StyleButton end
+	if not object.Width then mt.Width = Width end
+	if not object.Height then mt.Height = Height end
+	if not object.FontString then mt.FontString = FontString end
 	-- mt.FadeIn = FadeIn		-- errors with fading
 	-- mt.FadeOut = FadeOut		-- errors with fading
 end
