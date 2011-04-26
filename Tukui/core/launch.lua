@@ -285,7 +285,7 @@ TukuiOnLogon:SetScript("OnEvent", function(self, event)
 	end
 	
 	
-	print("Welcome to |cffe45050EclipseUI|r - " .. T.version)
+	print("Welcome to |cffe45050EclipseUI|r - cohesioN's edit - " .. T.version)
 end)
 
 ------------------------------------------------------------------------
