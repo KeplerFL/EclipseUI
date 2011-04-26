@@ -231,13 +231,13 @@ local function FontString(parent, name, fontName, fontHeight, fontStyle)
 end
 
 -- errors with FadeIn and FadeOut
--- local function FadeIn(f)
-	-- UIFrameFadeIn(f, .4, f:GetAlpha(), 1)
--- end
+local function FadeIn(f)
+	UIFrameFadeIn(f, .4, f:GetAlpha(), 1)
+end
 	
--- local function FadeOut(f)
-	-- UIFrameFadeOut(f, .8, f:GetAlpha(), 0)
--- end
+local function FadeOut(f)
+	UIFrameFadeOut(f, .8, f:GetAlpha(), 0)
+end
 
 if C["datatext"].classcolor then
 	local color = RAID_CLASS_COLORS[T.myclass]
@@ -267,18 +267,20 @@ end
 
 local function addapi(object)
 	local mt = getmetatable(object).__index
+	if not object.Width then mt.Width = Width end
+	if not object.Height then mt.Height = Height end
 	if not object.Size then mt.Size = Size end
 	if not object.Point then mt.Point = Point end
 	if not object.SetTemplate then mt.SetTemplate = SetTemplate end
 	if not object.CreatePanel then mt.CreatePanel = CreatePanel end
 	if not object.CreateShadow then mt.CreateShadow = CreateShadow end
+	if not object.CreateOverlay then mt.CreateOverlay = CreateOverlay end
+	if not object.CreateBorder then mt.CreateBorder = CreateBorder end
 	if not object.Kill then mt.Kill = Kill end
 	if not object.StyleButton then mt.StyleButton = StyleButton end
-	if not object.Width then mt.Width = Width end
-	if not object.Height then mt.Height = Height end
 	if not object.FontString then mt.FontString = FontString end
-	-- mt.FadeIn = FadeIn		-- errors with fading
-	-- mt.FadeOut = FadeOut		-- errors with fading
+	if not object.FadeIn then mt.FadeIn = FadeIn end
+	if not object.FadeOut then mt.FadeOut = FadeOut end
 end
 
 local handled = {["Frame"] = true}
