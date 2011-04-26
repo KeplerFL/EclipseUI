@@ -167,6 +167,8 @@ local function SetChatStyle(frame)
 		_G[chat].AddMessage = AddMessage
 	end
 	
+	frame.skinned = true
+	
 	_G[chat.."TabText"]:SetFont(unpack(T.Fonts.cTab.setfont))
 	_G[chat.."TabText"]:SetTextColor(unpack(C["datatext"].color))
 	_G[chat.."TabText"].SetTextColor = T.dummy
@@ -265,6 +267,9 @@ end)
 -- Setup temp chat (BN, WHISPER) when needed.
 local function SetupTempChat()
 	local frame = FCF_GetCurrentChatFrame()
+	-- do a check if we already did a skinning earlier for this temp chat frame
+	if frame.skinned then return end
+	
 	SetChatStyle(frame)
 end
 hooksecurefunc("FCF_OpenTemporaryWindow", SetupTempChat)
