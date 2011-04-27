@@ -109,7 +109,7 @@ local function Shared(self, unit)
 			health.colorDisconnected = true
 			health.colorReaction = true
 			health.colorClass = true
-			if TukuiDB.myclass == "HUNTER" then
+			if T.myclass == "HUNTER" then
 				health.colorHappiness = true
 			end
 		
@@ -882,26 +882,26 @@ local function Shared(self, unit)
 				buffs["growth-x"] = "RIGHT"
 				buffs["growth-y"] = "DOWN"
 			end
-			buffs.PostCreateIcon = TukuiDB.PostCreateAura
-			buffs.PostUpdateIcon = TukuiDB.PostUpdateAura
+			buffs.PostCreateIcon = T.PostCreateAura
+			buffs.PostUpdateIcon = T.PostUpdateAura
 			self.Buffs = buffs
 		end
 		
 		if C["unitframes"].unitcastbar then
-			castbar:SetHeight(TukuiDB.Scale(25))
-			castbar:SetWidth(TukuiDB.Scale(240))
+			castbar:SetHeight(T.Scale(25))
+			castbar:SetWidth(T.Scale(240))
 			castbar:SetFrameLevel(6)
 			castbar:SetPoint("CENTER", UIParent, "CENTER", 0, 200)		
 			
-			castbar.time:SetPoint("RIGHT", castbar, "RIGHT", TukuiDB.Scale(-4), TukuiDB.Scale(1))
+			castbar.time:SetPoint("RIGHT", castbar, "RIGHT", T.Scale(-4), T.Scale(1))
 			castbar.time:SetJustifyH("RIGHT")
 
-			castbar.Text:SetPoint("LEFT", castbar, "LEFT", TukuiDB.Scale(4), TukuiDB.Scale(1))
+			castbar.Text:SetPoint("LEFT", castbar, "LEFT", T.Scale(4), T.Scale(1))
 			
 			if C["unitframes"].cbicons == true then
-				castbar.button:SetHeight(TukuiDB.Scale(35))
-				castbar.button:SetWidth(TukuiDB.Scale(35))
-				castbar.button:SetPoint("BOTTOM", castbar, "TOP", 0, TukuiDB.Scale(6))
+				castbar.button:SetHeight(T.Scale(35))
+				castbar.button:SetWidth(T.Scale(35))
+				castbar.button:SetPoint("BOTTOM", castbar, "TOP", 0, T.Scale(6))
 			end
 		end
 	end
