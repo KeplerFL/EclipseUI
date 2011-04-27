@@ -17,4 +17,5 @@
 	<Script file="tags\tags.lua"/>
 	<Script file="functions.lua"/>
 	<Script file="layouts\tukui.lua"/>
+	<Script file="layouts\cohesion.lua"/>
 </Ui>

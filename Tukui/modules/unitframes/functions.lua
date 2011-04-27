@@ -195,7 +195,11 @@ T.PostNamePosition = function(self)
 		self.Power:SetPoint("LEFT", self.Health, "LEFT", 7, 1)
 	else
 		self.Power.value:SetAlpha(0)
-		self.Name:SetPoint("LEFT", self.Health, "LEFT", 7, 1)
+		if C["unitframes"].style == "Cohesion" then
+			self.Name:SetPoint("LEFT", self.Health, "LEFT", 7, 1)
+		else
+			self.Name:SetPoint("LEFT", self.panel, "LEFT", 4, 1)
+		end
 		--self.Power:SetPoint("LEFT", self.Health, "LEFT", 7, 1)
 		--self.Name:SetPoint("CENTER", self.Health, "CENTER", 0, 1)
 	end
