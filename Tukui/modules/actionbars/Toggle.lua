@@ -263,7 +263,7 @@ for i = 1, 6 do
 	Toggle[i]:CreateBorder(true, false)
 	
 	Toggle[i].Text = Toggle[i]:CreateFontString(nil, "OVERLAY")
-	Toggle[i].Text:SetFont(TukuiCF["media"].pixel_font, 12, "MONOCHROMEOUTLINE")
+	Toggle[i].Text:SetFont(C["media"].pixel_font, 12, "MONOCHROMEOUTLINE")
 	Toggle[i].Text:Point("CENTER", 2, 1)
 		
 	if i == 1 then

@@ -50,11 +50,11 @@ TukuiLocationPanel:SetScript("OnEvent", OnEvent)
 if C["datatext"].location_coords == true then
 	local Text2 = TukuiXCoordsPanel:CreateFontString(nil, "LOW")
 	Text2:SetFont(unpack(T.Fonts.dFont.setfont))
-	Text2:SetPoint("CENTER", TukuiDB.Scale(1), 0)
+	Text2:SetPoint("CENTER", T.Scale(1), 0)
 
 	local Text3  = TukuiYCoordsPanel:CreateFontString(nil, "LOW")
 	Text3:SetFont(unpack(T.Fonts.dFont.setfont))
-	Text3:SetPoint("CENTER", TukuiDB.Scale(1), 0)
+	Text3:SetPoint("CENTER", T.Scale(1), 0)
 
 	local ela,go = 0,false
 

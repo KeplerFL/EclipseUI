@@ -190,7 +190,7 @@ end
 T.PostNamePosition = function(self)
 	self.Name:ClearAllPoints()
 	self.Name:SetShadowOffset(1.25, -1.25)
-	if (self.Power.value:GetText() and UnitIsEnemy("player", "target") and TukuiCF["unitframes"].targetpowerpvponly == true) or (self.Power.value:GetText() and TukuiCF["unitframes"].targetpowerpvponly == false) then
+	if (self.Power.value:GetText() and UnitIsEnemy("player", "target") and C["unitframes"].targetpowerpvponly == true) or (self.Power.value:GetText() and C["unitframes"].targetpowerpvponly == false) then
 		self.Name:SetPoint("CENTER", self.Health, "CENTER", 0, 1)
 		self.Power:SetPoint("LEFT", self.Health, "LEFT", 7, 1)
 	else

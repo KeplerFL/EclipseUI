@@ -1,4 +1,6 @@
-local db = TukuiCF["combo"]
+local T, C, L = unpack(select(2, ...))
+
+local db = C["combo"]
 if db.dknight ~= true then return end
 
 local class = select(2,UnitClass("player"))
