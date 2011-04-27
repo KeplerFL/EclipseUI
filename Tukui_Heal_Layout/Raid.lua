@@ -90,7 +90,7 @@ local function Shared(self, unit)
 	ufbg:Point("BOTTOMRIGHT", power, 2, -2)
 	ufbg:SetBackdrop({
 		bgFile = C["media"].blank,
-		insets = { left = -TukuiDB.mult, right = -TukuiDB.mult, top = -TukuiDB.mult, bottom = -TukuiDB.mult }
+		insets = { left = -T.mult, right = -T.mult, top = -T.mult, bottom = -T.mult }
 	})
 	ufbg:SetBackdropColor(unpack(C["media"].bordercolor))
 	ufbg:CreateBorder(false, true)
@@ -159,7 +159,7 @@ local function Shared(self, unit)
 	
 	local debuffHighlight = ufbg:CreateTexture(nil, "OVERLAY")
 	debuffHighlight:SetAllPoints()
-	debuffHighlight:SetTexture(TukuiCF["media"].blank)
+	debuffHighlight:SetTexture(C["media"].blank)
 	debuffHighlight:SetBlendMode("DISABLE")
 	debuffHighlight:SetVertexColor(0, 0, 0, 0)
 	self.DebuffHighlight = debuffHighlight
@@ -295,7 +295,7 @@ oUF:Factory(function(self)
 		"columnSpacing", T.Scale(3),
 		"columnAnchorPoint", "BOTTOM"
 	)
-	raid:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, TukuiDB.Scale(145))
+	raid:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, T.Scale(145))
 end)
 
 -- only show 5 groups in raid (25 mans raid)
