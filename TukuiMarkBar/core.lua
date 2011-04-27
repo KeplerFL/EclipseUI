@@ -2,7 +2,7 @@
 local T, C, L = unpack(Tukui)
 
 local Options = {
-	font = C["media"].pixel_font or C["media"].font,
+	font = C.media.pixel_font or C.media.font,
 	fontsize = 12,
 	buttonwidth = T.Scale(30),    		
 	buttonheight = T.Scale(30),   		
