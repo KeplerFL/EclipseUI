@@ -89,6 +89,9 @@ C["unitframes"] = {
 		["shaman"] = true,
 		["druid"] = true,
 		["paladin"] = true,
+		
+	-- layout
+	["style"] = "Cohesion",                                -- unitframe style, ("Cohesion" or "Eclipse" for default)
 }
 
 C["arena"] = {
