@@ -142,6 +142,7 @@ TukuiL.option_shaman = "Enable the totembar for shaman"
 TukuiL.option_druid = "Enable the solar-/lunarbar for druid"
 TukuiL.option_paladin = "Enable the holypowerbar for paladin"
 TukuiL.option_playerHighlight = "Enable the debuffhighlighting on the player"
+TukuiL.option_style = "Unitframe Style (Eclipse or Cohesion)"
 
  
 -- loot

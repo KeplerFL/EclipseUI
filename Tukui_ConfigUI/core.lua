@@ -176,6 +176,7 @@ local function Local(o)
 	if o == "TukuiConfigUIunitframeshealthBgColor" then o = TukuiL.option_healthBgColor end
 	if o == "TukuiConfigUIunitframesvertical" then o = TukuiL.option_vertical end
 	if o == "TukuiConfigUIunitframesplayerHighlight" then o = TukuiL.option_playerHighlight end
+	if o == "TukuiConfigUIunitframesstyle" then o = TukuiL.option_style end
 		
 	-- loot
 	if o == "TukuiConfigUIloot" then o = TukuiL.option_loot end
