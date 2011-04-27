@@ -12,4 +12,5 @@
 	<Script file="symbol.lua"/>
 	<Script file="vehicleicon.lua"/>
 	<Script file="watchframe.lua"/>
+	<Script file="worldframe.lua"/>
 </Ui>

@@ -5,6 +5,8 @@ C["general"] = {
 	["uiscale"] = 0.71,                                 -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
 	["overridelowtohigh"] = false,                      -- EXPERIMENTAL ONLY! override lower version to higher version on a lower reso.
 	["multisampleprotect"] = true,                      -- i don't recommend this because of shitty border but, voila!
+	--["bordercolor"] = { .1, .1, .1, 1 },				-- default border color of panels > currently not working
+	--["backdropcolor"] = { 0, 0, 0, 1 },					-- default backdrop color of panels > currently not working
 }
 
 C["unitframes"] = {
@@ -17,6 +19,7 @@ C["unitframes"] = {
 		-- if unicolor == true then it uses these colors
 		["healthColor"] = { .15, .15, .15 },	
 		["healthBgColor"] = { .05, .05, .05 },
+	--["altbordercolor"] = { .4, .4, .4 },                     -- unit frames panel border color > currently not working
 	
 	-- Castbar
 	["unitcastbar"] = false,                             -- enable tukui castbar
@@ -148,6 +151,7 @@ C["datatext"] = {
 	["power"] = 4,                                      -- show your attackpower/spellpower/healpower/rangedattackpower whatever stat is higher gets displayed
 	["system"] = 7,                                     -- show total memory and others systems infos on panels
 	["wowtime"] = 10,                                    -- show time on panels
+	["regen"] = 0,										-- show mana regeneration
 	["location"] = true,								-- enable location panel
 		-- coordinates display only if location == true
 		["location_coords"] = true,						-- display location coordinates
@@ -174,7 +178,6 @@ C["nameplate"] = {
 	["enable"] = true,                                  -- enable nice skinned nameplates that fit into tukui
 	["showhealth"] = true,				                -- show health text on nameplate
 	["enhancethreat"] = true,			                -- threat features based on if your a tank or not
-	["overlap"] = true,				                	-- allow nameplates to overlap
 	["combat"] = false,					                -- only show enemy nameplates in-combat.
 	["goodcolor"] = {75/255,  175/255, 76/255},	        -- good threat color (tank shows this with threat, everyone else without)
 	["badcolor"] = {0.78, 0.25, 0.25},			        -- bad threat color (opposite of above)
@@ -229,4 +232,17 @@ C["combo"] = {											-- credit to Dajova
 
 C["others"] = {
 	["autoquest"] = true,								-- enable autoquest feature (credit to Dajova)
+}
+
+C["skin"] = {
+	["ArkInventory"] = false,							-- skin ArkInventory
+	["DBM"] = false,									-- skin DBM
+	["DXE"] = false,									-- skin DXE
+	["KLE"] = true,										-- skin KLE
+	["Omen"] = true,									-- skin Omen
+	["QBar"] = false,									-- skin QBar
+	["Quartz"] = true,									-- skin Quartz
+	["Recount"] = true,									-- skin Recount
+	["SexyCooldown"] = false,							-- skin SexyCooldown
+	["Skada"] = false,									-- skin Skada
 }

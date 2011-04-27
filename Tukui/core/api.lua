@@ -230,6 +230,28 @@ local function FontString(parent, name, fontName, fontHeight, fontStyle)
 	return fs
 end
 
+local function HighlightTarget(self, event, unit)
+	if self.unit == "target" then return end
+	if UnitIsUnit('target', self.unit) then
+		self.HighlightTarget:Show()
+	else
+		self.HighlightTarget:Hide()
+	end
+end
+
+local function HighlightUnit(f, r, g, b)
+	if f.HighlightTarget then return end
+	local glowBorder = {edgeFile = C["media"].blank, edgeSize = 1}
+	f.HighlightTarget = CreateFrame("Frame", nil, f)
+	f.HighlightTarget:Point("TOPLEFT", f, "TOPLEFT", -2, 2)
+	f.HighlightTarget:Point("BOTTOMRIGHT", f, "BOTTOMRIGHT", 2, -2)
+	f.HighlightTarget:SetBackdrop(glowBorder)
+	f.HighlightTarget:SetFrameLevel(f:GetFrameLevel() + 1)
+	f.HighlightTarget:SetBackdropBorderColor(r,g,b,1)
+	f.HighlightTarget:Hide()
+	f:RegisterEvent("PLAYER_TARGET_CHANGED", HighlightTarget)
+end
+
 -- errors with FadeIn and FadeOut
 local function FadeIn(f)
 	UIFrameFadeIn(f, .4, f:GetAlpha(), 1)
@@ -281,6 +303,7 @@ local function addapi(object)
 	if not object.FontString then mt.FontString = FontString end
 	if not object.FadeIn then mt.FadeIn = FadeIn end
 	if not object.FadeOut then mt.FadeOut = FadeOut end
+	if not object.HighlightUnit then mt.HighlightUnit = HighlightUnit end
 end
 
 local handled = {["Frame"] = true}

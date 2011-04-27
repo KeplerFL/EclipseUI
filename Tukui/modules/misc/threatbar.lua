@@ -4,11 +4,11 @@ local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, vari
 -- cannot work without Info Right DataText Panel.
 if not TukuiInfoRight then return end
 
-local aggroColors = {
+--[[local aggroColors = {
 	[1] = {12/255, 151/255,  15/255},
 	[2] = {166/255, 171/255,  26/255},
 	[3] = {163/255,  24/255,  24/255},
-}
+}]]
 
 -- create the bar
 local TukuiThreatBar = CreateFrame("StatusBar", "TukuiThreatBar", UIParent)
@@ -64,19 +64,14 @@ local function OnUpdate(self, event, unit)
 		
 		self:SetValue(threatval)
 		
-		if( threatval < 30 ) then
-			self:SetStatusBarColor(unpack(self.Colors[1]))
-		elseif( threatval >= 30 and threatval < 70 ) then
-			self:SetStatusBarColor(unpack(self.Colors[2]))
-		else
-			self:SetStatusBarColor(unpack(self.Colors[3]))
-		end
-
-		--if threatval > 0 then
+		local r, g, b = oUFTukui.ColorGradient(threatval/100, 0,.8,0,.8,.8,0,.8,0,0)
+		self:SetStatusBarColor(r, g, b)
+		
+		if threatval > 0 then
 			self:SetAlpha(1)
-		--else
-		--	self:SetAlpha(0) -- 0
-		--end		
+		else
+			self:SetAlpha(0) -- 0
+		end		
 	end
 end
 

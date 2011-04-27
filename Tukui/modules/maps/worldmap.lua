@@ -186,7 +186,7 @@ addon:SetScript("OnEvent", function(self, event)
 			-- prevent a taint on fullscreen map when opening fullscreen map in combat
 			WorldMapFrame_SetFullMapView()
 		end
-	
+		
 		WorldMapFrameSizeDownButton:Disable() 
 		WorldMapFrameSizeUpButton:Disable()
 		HideUIPanel(WorldMapFrame)

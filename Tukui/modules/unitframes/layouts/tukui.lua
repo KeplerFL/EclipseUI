@@ -133,7 +133,7 @@ local function Shared(self, unit)
 
 	-- create a panel
 	local panel = CreateFrame("Frame", nil, self)
-	TukuiDB.CreatePanel(panel, 1, 1, "CENTER", ufbg, "CENTER", 0, 0)
+	panel:CreatePanel("Default", 1, 1, "CENTER", ufbg, "CENTER", 0, 0)
 	self.panel = panel
 		
 	-- castbar of player and target
@@ -537,7 +537,7 @@ local function Shared(self, unit)
 
 				debuffs:SetHeight(dh)
 				debuffs:SetWidth(186)
-				debuffs:SetPoint("BOTTOMRIGHT", buffs, "TOPRIGHT", 0, -1)
+				debuffs:Point("BOTTOMRIGHT", buffs, "TOPRIGHT", 0, -1)
 				debuffs.size = ds - 2
 				debuffs.num = dn
 			else				
@@ -1008,8 +1008,8 @@ local function Shared(self, unit)
 			
 			local Trinket = CreateFrame("Frame", nil, Trinketbg)
 			Trinket:SetAllPoints(Trinketbg)
-			Trinket:SetPoint("TOPLEFT", Trinketbg, T.Scale(2), T.Scale(-2))
-			Trinket:SetPoint("BOTTOMRIGHT", Trinketbg, T.Scale(-2), T.Scale(2))
+			Trinket:Point("TOPLEFT", Trinketbg, 2, -2)
+			Trinket:Point("BOTTOMRIGHT", Trinketbg, -2, 2)
 			Trinket:SetFrameLevel(1)
 			Trinket.trinketUseAnnounce = true
 			self.Trinket = Trinket
@@ -1073,33 +1073,33 @@ f:SetScript("OnEvent", function(self, event, addon)
 		--[ DPS ]--
 		-- points
 		if T.lowversion then
-			player:Point("TOP", UIParent, "BOTTOM", -96 , 220)
-			target:Point("TOP", UIParent, "BOTTOM", 96, 220)
+			player:Point("TOP", UIParent, "BOTTOM", -96 , 195)
+			target:Point("TOP", UIParent, "BOTTOM", 96, 195)
 			tot:Point("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
 			pet:Point("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
 
-			focus:Point("TOP", UIParent, "BOTTOM", 0, 133)
+			focus:Point("TOP", UIParent, "BOTTOM", -122, 240)
 		else
-			player:Point("TOP", UIParent, "BOTTOM", -179 , 230)
-			target:Point("TOP", UIParent, "BOTTOM", 179, 230)
+			player:Point("TOP", UIParent, "BOTTOM", -179 , 195)
+			target:Point("TOP", UIParent, "BOTTOM", 179, 195)
 			tot:Point("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
 			pet:Point("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
 
-			focus:Point("TOP", UIParent, "BOTTOM", 0, 230)
+			focus:Point("TOP", UIParent, "BOTTOM", 0, 195)
 		end
 	elseif addon == "Tukui_Heal_Layout" then
 		--[ HEAL ]--
 		-- points
 		if T.lowversion then
-			player:Point("TOP", UIParent, "BOTTOM", -300 , 230)
-			target:Point("TOP", UIParent, "BOTTOM", 300, 230)
+			player:Point("TOP", UIParent, "BOTTOM", -300 , 195)
+			target:Point("TOP", UIParent, "BOTTOM", 300, 195)
 			tot:Point("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
 			pet:Point("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
 			
-			focus:Point("TOP", UIParent, "BOTTOM", 0, 230)
+			focus:Point("TOP", UIParent, "BOTTOM", -326, 240)
 		else
-			player:Point("TOP", UIParent, "BOTTOM", -310 , 230)
-			target:Point("TOP", UIParent, "BOTTOM", 310, 230)
+			player:Point("TOP", UIParent, "BOTTOM", -310 , 195)
+			target:Point("TOP", UIParent, "BOTTOM", 310, 195)
 			tot:Point("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
 			pet:Point("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
 

@@ -26,6 +26,9 @@ end
 SLASH_CLFIX1 = "/clfix"
 SlashCmdList.CLFIX = CombatLogClearEntries
 
+-- ready check shortcut
+SLASH_RCSLASH1 = "/rc"
+SlashCmdList.RCSLASH = DoReadyCheck
 
 SLASH_RAIDDISBAND1 = "/rd"
 SlashCmdList["RAIDDISBAND"] = function()

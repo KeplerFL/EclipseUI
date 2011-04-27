@@ -12,7 +12,7 @@ local ALLOWED_GROUPS = {
 	["bags"]=1,
 	["map"]=1,
 	["loot"]=1,
-	-- ["skin"]=1,
+	--["skin"]=1,
 	["cooldown"]=1,
 	["datatext"]=1,
 	["chat"]=1,
@@ -105,6 +105,7 @@ local function Local(o)
 	if o == "TukuiConfigUIdatatextlocation_coords" then o = TukuiL.option_datatext_location_coords end
 	if o == "TukuiConfigUIdatatextlocation" then o = TukuiL.option_datatext_location end
 	if o == "TukuiConfigUIdatatextexprepbars" then o = TukuiL.option_datatext_exprepbars end
+	if o == "TukuiConfigUIdatatextregen" then o = TukuiL.option_datatext_regen end
 	
 	-- unit frames
 	if o == "TukuiConfigUIunitframes" then o = TukuiL.option_unitframes_unitframes end
@@ -736,7 +737,7 @@ function CreateTukuiConfigUI()
 end
 
 do
-	SLASH_CONFIG1 = '/ec'
+	SLASH_CONFIG1 = '/tc'
 	SLASH_CONFIG2 = '/tukui'
 	function SlashCmdList.CONFIG(msg, editbox)
 		if not TukuiConfigUI or not TukuiConfigUI:IsShown() then

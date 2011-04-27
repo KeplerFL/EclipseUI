@@ -10,7 +10,7 @@ PlayerPowerBarAlt:UnregisterEvent("PLAYER_ENTERING_WORLD")
 --Create the new bar
 local AltPowerBar = CreateFrame("Frame", "TukuiAltPowerBar", UIParent)
 AltPowerBar:CreatePanel("Default", 250, TukuiInfoLeft:GetHeight(), "TOP", UIParent, "TOP", 0, -130)
-AltPowerBar:SetFrameStrata("LOW")
+AltPowerBar:SetFrameStrata("MEDIUM")
 AltPowerBar:SetFrameLevel(0)
 AltPowerBar:EnableMouse(true)
 
@@ -21,11 +21,12 @@ AltPowerBarStatus:SetStatusBarTexture(unpack(T.Textures.statusBars))
 AltPowerBarStatus:SetMinMaxValues(0, 100)
 AltPowerBarStatus:Point("TOPLEFT", AltPowerBar, "TOPLEFT", 2, -2)
 AltPowerBarStatus:Point("BOTTOMRIGHT", AltPowerBar, "BOTTOMRIGHT", -2, 2)
-AltPowerBarStatus:SetStatusBarColor(75/255,  175/255, 76/255)
 
 local AltPowerText = AltPowerBarStatus:CreateFontString(nil, "OVERLAY")
 AltPowerText:SetFont(unpack(T.Fonts.altPowerBar.setfont))
 AltPowerText:Point(unpack(T.Fonts.altPowerBar.setoffsets))
+AltPowerText:SetShadowColor(0, 0, 0)
+AltPowerText:SetShadowOffset(1.25, -1.25)
 
 --Event handling
 AltPowerBar:RegisterEvent("UNIT_POWER")
@@ -52,7 +53,9 @@ AltPowerBarStatus:SetScript("OnUpdate", function(self, elapsed)
 		local power = UnitPower("player", ALTERNATE_POWER_INDEX)
 		local mpower = UnitPowerMax("player", ALTERNATE_POWER_INDEX)
 		self:SetValue(power)
-		AltPowerText:SetText(power.."/"..mpower)
+		AltPowerText:SetText(power.." / "..mpower)
+		local r, g, b = oUFTukui.ColorGradient(power/mpower, 0,.8,0,.8,.8,0,.8,0,0)
+		AltPowerBarStatus:SetStatusBarColor(r, g, b)
 		self.TimeSinceLastUpdate = 0
 	end
 end)

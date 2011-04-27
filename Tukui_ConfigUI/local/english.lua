@@ -73,6 +73,8 @@ TukuiL.option_datatext_expreptext = "Enable text on experience and reputation ba
 TukuiL.option_datatext_location_coords = "Enable coordinates on location panel"
 TukuiL.option_datatext_location = "Enable location panel"
 TukuiL.option_datatext_exprepbars = "Enable experience and reputation bars"
+TukuiL.option_datatext_exprepbars = "Enable experience and reputation bars"
+TukuiL.option_datatext_regen = "Mana Regeneration position (0 for disabled)"
  
 -- unit frames
 TukuiL.option_unitframes_unitframes = "Unit Frames"

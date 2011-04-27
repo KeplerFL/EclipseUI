@@ -23,4 +23,5 @@
 	<Script file="location.lua"/>
 	<Script file="bar_experience.lua"/>
 	<Script file="bar_reputation.lua"/>
+	<Script file="regen.lua"/>
 </Ui>

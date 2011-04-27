@@ -14,6 +14,7 @@ T.MoverFrames = {
 	TukuiGMFrameAnchor,
 	TukuiVehicleAnchor,
 	TukuiDurabilityAnchor,
+	TukuiWorldStateAnchor,
 }
 
 -- used to exec various code if we enable or disable moving
@@ -117,6 +118,17 @@ local function exec(self, enable)
 				_G["ShapeshiftButton"..i]:Show()
 			end
 			MultiCastActionBarFrame:Show()
+		end
+	end
+	
+	-- WorldStateAlwaysUpFrame
+	if self == TukuiWorldStateAnchor then
+		if enable then
+			TukuiWorldStateAnchor:SetBackdropBorderColor(1,0,0,1)
+			TukuiWorldStateAnchor:SetBackdropColor(unpack(C.media.backdropcolor))
+		else
+			TukuiWorldStateAnchor:SetBackdropBorderColor(0,0,0,0)
+			TukuiWorldStateAnchor:SetBackdropColor(0,0,0,0)
 		end
 	end
 end

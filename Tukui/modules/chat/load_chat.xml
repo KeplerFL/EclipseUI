@@ -6,4 +6,5 @@
 	<Script file="copychat.lua"/>
 	<Script file="mousescroll.lua"/>
 	<Script file="sounds.lua"/>
+	<Script file="blizzfixrealidlink.lua"/>
 </Ui>
