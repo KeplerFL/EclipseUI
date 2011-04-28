@@ -300,7 +300,11 @@ oUF:Factory(function(self)
 	"xOffset", T.Scale(7),
 	"point", "LEFT"
 	)
-	raid:Point("TOP", UIParent, "BOTTOM", 0, 230)
+	if C["unitframes"].style == "Cohesion" then 
+		raid:Point("TOP", UIParent, "BOTTOM", 0, 195)
+	else
+		raid:Point("TOP", UIParent, "BOTTOM", 0, 230)
+	end
 	
 	local pets = {}
 	for i = 1, 5 do 
