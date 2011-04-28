@@ -1,22 +1,15 @@
 local T, C, L = unpack(select(2, ...))
 
-local db = C["combo"]
-if db.warrior ~= true then return end
-
-local class = select(2,UnitClass("player"))
-if class ~= 'WARRIOR' then return end
+if not C["combo"].display or not C["combo"].warrior or select(2, UnitClass("player")) ~= 'WARRIOR' then return end
 
 local id = nil
-local spell = GetSpellInfo(84586) or GetSpellInfo(85739) or GetSpellInfo(87096)
- 
-local GetFramesRegisteredForEvent, UnitBuff = GetFramesRegisteredForEvent, UnitBuff
   
 local function map(frame, ...)
-   if frame then
-      local func = frame:GetScript('OnEvent')
-      if func then func(frame, 'UNIT_COMBO_POINTS', 'player') end
-      return map(...)
-   end
+	if frame then
+		local func = frame:GetScript('OnEvent')
+		if func then func(frame, 'UNIT_COMBO_POINTS', 'player') end
+		return map(...)
+	end
 end
  
 local frame = CreateFrame('frame')
@@ -24,17 +17,28 @@ frame:RegisterEvent('UNIT_AURA')
 frame:RegisterEvent('ACTIVE_TALENT_GROUP_CHANGED') 
 frame:RegisterEvent('PLAYER_TALENT_UPDATE') 
 frame:RegisterEvent('INSPECT_TALENT_READY')
-frame:SetScript('OnEvent', function(self, event, unit)
-	if unit == 'player' then
-		local _,_,_,count = UnitBuff('player', spell)
-		if count ~= id then
+frame:SetScript('OnEvent', function(self, event)
+	if GetPrimaryTalentTree() == 1 then
+		local _,_,_,count = UnitBuff('player', GetSpellInfo(84586)) -- Slaughter
+		if count ~= 0 then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end
-   end
+	elseif GetPrimaryTalentTree() == 2 then
+		local _,_,_,count = UnitBuff('player', GetSpellInfo(85739)) -- Meat Cleaver
+		if count ~= 0 then
+			id = count
+			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
+		end
+	elseif GetPrimaryTalentTree() == 3 then
+		local _,_,_,count = UnitBuff('player', GetSpellInfo(87096)) -- Thunderstruck
+		if count ~= 0 then
+			id = count
+			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
+		end
+	end
 end)
  
-local UnitExists = UnitExists
 local oldGetComboPoints = GetComboPoints
 GetComboPoints = function(...)
 	return (...) == 'player' and id or oldGetComboPoints(...)

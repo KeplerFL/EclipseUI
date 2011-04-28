@@ -1,14 +1,8 @@
 local T, C, L = unpack(select(2, ...))
 
-local db = C["combo"]
-if db.druid ~= true then return end
-
-local class = select(2,UnitClass("player"))
-if class ~= 'DRUID' then return end
+if not C["combo"].display or not C["combo"].druid or select(2, UnitClass("player")) ~= 'DRUID' then return end
 
 local id = nil
- 
-local GetFramesRegisteredForEvent, UnitBuff, UnitDebuff, UnitAffectingCombat = GetFramesRegisteredForEvent, UnitBuff, UnitDebuff, UnitAffectingCombat
   
 local function map(frame, ...)
 	if frame then
@@ -23,19 +17,20 @@ frame:RegisterEvent('UNIT_AURA')
 frame:RegisterEvent('ACTIVE_TALENT_GROUP_CHANGED') 
 frame:RegisterEvent('PLAYER_TALENT_UPDATE') 
 frame:RegisterEvent('INSPECT_TALENT_READY')
-frame:SetScript('OnEvent', function(self, event, unit)
-	if unit == 'player' and GetPrimaryTalentTree() == 1 then
+frame:SetScript('OnEvent', function(self, event)
+	if GetPrimaryTalentTree() == 1 then
 		local _,_,_,count = UnitBuff('player', GetSpellInfo(81192)) -- Lunar Shower
-		if count ~= id then
+		if count ~= 0 then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end
-	elseif unit == 'player' and GetPrimaryTalentTree() == 2 then
-		local _,_,_,count = UnitDebuff('target', GetSpellInfo(33745)) -- Lacerate
-		if count ~= id then
+	elseif GetPrimaryTalentTree() == 2 then
+		local _,_,_,count,_,_,_,caster = UnitDebuff('target', GetSpellInfo(33745)) -- Lacerate
+		if count ~= 0 then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end
+		if caster ~= 'player' then count = 0 end	-- hide if caster is not from the player
 	end
 end)
  

@@ -11,6 +11,8 @@ local font, fsize, fflag = C["media"].dmgfont, 35, "OUTLINE"
 
 Combo = CreateFrame("Frame", "CCP")
 local count = Combo:CreateFontString(nil, "OVERLAY")
+count:SetFont(font, fsize, fflag)
+
 local onEvent = function(self, event, ...)
 	self[event](self, event, ...)
 end
@@ -45,8 +47,8 @@ function Combo:PLAYER_ENTERING_WORLD(event)
 	end
 	
 	count:SetAllPoints(Combo)
-	count:SetShadowOffset(2,-2)	
-	count:SetFont(font,fsize,fflag)
+	count:SetShadowColor(0,0,0,.8)
+	count:SetShadowOffset(2.5,-2.5)
 end
 
 function Combo:PLAYER_TARGET_CHANGED(event)
