@@ -32,7 +32,7 @@ T.DataTextTooltipAnchor = function(self)
 			anchor = "ANCHOR_BOTTOM"
 			yoff = T.Scale(-3)
 		end
-	elseif panel == TukuiInfoTop or panel == TukuiMinimapTime then
+	elseif panel == TukuiMinimapTime or panel == TukuiMemoryStat or panel == TukuiFpsStat or panel == TukuiDurStat then
 		anchor = "ANCHOR_BOTTOM"
 		yoff = T.Scale(-3)
 	elseif panel == TukuiExperience or panel == TukuiReputation then

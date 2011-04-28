@@ -24,4 +24,6 @@
 	<Script file="bar_experience.lua"/>
 	<Script file="bar_reputation.lua"/>
 	<Script file="regen.lua"/>
+	<Script file="statblock.lua"/>
+	<Script file="maptime.lua"/>
 </Ui>
