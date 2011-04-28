@@ -75,6 +75,8 @@ TukuiL.option_datatext_location = "Enable location panel"
 TukuiL.option_datatext_exprepbars = "Enable experience and reputation bars"
 TukuiL.option_datatext_exprepbars = "Enable experience and reputation bars"
 TukuiL.option_datatext_regen = "Mana Regeneration position (0 for disabled)"
+TukuiL.option_datatext_maptime = "Enable clock under minimap"
+TukuiL.option_datatext_statblock = "Enable statblock in topleft corner"
  
 -- unit frames
 TukuiL.option_unitframes_unitframes = "Unit Frames"

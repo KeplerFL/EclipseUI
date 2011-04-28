@@ -106,6 +106,8 @@ local function Local(o)
 	if o == "TukuiConfigUIdatatextlocation" then o = TukuiL.option_datatext_location end
 	if o == "TukuiConfigUIdatatextexprepbars" then o = TukuiL.option_datatext_exprepbars end
 	if o == "TukuiConfigUIdatatextregen" then o = TukuiL.option_datatext_regen end
+	if o == "TukuiConfigUIdatatextmaptime" then o = TukuiL.option_datatext_maptime end
+	if o == "TukuiConfigUIdatatextstatblock" then o = TukuiL.option_datatext_statblock end
 	
 	-- unit frames
 	if o == "TukuiConfigUIunitframes" then o = TukuiL.option_unitframes_unitframes end

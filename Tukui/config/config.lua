@@ -22,7 +22,7 @@ C["unitframes"] = {
 	--["altbordercolor"] = { .4, .4, .4 },                     -- unit frames panel border color > currently not working
 	
 	-- Castbar
-	["unitcastbar"] = false,                             -- enable tukui castbar
+	["unitcastbar"] = true,                             -- enable tukui castbar
 	["cblatency"] = true,                              	-- enable castbar latency
 	["cbicons"] = true,                                 -- enable icons on castbar
 	["cbclasscolor"] = false,
