@@ -92,6 +92,9 @@ C["unitframes"] = {
 		
 	-- layout
 	["style"] = "Cohesion",                                -- unitframe style, ("Cohesion" or "Eclipse" for default)
+	
+	-- health deficit gradient, credits to Hydra
+	["gradienthealth"] = true,                          -- change raid health color based on health percent.
 }
 
 C["arena"] = {
@@ -141,8 +144,8 @@ C["datatext"] = {
 	["crit"] = 0,                                       -- show your crit rating on panels.
 	["currency"] = 2,                                   -- show your tracked currency on panels
 	["dps_text"] = 0,                                   -- show a dps meter on panels
-	["dur"] = 9,                                        -- show your equipment durability on panels.
-	["fps_ms"] = 8,                                     -- show fps and ms on panels
+	["dur"] = 0,                                        -- show your equipment durability on panels.
+	["fps_ms"] = 0,                                     -- show fps and ms on panels
 	["friends"] = 3,                                    -- show number of friends connected.
 	["gold"] = 5,                                       -- show your current gold on panels
 	["guild"] = 1,                                      -- show number on guildmate connected on panels
@@ -152,8 +155,8 @@ C["datatext"] = {
 	["mastery"] = 0,									-- show mastery on panels
 	["micromenu"] = 0,									-- game menu attached to panels
 	["power"] = 4,                                      -- show your attackpower/spellpower/healpower/rangedattackpower whatever stat is higher gets displayed
-	["system"] = 7,                                     -- show total memory and others systems infos on panels
-	["wowtime"] = 10,                                    -- show time on panels
+	["system"] = 0,                                     -- show total memory and others systems infos on panels
+	["wowtime"] = 0,                                    -- show time on panels
 	["regen"] = 0,										-- show mana regeneration
 	["location"] = true,								-- enable location panel
 		-- coordinates display only if location == true

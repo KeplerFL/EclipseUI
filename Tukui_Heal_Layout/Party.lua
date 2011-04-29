@@ -57,6 +57,8 @@ local function Shared(self, unit)
 	
 	power:CreateBorder(false, true)
 	
+	health.PostUpdate = T.PostUpdateHealthRaid
+	
 	health.frequentUpdates = true
 	power.frequentUpdates = true
 	power.colorDisconnected = true
@@ -81,6 +83,23 @@ local function Shared(self, unit)
 		health.colorReaction = true
 		
 		power.colorPower = true
+	end
+	
+	-- mouseover highlight, credits to Hydra
+	if C.unitframes.gradienthealth and C.unitframes.unicolor then
+		self:HookScript("OnEnter", function(self)
+			if not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit) then return end
+			local hover = RAID_CLASS_COLORS[select(2, UnitClass(self.unit))]
+			health:SetStatusBarColor(hover.r, hover.g, hover.b)
+			health.classcolored = true -- Thanks nc for this clever idea
+		end)
+		
+		self:HookScript("OnLeave", function(self)
+			if not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit) then return end
+			local r, g, b = oUF.ColorGradient(UnitHealth(self.unit)/UnitHealthMax(self.unit), unpack(C["media"].gradient))
+			health:SetStatusBarColor(r, g, b)
+			health.classcolored = false
+		end)
 	end
 	
 	-- unitframe bg

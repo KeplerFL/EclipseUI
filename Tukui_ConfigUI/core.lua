@@ -179,6 +179,7 @@ local function Local(o)
 	if o == "TukuiConfigUIunitframesvertical" then o = TukuiL.option_vertical end
 	if o == "TukuiConfigUIunitframesplayerHighlight" then o = TukuiL.option_playerHighlight end
 	if o == "TukuiConfigUIunitframesstyle" then o = TukuiL.option_style end
+	if o == "TukuiConfigUIunitframesgradienthealth" then o = TukuiL.option_gradienthealth end
 		
 	-- loot
 	if o == "TukuiConfigUIloot" then o = TukuiL.option_loot end
