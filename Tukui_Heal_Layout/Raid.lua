@@ -86,7 +86,7 @@ local function Shared(self, unit)
 	end
 	
 	-- mouseover highlight, credits to Hydra
-	if C.unitframes.gradienthealth and C.unitframes.unicolor then
+	if C.unitframes.unicolor and C.unitframes.mouseoverhighlight then
 		self:HookScript("OnEnter", function(self)
 			if not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit) then return end
 			local hover = RAID_CLASS_COLORS[select(2, UnitClass(self.unit))]
@@ -96,8 +96,12 @@ local function Shared(self, unit)
 		
 		self:HookScript("OnLeave", function(self)
 			if not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit) then return end
-			local r, g, b = oUF.ColorGradient(UnitHealth(self.unit)/UnitHealthMax(self.unit), unpack(C["media"].gradient))
-			health:SetStatusBarColor(r, g, b)
+			if C.unitframes.gradienthealth then
+				local r, g, b = oUF.ColorGradient(UnitHealth(self.unit)/UnitHealthMax(self.unit), unpack(C["media"].gradienthealth))
+				health:SetStatusBarColor(r, g, b)
+			else
+				health:SetStatusBarColor(unpack(C["unitframes"].healthColor))
+			end
 			health.classcolored = false
 		end)
 	end
@@ -278,15 +282,6 @@ local function Shared(self, unit)
 		
 		self.RaidDebuffs = RaidDebuffs
     end
-
-	-- Mouseover Highlight
-	-- self:HookScript("OnEnter", function(self)
-		-- if not UnitIsPlayer(self.unit) then return end
-		-- local color = RAID_CLASS_COLORS[select(2, UnitClass(self.unit))]
-		-- self.shadow:SetBackdropBorderColor(color.r,color.g,color.b,0.7)
-		-- self.shadow:Show()
-	-- end)
-	-- self:HookScript("OnLeave", function(self) self.shadow:Hide() end)
 	
 	return self
 end
