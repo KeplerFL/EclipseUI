@@ -145,8 +145,8 @@ TukuiL.option_druid = "Enable the solar-/lunarbar for druid"
 TukuiL.option_paladin = "Enable the holypowerbar for paladin"
 TukuiL.option_playerHighlight = "Enable the debuffhighlighting on the player"
 TukuiL.option_style = "Unitframe Style (Eclipse or Cohesion)"
-TukuiL.option_gradienthealth = "Change raid health color based on health percent"
-TukuiL.option_mouseoverhighlight = "Enable mouseover-highlight"
+TukuiL.option_gradienthealth = "Change raid health color based on health percent (heal layout only)"
+TukuiL.option_mouseoverhighlight = "Enable mouseover-highlight (heal layout only)"
 
  
 -- loot

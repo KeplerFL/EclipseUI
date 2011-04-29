@@ -171,7 +171,7 @@ T.PostUpdateHealthRaid = function(health, unit, min, max)
 		if C.unitframes.gradienthealth and C.unitframes.unicolor then
 			if not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) then return end
 			if not health.classcolored then
-				local r, g, b = oUF.ColorGradient(min/max, unpack(C["media"].gradient))
+				local r, g, b = oUF.ColorGradient(min/max, unpack(C["media"].gradienthealth))
 				health:SetStatusBarColor(r, g, b)
 			end
 		end

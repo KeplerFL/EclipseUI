@@ -94,7 +94,7 @@ C["unitframes"] = {
 	["style"] = "Cohesion",                                -- unitframe style, ("Cohesion" or "Eclipse" for default)
 	
 	-- health deficit gradient and mouseover-highlight, credits to Hydra
-	["gradienthealth"] = false,                          -- change raid health color based on health percent.
+	["gradienthealth"] = true,                          -- change raid health color based on health percent. (heal layout only)
 	["mouseoverhighlight"] = true						-- enable mouseover highlight on raid frames (heal layout only)
 }
 
