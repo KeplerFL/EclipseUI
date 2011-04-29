@@ -3,7 +3,6 @@ local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, vari
 T.PP = function(p, obj)
 	local TukuiInfoLeft = TukuiInfoLeft
 	local TukuiInfoRight = TukuiInfoRight
-	local TukuiTopStatCenter = TukuiTopStatCenter
 	local TukuiTopStatLeft = TukuiTopStatLeft
 	local TukuiTopStatRight = TukuiTopStatRight
 	
