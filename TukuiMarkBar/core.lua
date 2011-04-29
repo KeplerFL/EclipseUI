@@ -13,7 +13,11 @@ local Options = {
 -- Default position of toggle button and background
 local anchor = {}
 if Options.toplayout then
-	anchor = {"TOPLEFT", TukuiInfoTop, "TOPRIGHT", 3, 0}
+	if C["datatext"].statblock then
+		anchor = {"TOPLEFT", TukuiDurStat, "TOPRIGHT", 3, 0}
+	else
+		anchor = {"TOPLEFT", UIParent, "TOPLEFT", 8, -8}
+	end
 else
 	anchor = {"BOTTOMLEFT", TukuiInfoRight, "TOPLEFT", 0, 3}
 end
