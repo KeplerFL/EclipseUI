@@ -167,6 +167,9 @@ C["datatext"] = {
 	
 	["classcolor"] = true,
 		["color"] = { .2, .4, .7 },
+		
+	["statblock"] = true,								-- display statblock in topleft corner
+	["maptime"] = true,									-- show display clock below minimap
 }
 
 C["chat"] = {
