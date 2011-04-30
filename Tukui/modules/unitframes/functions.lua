@@ -152,11 +152,12 @@ T.PostUpdateHealthRaid = function(health, unit, min, max)
 	if not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) then
 		if not UnitIsConnected(unit) then
 			health.value:SetText("|cffe45050"..L.unitframes_ouf_offline.."|r")
-		elseif UnitIsDead(unit) then
+		elseif UnitIsDead(unit) and UnitIsUnit(unit, "pet") then
 			health.value:SetText("|cffe45050"..L.unitframes_ouf_dead.."|r")
 		elseif UnitIsGhost(unit) then
 			health.value:SetText("|cffe45050"..L.unitframes_ouf_ghost.."|r")
 		end
+		health:SetStatusBarColor(.8, .3, .3) -- Red health if offline/dead/dc'd
 	else
 		-- doing this here to force friendly unit (vehicle or pet) very far away from you to update color correcly
 		-- because if vehicle or pet is too far away, unitreaction return nil and color of health bar is white.
@@ -166,7 +167,7 @@ T.PostUpdateHealthRaid = function(health, unit, min, max)
 			health:SetStatusBarColor(r, g, b)
 			health.bg:SetTexture(.1, .1, .1)
 		end
-		
+
 		-- health deficit gradient, credits to Hydra
 		if C.unitframes.gradienthealth and C.unitframes.unicolor then
 			if not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) then return end
@@ -176,10 +177,12 @@ T.PostUpdateHealthRaid = function(health, unit, min, max)
 			end
 		end
 		
-		if min ~= max then
-			health.value:SetText("|cff559655-"..ShortValueNegative(max-min).."|r")
-		else
-			health.value:SetText(" ")
+		if UnitIsUnit(unit, "pet") then
+			if min ~= max then
+				health.value:SetText("|cff559655-"..ShortValueNegative(max-min).."|r")
+			else
+				health.value:SetText(" ")
+			end
 		end
 	end
 end
@@ -191,8 +194,8 @@ T.PostUpdatePetColor = function(health, unit, min, max)
 		local c = T.oUF_colors.reaction[5]
 		local r, g, b = c[1], c[2], c[3]
 
-		if health then health:SetStatusBarColor(r, g, b) end
-		if health.bg then health.bg:SetTexture(.1, .1, .1) end
+		health:SetStatusBarColor(r, g, b)
+		health.bg:SetTexture(.1, .1, .1)
 	end
 end
 
