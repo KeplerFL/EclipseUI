@@ -149,10 +149,10 @@ T.PostUpdateHealth = function(health, unit, min, max)
 end
 
 T.PostUpdateHealthRaid = function(health, unit, min, max)
-	if not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) then
+	if (not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit)) and (not unit:find('partypet%d')) then
 		if not UnitIsConnected(unit) then
 			health.value:SetText("|cffe45050"..L.unitframes_ouf_offline.."|r")
-		elseif UnitIsDead(unit) and UnitIsUnit(unit, "pet") then
+		elseif UnitIsDead(unit) then
 			health.value:SetText("|cffe45050"..L.unitframes_ouf_dead.."|r")
 		elseif UnitIsGhost(unit) then
 			health.value:SetText("|cffe45050"..L.unitframes_ouf_ghost.."|r")
@@ -177,7 +177,10 @@ T.PostUpdateHealthRaid = function(health, unit, min, max)
 			end
 		end
 		
-		if UnitIsUnit(unit, "pet") then -- I hate pets
+		--local TargetInParty = UnitPlayerOrPetInParty("target")
+		--ChatFrame1:AddMessage('Your target is a : ' .. playerClass .. '; ' .. englishClass .. '.');
+		
+		if not unit:find('partypet%d') then
 			if min ~= max then
 				health.value:SetText("|cff559655-"..ShortValueNegative(max-min).."|r")
 			else
