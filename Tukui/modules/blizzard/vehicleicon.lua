@@ -23,7 +23,7 @@ hooksecurefunc(VehicleSeatIndicator,"SetPoint",function(_,_,parent) -- vehicle s
 end)
 
 --------------------------------------------------------------------------
--- vehicule on mouseover because this shit take too much space on screen
+-- vehicle on mouseover because this shit take too much space on screen
 --------------------------------------------------------------------------
 
 local function VehicleNumSeatIndicator()
@@ -51,7 +51,7 @@ end
 
 local function vehmouse()
 	if VehicleSeatIndicator:IsShown() then
-		VehicleSeatIndicator:SetAlpha(1)
+		VehicleSeatIndicator:SetAlpha(0)
 		VehicleSeatIndicator:EnableMouse(true)
 		
 		VehicleNumSeatIndicator()
