@@ -177,7 +177,7 @@ T.PostUpdateHealthRaid = function(health, unit, min, max)
 			end
 		end
 		
-		if UnitIsUnit(unit, "pet") then
+		if UnitIsUnit(unit, "pet") then -- I hate pets
 			if min ~= max then
 				health.value:SetText("|cff559655-"..ShortValueNegative(max-min).."|r")
 			else
