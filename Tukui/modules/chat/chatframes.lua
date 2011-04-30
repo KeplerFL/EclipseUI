@@ -245,20 +245,6 @@ local function SetupChatPosAndFont(self)
 		self:ClearAllPoints()
 		self:Point("BOTTOMLEFT", TukuiChatLeft, "TOPLEFT", 0, 3)
 	end)
-	
-		
-	-- derp blizzard
-	local func = ChatEdit_UpdateHeader
-	
-	ChatEdit_UpdateHeader = function(editBox)
-		local header = _G[editBox:GetName().."Header"]
-		header:ClearAllPoints()
-		header:SetPoint("LEFT", editBox, "LEFT", 15, 0)
-		
-		if header:GetRight() ~= nil and header:GetLeft() ~= nil then
-			func(editBox)
-		end
-	end
 end
 
 TukuiChat:RegisterEvent("ADDON_LOADED")
