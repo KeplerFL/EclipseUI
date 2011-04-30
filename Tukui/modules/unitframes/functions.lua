@@ -177,9 +177,6 @@ T.PostUpdateHealthRaid = function(health, unit, min, max)
 			end
 		end
 		
-		--local TargetInParty = UnitPlayerOrPetInParty("target")
-		--ChatFrame1:AddMessage('Your target is a : ' .. playerClass .. '; ' .. englishClass .. '.');
-		
 		if not unit:find('partypet%d') then
 			if min ~= max then
 				health.value:SetText("|cff559655-"..ShortValueNegative(max-min).."|r")
