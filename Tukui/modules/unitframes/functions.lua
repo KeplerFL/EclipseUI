@@ -796,6 +796,25 @@ if C["unitframes"].raidunitdebuffwatch == true then
 			--Al'Akir
 			93260, -- Ice Storm
 			93295, -- Lightning Rod
+			
+		--Rise of the Zandalari
+			--Zul'Aman
+				--Akil'zon <Eagle Avatar>
+				97298, --Static Disruption
+				--Nalorakk <Bear Avatar>
+				42402, --Surge
+				--Jan'alai <Dragonhawk Avatar>
+				43299, --Flame Buffet
+				--Daakara <The Invincible>
+				97639, --Grievous Throw	
+			--Zul'Gurub
+				--High Priest Venoxis
+				96466, --Whispers of Hethiss
+				96475, --Toxic Link
+				--Bloodlord Mandokir
+				96776, --Bloodletting
+				--High Priestess Kilnara
+				96958, --Lash of Anguish
 		}
 		
 		ORD:RegisterDebuffs(T.debuffids)
