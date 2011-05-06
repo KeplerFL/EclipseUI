@@ -58,7 +58,8 @@ C["unitframes"] = {
 		["showplayerinparty"] = true,                      -- show my player frame in party
 		["showsymbols"] = true,	                            -- show symbol.
 		["aggro"] = true,                                   -- show aggro on all raids layouts
-		["raidunitdebuffwatch"] = true,                     -- track important spell to watch in pve for grid mode.
+		["raidunitdebuffwatch"] = true,                     -- track important spell to watch in pve for heal mode.
+			["dpsunitdebuffwatch"] = true,					-- track important spell to watch in pve for dps mode (requires raidunitdebuffwatch = true)
 		["healcomm"] = true,                               -- enable healprediction support.
 		["debuffHighlightFilter"] = true,					-- filter debuff border coloring
 			-- enable player / target debuff highlight
@@ -76,7 +77,7 @@ C["unitframes"] = {
 	["maintank"] = false,                               -- enable maintank
 	["mainassist"] = false,                             -- enable mainassist
 	["showboss"] = true,                                -- enable boss unit frames for PVELOL encounters.
-	-- ["showfocustarget"] = false,					-- show focus target
+	["showfocustarget"] = false,						-- show focus target
 	
 	-- priest only plugin
 	["weakenedsoulbar"] = true,                         -- show weakened soul bar
@@ -93,7 +94,7 @@ C["unitframes"] = {
 	-- layout
 	["style"] = "Cohesion",                                -- unitframe style, ("Cohesion" or "Eclipse" for default)
 	
-	-- health deficit gradient and mouseover-highlight, credits to Hydra
+	-- credits to Hydra
 	["gradienthealth"] = true,                          -- change raid health color based on health percent. (heal layout only)
 	["mouseoverhighlight"] = true						-- enable mouseover highlight on raid frames (heal layout only)
 }
@@ -182,6 +183,8 @@ C["chat"] = {
 	["height"] = 165,									-- adjust the chatframe height
 	["background"] = true,								-- chat frame backgrounds
 	["justifyRight"] = false,							-- set right chat frame text to the right
+	["rightchat"] = true,								-- set loot window to right chatframe
+	["width"] = 378,									-- adjust the chatframe width
 }
 
 C["nameplate"] = {
@@ -242,17 +245,4 @@ C["combo"] = {											-- credit to Dajova
 
 C["others"] = {
 	["autoquest"] = true,								-- enable autoquest feature (credit to Dajova)
-}
-
-C["skin"] = {
-	["ArkInventory"] = false,							-- skin ArkInventory
-	["DBM"] = false,									-- skin DBM
-	["DXE"] = false,									-- skin DXE
-	["KLE"] = true,										-- skin KLE
-	["Omen"] = true,									-- skin Omen
-	["QBar"] = false,									-- skin QBar
-	["Quartz"] = true,									-- skin Quartz
-	["Recount"] = true,									-- skin Recount
-	["SexyCooldown"] = false,							-- skin SexyCooldown
-	["Skada"] = false,									-- skin Skada
 }
