@@ -20,13 +20,13 @@ frame:RegisterEvent('INSPECT_TALENT_READY')
 frame:SetScript('OnEvent', function(self, event)
 	if GetPrimaryTalentTree() == 1 then
 		local _,_,_,count = UnitDebuff('player', GetSpellInfo(36032))	-- Arcane Blast
-		if count ~= 0 then
+		if count ~= id then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end
 	elseif GetPrimaryTalentTree() == 3 then
 		local _,_,_,count = UnitBuff('player', GetSpellInfo(44544))	-- Fingers of Frost
-		if count ~= 0 then
+		if count ~= id then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end

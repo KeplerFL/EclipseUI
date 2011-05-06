@@ -21,13 +21,13 @@ frame:RegisterEvent('INSPECT_TALENT_READY')
 frame:SetScript('OnEvent', function(self, event)
 	if GetPrimaryTalentTree() == 2 then
 		local _,_,_,count = UnitBuff('player', GetSpellInfo(82925)) -- Ready, Set, Aim... 
-		if count ~= 0 then
+		if count ~= id then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end
 	elseif GetPrimaryTalentTree() == 1 then
 		local _,_,_,count = UnitBuff('pet', GetSpellInfo(19615)) -- Frenzy Effect
-		if count ~= 0 then
+		if count ~= id then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end

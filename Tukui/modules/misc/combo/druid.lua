@@ -20,13 +20,13 @@ frame:RegisterEvent('INSPECT_TALENT_READY')
 frame:SetScript('OnEvent', function(self, event)
 	if GetPrimaryTalentTree() == 1 then
 		local _,_,_,count = UnitBuff('player', GetSpellInfo(81192)) -- Lunar Shower
-		if count ~= 0 then
+		if count ~= id then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end
 	elseif GetPrimaryTalentTree() == 2 then
 		local _,_,_,count,_,_,_,caster = UnitDebuff('target', GetSpellInfo(33745)) -- Lacerate
-		if count ~= 0 then
+		if count ~= id then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end

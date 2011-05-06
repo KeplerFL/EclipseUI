@@ -22,7 +22,7 @@ local unit = select(1, ...)
     if UnitAffectingCombat('player') then 
 		CCP:Show()
 		local count = UnitPower('player', SPELL_POWER_SOUL_SHARDS) 
-		if count ~= 0 then 
+		if count ~= id then 
 			id = count 
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS')) 
 		end

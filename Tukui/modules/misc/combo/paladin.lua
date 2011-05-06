@@ -17,7 +17,7 @@ frame:RegisterEvent('UNIT_POWER')
 frame:SetScript('OnEvent', function(self,event, ...)
 local unit = select(1, ...)
     local count = UnitPower('player', SPELL_POWER_HOLY_POWER)
-    if count ~= 0 then
+    if count ~= id then
         id = count
         return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
     end

@@ -27,19 +27,19 @@ frame:SetScript('OnEvent', function(self, event)
 				count = 0
 			end
 		end
-		if count ~= 0 then
+		if count ~= id then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end
 	elseif GetPrimaryTalentTree() == 2 then
 		local _,_,_,count = UnitBuff('player', GetSpellInfo(53817)) -- Maelstrom Weapon
-		if count ~= 0 then
+		if count ~= id then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end
 	elseif GetPrimaryTalentTree() == 3 then
 		local _,_,_,count = UnitBuff('player', GetSpellInfo(53390)) -- Tidal Waves
-		if count ~= 0 then
+		if count ~= id then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end

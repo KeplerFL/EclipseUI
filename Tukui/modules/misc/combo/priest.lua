@@ -20,19 +20,19 @@ frame:RegisterEvent('INSPECT_TALENT_READY')
 frame:SetScript('OnEvent', function(self, event)
 	if GetPrimaryTalentTree() == 1 then
 		local _,_,_,count = UnitBuff('player', GetSpellInfo(81661)) -- Evangelism
-		if count ~= 0 then
+		if count ~= id then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end
 	elseif GetPrimaryTalentTree() == 2 then
 		local _,_,_,count = UnitBuff('player', GetSpellInfo(63735)) -- Serendipity
-		if count ~= 0 then
+		if count ~= id then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end
 	elseif GetPrimaryTalentTree() == 3 then
 		local _,_,_,count = UnitBuff('player', GetSpellInfo(87117)) -- Evangelism (Dark)
-		if count ~= 0 then
+		if count ~= id then
 			id = count
 			return map(GetFramesRegisteredForEvent('UNIT_COMBO_POINTS'))
 		end
