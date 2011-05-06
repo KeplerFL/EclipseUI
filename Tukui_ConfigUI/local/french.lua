@@ -25,6 +25,7 @@ if GetLocale() == "frFR" then
 	TukuiL.option_merchant_autosell = "Vente auto des objets gris"
 	TukuiL.option_merchant_autorepair = "Réparation auto de l'équipement"
 	TukuiL.option_merchant_sellmisc = "Vente de certains objets définis (non-gris, inutile) automatiquement."
+	TukuiL.option_merchant_guildrepair = "Réparation automatique depuis la banque de guilde (Si disponible)"
  
 	-- bags
 	TukuiL.option_bags = "Sacs"
@@ -56,6 +57,16 @@ if GetLocale() == "frFR" then
 	TukuiL.option_datatext_micromenu = "Position Micro Menu (0 pour désactiver)"
 	TukuiL.option_datatext_hit = "Position Toucher (0 pour désactiver)"
 	TukuiL.option_datatext_mastery = "Position Maîtrise (0 pour désactiver)"
+	TukuiL.option_datatext_classcolor = "Activer les couleurs de classe sur les Datatexts."
+	TukuiL.option_datatext_color = "Choisir la couleur des Datatexts"
+	TukuiL.option_datatext_style = "Choisir le style des datatexts"
+	TukuiL.option_datatext_expreptext = "Activer le texte sur les barres de réputation et d’expérience."
+	TukuiL.option_datatext_location_coords = "Activer les coordonnées sur le panneau d'emplacement."
+	TukuiL.option_datatext_location = "Activer le panneau d'emplacement"
+	TukuiL.option_datatext_exprepbars = "Activer les barres d'expérience et de réputation."
+	TukuiL.option_datatext_regen = "Position de la regen mana (0 désactiver)"
+	TukuiL.option_datatext_maptime = "Activer l'horloge sous la minimap"
+	TukuiL.option_datatext_statblock = "Activer le bloc de statistiques dans le coin en haut à gauche."
  
 	-- unit frames
 	TukuiL.option_unitframes_unitframes = "Unit Frames"
@@ -80,7 +91,7 @@ if GetLocale() == "frFR" then
 	TukuiL.option_unitframes_raidaggro = "Afficher l'aggro dans le groupe/raid"
 	TukuiL.option_unitframes_boss = "Activer les Boss Unit Frames"
 	TukuiL.option_unitframes_enemyhostilitycolor = "Colorer la barre de vie des ennemis en fonction de l'hostilité"
-	TukuiL.option_unitframes_hpvertical = "Voir la barre de vie verticalement dans l'interface Grid"
+	TukuiL.option_unitframes_healthvertical = "Voir la barre de vie verticalement dans l'interface Heal"
 	TukuiL.option_unitframes_symbol = "Voir les symboles dans le groupe/raid"
 	TukuiL.option_unitframes_threatbar = "Afficher la barre de menace"
 	TukuiL.option_unitframes_enablerange = "Afficher la transparence pour la portée des membres du groupe/raid"
@@ -101,6 +112,28 @@ if GetLocale() == "frFR" then
 	TukuiL.option_unitframes_weakenedsoulbar = "Afficher la barre de debuff âme affaiblie (pour prêtres)"
 	TukuiL.option_unitframes_onlyselfdebuffs = "Afficher seulement vos débuffs sur la cible"
 	TukuiL.option_unitframes_focus = "Afficher la cible du Focus"
+	TukuiL.option_unitframes_healthdeficit = "Activer le déficit de vie."
+	TukuiL.option_unitframes_hidepower = "Cacher la barre d'énergie."
+	TukuiL.option_unitframes_onlyselfbuffs = "Afficher uniquement vos buffs"
+	TukuiL.option_unitframes_buffrows = "Nombre de lignes de buff"
+	TukuiL.option_unitframes_debuffrows = "Nombre de lignes de debuff"
+	TukuiL.option_unitframes_dcbclasscolor = "Activer les couleurs de classe sur la barre d'incantation"
+	TukuiL.option_unitframes_sortname = "Trier les sorts par nom"
+	TukuiL.option_unitframes_focusdebuffs = "Voir les debuffs sur votre focalisation"
+	TukuiL.option_unitframes_focusbuffs = "Voir les buffs sur votre focalisation"
+	TukuiL.option_unitframes_healthColor = "Choisir la couleur de la barre de vie"
+	TukuiL.option_unitframes_cbcustomcolor = "Choisir la couleur de la barre d'incantation"
+	TukuiL.option_unitframes_debuffHighlightFilter = "Activer la surbrillance des debuff sur l'unitframe"
+	TukuiL.option_unitframes_healthBgColor = "Choisir la couleur de fond de l'unitframe"
+	TukuiL.option_unitframes_deathknight = "Activer la barre de runes pour les Chevaliers de la mort"
+	TukuiL.option_unitframes_warlock = "Activer la barre de fragments d'âme pour Démonistes"
+	TukuiL.option_unitframes_shaman = "Activer la barre de totems pour les Chamans"
+	TukuiL.option_unitframes_druid = "Activer la barre d'energie druidique pour les Druides équilibre."
+	TukuiL.option_unitframes_paladin = "Activer la barre de puissance sacrée pour les Paladins."
+	TukuiL.option_unitframes_playerHighlight = "Activer la surbrillance des debuff sur le joueur."
+	TukuiL.option_unitframes_style = "Style de l'uniframe (Eclipse ou Cohesion)"
+	TukuiL.option_unitframes_gradienthealth = "Adapte la couleur des barres de vie du raid par rapport à leur pourcentage de points de vie. (heal layout uniquement)"
+	TukuiL.option_unitframes_mouseoverhighlight = "Activer la surbrillance au passage de la souris (heal layout uniquement)"
  
 	-- loot
 	TukuiL.option_loot = "Butin"
@@ -150,6 +183,9 @@ if GetLocale() == "frFR" then
 	TukuiL.option_actionbar_buttonsize = "Taille des boutons de la barre d'action"
 	TukuiL.option_actionbar_buttonspacing = "Espace entre les boutons de la barre d'action"
 	TukuiL.option_actionbar_petbuttonsize = "Taille des boutons du familier/ChangeForme"
+	TukuiL.option_actionbar_vertical_rightbars = "Activer la barre de droite verticale"
+	TukuiL.option_actionbar_stancebuttonsize = "Choisir la taille des boutons de la barre de changement de positions"
+	TukuiL.option_actionbar_vertical_shapeshift = "Activer la barre de changement de positions verticale"
 	
 	-- quest watch frame
 	TukuiL.option_quest = "Quêtes"
@@ -174,6 +210,8 @@ if GetLocale() == "frFR" then
 	TukuiL.option_chat_enable = "Activer le Chat Tukui"
 	TukuiL.option_chat_whispersound = "Jouer un son lors de la réception d'un message"
 	TukuiL.option_chat_background = "Activer l'arrière plan du Chat"
+	TukuiL.option_chat_height = "Choisir la hauteur du chat"
+	TukuiL.option_chat_justify_Right = "Aligner le texte du chat à droite"
 	
 	-- buff
 	TukuiL.option_auras = "Auras"
@@ -187,4 +225,20 @@ if GetLocale() == "frFR" then
 	TukuiL.option_resetall = "Êtes vous sûr de vouloir tout réinitialiser ?"
 	TukuiL.option_perchar = "Êtes vous sûr de vouloir annuler/passer à des paramètres par personnage ?"
 	TukuiL.option_makeselection = "Vous devez faire un choix pour continuer."
+	
+	-- combo
+	TukuiL.option_combo = "Combo"
+	TukuiL.option_combo_warrior = "Activer les combos Guerrier"
+	TukuiL.option_combo_paladin = "Activer les combos Paladin"
+	TukuiL.option_combo_shaman = "Activer les combos Chaman"
+	TukuiL.option_combo_dknight = "Activer les combos Chevalier de la mort"
+	TukuiL.option_combo_mage = "Activer les combos Mage"
+	TukuiL.option_combo_druid = "Activer les combos Druide"
+	TukuiL.option_combo_display = "Activer le module de combos"
+	TukuiL.option_combo_hunter = "Activer les combos Chasseur"
+	TukuiL.option_combo_warlock = "Activer les combos Démoniste"
+	TukuiL.option_combo_priest = "Activer les combos Prêtres"
+	
+	-- other
+	TukuiL.option_others_autoquest = "Activer la fonctionnalité des quêtes automatiques"
 end

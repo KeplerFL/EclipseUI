@@ -135,7 +135,6 @@ local function Local(o)
 	if o == "TukuiConfigUIunitframesaggro" then o = TukuiL.option_unitframes_raidaggro end
 	if o == "TukuiConfigUIunitframesshowboss" then o = TukuiL.option_unitframes_boss end
 	if o == "TukuiConfigUIunitframesenemyhcolor" then o = TukuiL.option_unitframes_enemyhostilitycolor end
-	if o == "TukuiConfigUIunitframesgridhealthvertical" then o = TukuiL.option_unitframes_hpvertical end
 	if o == "TukuiConfigUIunitframesshowsymbols" then o = TukuiL.option_unitframes_symbol end
 	if o == "TukuiConfigUIunitframesshowthreat" then o = TukuiL.option_unitframes_threatbar end
 	if o == "TukuiConfigUIunitframesshowrange" then o = TukuiL.option_unitframes_enablerange end
@@ -153,11 +152,11 @@ local function Local(o)
 	if o == "TukuiConfigUIunitframesunicolor" then o = TukuiL.option_unitframes_unicolor end
 	if o == "TukuiConfigUIunitframestotdebuffs" then o = TukuiL.option_unitframes_totdebuffs end
 	if o == "TukuiConfigUIunitframesclassbar" then o = TukuiL.option_unitframes_classbar end
-	if o == "TukuiConfigUIunitframesdeathknight" then o = TukuiL.option_deathknight end
-	if o == "TukuiConfigUIunitframeswarlock" then o = TukuiL.option_warlock end
-	if o == "TukuiConfigUIunitframesshaman" then o = TukuiL.option_shaman end
-	if o == "TukuiConfigUIunitframesdruid" then o = TukuiL.option_druid end
-	if o == "TukuiConfigUIunitframespaladin" then o = TukuiL.option_paladin end
+	if o == "TukuiConfigUIunitframesdeathknight" then o = TukuiL.option_unitframes_deathknight end
+	if o == "TukuiConfigUIunitframeswarlock" then o = TukuiL.option_unitframes_warlock end
+	if o == "TukuiConfigUIunitframesshaman" then o = TukuiL.option_unitframes_shaman end
+	if o == "TukuiConfigUIunitframesdruid" then o = TukuiL.option_unitframes_druid end
+	if o == "TukuiConfigUIunitframespaladin" then o = TukuiL.option_unitframes_paladin end
 	if o == "TukuiConfigUIunitframesweakenedsoulbar" then o = TukuiL.option_unitframes_weakenedsoulbar end
 	if o == "TukuiConfigUIunitframesonlyselfdebuffs" then o = TukuiL.option_unitframes_onlyselfdebuffs end
 	if o == "TukuiConfigUIunitframesshowfocustarget" then o = TukuiL.option_unitframes_focus end
@@ -170,17 +169,18 @@ local function Local(o)
 	if o == "TukuiConfigUIunitframesdebuffrows" then o = TukuiL.option_unitframes_debuffrows end
 	if o == "TukuiConfigUIunitframescbclasscolor" then o = TukuiL.option_unitframes_dcbclasscolor end
 	if o == "TukuiConfigUIunitframessortname" then o = TukuiL.option_unitframes_sortname end
-	if o == "TukuiConfigUIunitframesfocusdebuffs" then o = TukuiL.option_focusdebuffs end
-	if o == "TukuiConfigUIunitframesfocusbuffs" then o = TukuiL.option_focusdebuffs end
-	if o == "TukuiConfigUIunitframeshealthColor" then o = TukuiL.option_healthColor end
-	if o == "TukuiConfigUIunitframescbcustomcolor" then o = TukuiL.option_cbcustomcolor end
-	if o == "TukuiConfigUIunitframesdebuffHighlightFilter" then o = TukuiL.option_debuffHighlightFilter end
-	if o == "TukuiConfigUIunitframeshealthBgColor" then o = TukuiL.option_healthBgColor end
-	if o == "TukuiConfigUIunitframesvertical" then o = TukuiL.option_vertical end
-	if o == "TukuiConfigUIunitframesplayerHighlight" then o = TukuiL.option_playerHighlight end
-	if o == "TukuiConfigUIunitframesstyle" then o = TukuiL.option_style end
-	if o == "TukuiConfigUIunitframesgradienthealth" then o = TukuiL.option_gradienthealth end
-	if o == "TukuiConfigUIunitframesmouseoverhighlight" then o = TukuiL.option_mouseoverhighlight end
+	if o == "TukuiConfigUIunitframesfocusdebuffs" then o = TukuiL.option_unitframes_focusdebuffs end
+	if o == "TukuiConfigUIunitframesfocusbuffs" then o = TukuiL.option_unitframes_focusdebuffs end
+	if o == "TukuiConfigUIunitframeshealthColor" then o = TukuiL.option_unitframes_healthColor end
+	if o == "TukuiConfigUIunitframescbcustomcolor" then o = TukuiL.option_unitframes_cbcustomcolor end
+	if o == "TukuiConfigUIunitframesdebuffHighlightFilter" then o = TukuiL.option_unitframes_debuffHighlightFilter end
+	if o == "TukuiConfigUIunitframeshealthBgColor" then o = TukuiL.option_unitframes_healthBgColor end
+	if o == "TukuiConfigUIunitframesvertical" then o = TukuiL.option_unitframes_vertical end
+	if o == "TukuiConfigUIunitframesplayerHighlight" then o = TukuiL.option_unitframes_playerHighlight end
+	if o == "TukuiConfigUIunitframesstyle" then o = TukuiL.option_unitframes_style end
+	if o == "TukuiConfigUIunitframesgradienthealth" then o = TukuiL.option_unitframes_gradienthealth end
+	if o == "TukuiConfigUIunitframesmouseoverhighlight" then o = TukuiL.option_unitframes_mouseoverhighlight end
+	if o == "TukuiConfigUIunitframesdpsunitdebuffwatch" then o = TukuiL.option_unitframes_dpsunitdebuffwatch end
 		
 	-- loot
 	if o == "TukuiConfigUIloot" then o = TukuiL.option_loot end
@@ -259,6 +259,8 @@ local function Local(o)
 	if o == "TukuiConfigUIchatheight" then o = TukuiL.option_chat_height end
 	if o == "TukuiConfigUIchatbackground" then o = TukuiL.option_chat_background end
 	if o == "TukuiConfigUIchatjustifyRight" then o = TukuiL.option_chat_justify_Right end
+	if o == "TukuiConfigUIchatrightchat" then o = TukuiL.option_chat_rightchat end
+	if o == "TukuiConfigUIchatwidth" then o = TukuiL.option_chat_width end
 	
 	-- aura
 	if o == "TukuiConfigUIauras" then o = TukuiL.option_auras end

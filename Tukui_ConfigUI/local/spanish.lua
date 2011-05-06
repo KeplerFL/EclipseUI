@@ -80,7 +80,7 @@ if GetLocale() == "esES" then
 	TukuiL.option_unitframes_raidaggro = "Habilitar amenaza en tu Grupo/Banda"
 	TukuiL.option_unitframes_boss = "Habilitar Marcos de Unidad para Jefes"
 	TukuiL.option_unitframes_enemyhostilitycolor = "Colorear Marcos de Unidad de enemigos por Hostilidad"
-	TukuiL.option_unitframes_hpvertical = "Mostrar Barra de Vida Vertical para Grid"
+	TukuiL.option_unitframes_healthvertical = "Mostrar Barra de Vida Vertical para Grid"
 	TukuiL.option_unitframes_symbol = "Mostrar símbolos en Grupos/Banda"
 	TukuiL.option_unitframes_threatbar = "Habilitar barra de Aggro"
 	TukuiL.option_unitframes_enablerange = "Mostrar alfa en Grupos/Banda"

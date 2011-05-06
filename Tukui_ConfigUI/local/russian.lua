@@ -80,7 +80,7 @@
 	TukuiL.option_unitframes_raidaggro = "Включить отображение угрозы на рамках группы/рейда"
 	TukuiL.option_unitframes_boss = "Включить рамки боссов"
 	TukuiL.option_unitframes_enemyhostilitycolor = "Окрашивать полосу здоровья врага по враждебности"
-	TukuiL.option_unitframes_hpvertical = "Отображать полосу здоровья вертикально для Grid"
+	TukuiL.option_unitframes_healthvertical = "Отображать полосу здоровья вертикально для Grid"
 	TukuiL.option_unitframes_symbol = "Показывать метки на рамках группы/рейда"
 	TukuiL.option_unitframes_threatbar = "Включить полосу угрозы"
 	TukuiL.option_unitframes_enablerange = "Менять прозрачность группы/рейда в зависимости от расстояния"

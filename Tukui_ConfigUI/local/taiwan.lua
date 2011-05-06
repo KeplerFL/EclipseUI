@@ -25,6 +25,7 @@
 	TukuiL.option_merchant_autosell = "自動販賣灰色等級物品"
 	TukuiL.option_merchant_autorepair = "自動修復裝備"
 	TukuiL.option_merchant_sellmisc = "自動販賣特定物品(非灰色等級指定物品)"
+	TukuiL.option_merchant_guildrepair = "自動使用公會修裝 (如果有開啟)"
  
 	-- bags
 	TukuiL.option_bags = "背包"
@@ -55,7 +56,17 @@
 	TukuiL.option_datatext_currency = "兌換通貨 (輸入0 以停用)"
 	TukuiL.option_datatext_micromenu = "小型菜單 (輸入0 以停用)"
 	TukuiL.option_datatext_hit = "命中 (輸入0 以停用)"
-	TukuiL.option_datatext_mastery = "精通 (輸入0 以停用)"	
+	TukuiL.option_datatext_mastery = "精通 (輸入0 以停用)"
+	TukuiL.option_datatext_classcolor = "啟用職業顏色的資訊文字"
+	TukuiL.option_datatext_color = "選擇資訊文字的顏色"
+	TukuiL.option_datatext_style = "選擇資訊文字的樣式"
+	TukuiL.option_datatext_expreptext = "啟用經驗值與聲望值條上的文字"
+	TukuiL.option_datatext_location_coords = "所在地面板上顯示座標"
+	TukuiL.option_datatext_location = "啟用所在地面板"
+	TukuiL.option_datatext_exprepbars = "啟用經驗值及聲望值條"
+	TukuiL.option_datatext_regen = "法力恢復 (輸入0以停用)"
+	TukuiL.option_datatext_maptime = "啟用小地圖下的時鐘"
+	TukuiL.option_datatext_statblock = "啟用左上角的資訊欄位"
  
 	-- unit frames
 	TukuiL.option_unitframes_unitframes = "單位視窗"
@@ -80,7 +91,7 @@
 	TukuiL.option_unitframes_raidaggro = "啟用隊伍/團隊仇恨顯示"
 	TukuiL.option_unitframes_boss = "啟用首領單位視窗"
 	TukuiL.option_unitframes_enemyhostilitycolor = "敵人生命條以敵對狀態上色"
-	TukuiL.option_unitframes_hpvertical = "顯示Grid介面縱向生命條"
+	TukuiL.option_unitframes_healthvertical = "顯示Grid介面縱向生命條"
 	TukuiL.option_unitframes_symbol = "顯示隊伍/團隊標記"
 	TukuiL.option_unitframes_threatbar = "啟用仇恨條"
 	TukuiL.option_unitframes_enablerange = "啟用隊伍/團隊距離淡出"
@@ -101,6 +112,28 @@
 	TukuiL.option_unitframes_weakenedsoulbar = "啟用虛弱靈魂指示 (牧師)"
 	TukuiL.option_unitframes_onlyselfdebuffs = "只在目標頭像上顯示自己釋放的減益效果"
 	TukuiL.option_unitframes_focus = "開啟專注目標的目標"
+	TukuiL.option_unitframes_healthdeficit = "啟用生命值差額"
+	TukuiL.option_unitframes_hidepower = "隱藏能力條"
+	TukuiL.option_unitframes_onlyselfbuffs = "只顯示你的所施放的增益狀態"
+	TukuiL.option_unitframes_buffrows = "增益狀態的行數"
+	TukuiL.option_unitframes_debuffrows = "減益狀態的行數"
+	TukuiL.option_unitframes_dcbclasscolor = "啟用職業顏色的施法條"
+	TukuiL.option_unitframes_sortname = "以名稱排序"
+	TukuiL.option_unitframes_focusdebuffs = "顯示專注單位的減益狀態"
+	TukuiL.option_unitframes_focusbuffs = "顯示專注單位的增益狀態"
+	TukuiL.option_unitframes_healthColor = "選擇生命值顏色"
+	TukuiL.option_unitframes_cbcustomcolor = "選擇施法條顏色"
+	TukuiL.option_unitframes_debuffHighlightFilter = "單位框架上啟用減益狀態高亮"
+	TukuiL.option_unitframes_healthBgColor = "選擇單位框架的背景顏色"
+	TukuiL.option_unitframes_deathknight = "啟用死亡騎士符文列"
+	TukuiL.option_unitframes_warlock = "啟用術士的靈魂碎片條"
+	TukuiL.option_unitframes_shaman = "啟用薩滿圖騰列"
+	TukuiL.option_unitframes_druid = "啟用德魯伊的日/月條"
+	TukuiL.option_unitframes_paladin = "啟用聖騎士的神聖能量條"
+	TukuiL.option_unitframes_playerHighlight = "啟用玩家身上的減益狀態高亮"
+	TukuiL.option_unitframes_style = "單位框架樣式 (Eclipse 或 Cohesion)"
+	TukuiL.option_unitframes_gradienthealth = "由生命值百分比決定團隊生命值顏色 (治療介面專用)"
+	TukuiL.option_unitframes_mouseoverhighlight = "啟用游標懸停高亮 (治療介面專用)"
  
 	-- loot
 	TukuiL.option_loot = "戰利品"
@@ -150,6 +183,9 @@
 	TukuiL.option_actionbar_buttonsize = "主要熱鍵大小"
 	TukuiL.option_actionbar_buttonspacing = "主要熱鍵間隔距離"
 	TukuiL.option_actionbar_petbuttonsize = "寵物或變形列按鍵大小"
+	TukuiL.option_actionbar_vertical_rightbars = "啟用右邊垂直的動作列"
+	TukuiL.option_actionbar_stancebuttonsize = "設定姿勢列大小"
+	TukuiL.option_actionbar_vertical_shapeshift = "啟用垂直的姿勢列"
 	
 	-- quest watch frame
 	TukuiL.option_quest = "任務欄"
@@ -174,6 +210,8 @@
 	TukuiL.option_chat_enable = "啟用Tukui對話框"
 	TukuiL.option_chat_whispersound = "收到悄悄話時以音效提醒"
 	TukuiL.option_chat_background = "啟用對話框背景"
+	TukuiL.option_chat_height = "設定聊天視窗高度"
+	TukuiL.option_chat_justify_Right = "以右對齊的聊天文字"
 		
 	-- buff
 	TukuiL.option_auras = "Auras"
@@ -187,5 +225,21 @@
 	TukuiL.option_resetchar = "你確定要將你的角色設定回復到預設設定嗎?"
 	TukuiL.option_resetall = "你確定要將你所有的設定回復到系統預設值嗎?"
 	TukuiL.option_perchar = "你確定要啟用或者關閉依角色儲存設定的模式嗎?"
-	TukuiL.option_makeselection = "你必需作出選擇才能繼續設定"	
+	TukuiL.option_makeselection = "你必需作出選擇才能繼續設定"
+	
+	-- combo
+	TukuiL.option_combo = "連擊點"
+	TukuiL.option_combo_warrior = "啟用戰士連擊點"
+	TukuiL.option_combo_paladin = "啟用聖騎士連擊點"
+	TukuiL.option_combo_shaman = "啟用薩滿連擊點"
+	TukuiL.option_combo_dknight = "啟用死亡騎士連擊點"
+	TukuiL.option_combo_mage = "啟用法師連擊點"
+	TukuiL.option_combo_druid = "啟用德魯伊連擊點"
+	TukuiL.option_combo_display = "啟用連擊點模組"
+	TukuiL.option_combo_hunter = "啟用獵人連擊點"
+	TukuiL.option_combo_warlock = "啟用術士連擊點"
+	TukuiL.option_combo_priest = "啟用牧師連擊點"
+	
+	-- others
+	TukuiL.option_others_autoquest = "啟用自動接取任務功能"
 end

@@ -25,6 +25,7 @@
 	TukuiL.option_merchant_autosell = "Automatisch graue Items verkaufen"
 	TukuiL.option_merchant_autorepair = "Automatisch reparieren"
 	TukuiL.option_merchant_sellmisc = "Automatischer Verkauf einiger vordefinierter (nicht grauer) Gegenstände"
+	TukuiL.option_merchant_guildrepair = "Automatisches Gilden Reparieren aktivieren(falls verfügbar)"
  
 	-- bags
 	TukuiL.option_bags = "Taschen"
@@ -59,6 +60,17 @@
 	TukuiL.option_datatext_classcolor = "Aktiviere den klassenfarbigen Infotext"
 	TukuiL.option_datatext_color = "Wähle die Farbe des Infotext"
 	TukuiL.option_datatext_style = "Wähle den Stil des Infotext"
+	TukuiL.option_datatext_classcolor = "Aktiviere klassenfarbigen Infotext"
+	TukuiL.option_datatext_color = "Waehle eine Farbe für den Infotext"
+	TukuiL.option_datatext_style = "Waehle einen Stil für den Infotext"
+	TukuiL.option_datatext_expreptext = "Aktiviere den Text auf der Erholungs- und Rufanzeige"
+	TukuiL.option_datatext_location_coords = "Aktiviere Standort Koordinaten"
+	TukuiL.option_datatext_location = "Aktiviere Standort-Leiste"
+	TukuiL.option_datatext_exprepbars = "Aktiviere Erholungs- und Rufanzeige"
+	TukuiL.option_datatext_regen = "Manaregeneration Position (0 zum ausschalten)"
+	TukuiL.option_datatext_maptime = "Aktiviere Uhrzeit unter der Minimap"
+	TukuiL.option_datatext_statblock = "Aktiviere Datenblock in der linken oberen Ecke"
+
  
 	-- unit frames
 	TukuiL.option_unitframes_unitframes = "Unitframes"
@@ -83,7 +95,7 @@
 	TukuiL.option_unitframes_raidaggro = "Aktiviere Bedrohungsanzeige des Schlachtzugs/Gruppe"
 	TukuiL.option_unitframes_boss = "Aktiviere Boss-Unitframes"
 	TukuiL.option_unitframes_enemyhostilitycolor = "Färbe Lebensbalken der Gegner nach Feindseligkeit"
-	TukuiL.option_unitframes_hpvertical = "Lebensbalken bei Grid vertikal anzeigen"
+	TukuiL.option_unitframes_healthvertical = "Lebensbalken bei Grid vertikal anzeigen"
 	TukuiL.option_unitframes_symbol = "Zeige Symbole auf Schlachtzug- und Gruppenfenster"
 	TukuiL.option_unitframes_threatbar = "Aktiviere Bedrohungsleiste"
 	TukuiL.option_unitframes_enablerange = "Aktiviere Entfernungsanzeige für Schlachtzug/Gruppe"
@@ -113,20 +125,22 @@
 	TukuiL.option_unitframes_debuffrows = "Anzahl der Reihen der Schwächungszauber"
 	TukuiL.option_unitframes_dcbclasscolor = "Aktiviere die klassenfarbige Zauberleiste"
 	TukuiL.option_unitframes_sortname = "Sortierung der Gruppen nach Name"
-	TukuiL.option_focusdebuffs = "Zeige Schwächungszauber auf dem Fokusziel"
-	TukuiL.option_focusbuffs = "Zeige Stärkungszauber auf dem Fokusziel"
-	TukuiL.option_healthColor = "Wähle die Farbe des Gesundheitsbalken"
-	TukuiL.option_cbcustomcolor = "Wähle die Farbe der Zauberleiste"
-	TukuiL.option_debuffHighlightFilter = "Aktiviere die Schwächungszauberhervorhebung"
-	TukuiL.option_healthBgColor = "Wähle die Farbe des Hintergrunds der Gesundheitsbalken"
-	TukuiL.option_vertical = "Aktiviert die vertikale Anordnung des heal layouts"
-	TukuiL.option_deathknight = "Aktiviert die Runenleiste für Todesritter"
-	TukuiL.option_warlock = "Aktiviert die Seelensplitterfür Hexenmeister"
-	TukuiL.option_shaman = "Aktiviert die Totemleiste für Schamanen"
-	TukuiL.option_druid = "Aktiviert die Solar/Lunarleiste für Druiden"
-	TukuiL.option_paladin = "Aktiviert die Heiligekraftleiste für Paladine"
-	TukuiL.option_playerHighlight = "Aktiviert die Schwächungszauberhervorhebung auf dem Spieler"
-	
+	TukuiL.option_unitframes_focusdebuffs = "Zeige Schwächungszauber auf dem Fokusziel"
+	TukuiL.option_unitframes_focusbuffs = "Zeige Stärkungszauber auf dem Fokusziel"
+	TukuiL.option_unitframes_healthColor = "Wähle die Farbe des Gesundheitsbalken"
+	TukuiL.option_unitframes_cbcustomcolor = "Wähle die Farbe der Zauberleiste"
+	TukuiL.option_unitframes_debuffHighlightFilter = "Aktiviere die Schwächungszauberhervorhebung"
+	TukuiL.option_unitframes_healthBgColor = "Wähle die Farbe des Hintergrunds der Gesundheitsbalken"
+	TukuiL.option_unitframes_vertical = "Aktiviert die vertikale Anordnung des heal layouts"
+	TukuiL.option_unitframes_deathknight = "Aktiviert die Runenleiste für Todesritter"
+	TukuiL.option_unitframes_warlock = "Aktiviert die Seelensplitterfür Hexenmeister"
+	TukuiL.option_unitframes_shaman = "Aktiviert die Totemleiste für Schamanen"
+	TukuiL.option_unitframes_druid = "Aktiviert die Solar/Lunarleiste für Druiden"
+	TukuiL.option_unitframes_paladin = "Aktiviert die Heiligekraftleiste für Paladine"
+	TukuiL.option_unitframes_playerHighlight = "Aktiviert die Schwächungszauberhervorhebung auf dem Spieler"
+	TukuiL.option_unitframes_style = "Unitframe Stil(Eclipse oder Cohesion)"
+	TukuiL.option_unitframes_gradienthealth = "Aendere die Lebensanzeige abhaengig von den Prozenten(Nur Heiler Layout)"
+	TukuiL.option_unitframes_mouseoverhighlight = "Aktiviere MouseOver-Highlight(hNur Heiler Layout)"
 	
 	-- loot
 	TukuiL.option_loot = "Beute"
@@ -179,6 +193,9 @@
 	TukuiL.option_actionbar_vertical_rightbars = "Aktiviere die vertikale rechte Leiste"
 	TukuiL.option_actionbar_stancebuttonsize = "Wähle die Größe der Knöpfe in der Haltungsleiste"
 	TukuiL.option_actionbar_vertical_shapeshift = "Aktiviert die vertikale Haltungsleiste"
+	TukuiL.option_actionbar_vertical_rightbars = "Aktiviere die rechte vertikale Leiste"
+	TukuiL.option_actionbar_stancebuttonsize = "Waehle die Groeße der Haltungsleisten-Knöpfe"
+	TukuiL.option_actionbar_vertical_shapeshift = "Aktiviere die vertikale Haltungsleiste"
 	
 	-- quest watch frame
 	TukuiL.option_quest = "Quests"
@@ -203,7 +220,8 @@
 	TukuiL.option_chat_enable = "Aktiviere Tukui Chat"
 	TukuiL.option_chat_whispersound = "Beim Empfang von Flüsternachrichten Ton abspielen"
 	TukuiL.option_chat_height = "Wähle die Höhe des Chatfensters"
- 
+	TukuiL.option_chat_justify_Right = "Chattext rechtsbuendig ausgeben"
+
 	 -- buff
 	TukuiL.option_auras = "Auras"
 	TukuiL.option_auras_player = "Enable Tukui Buff/Debuff Frames"
@@ -216,5 +234,21 @@
 	TukuiL.option_resetchar = "Bist du sicher, dass du die Einstellungen für diesen Charakter auf Standard zurücksetzen willst?"
 	TukuiL.option_resetall = "Bist du sicher, dass du alle Einstellungen auf Standard zurücksetzen willst?"
 	TukuiL.option_perchar = "Bist du sicher, dass du die Einstellung für 'Einstellungen pro Charakter' wechseln willst?"
-	TukuiL.option_makeselection = "Sie müssen erst eine Auswahl treffen bevor Sie mit den Einstellungen fortfahren können."	
+	TukuiL.option_makeselection = "Sie müssen erst eine Auswahl treffen bevor Sie mit den Einstellungen fortfahren können."
+	
+	-- combo
+	TukuiL.option_combo = "Combo"
+	TukuiL.option_combo_warrior = "Aktiviere Krieger combos"
+	TukuiL.option_combo_paladin = "Aktiviere Paladin combos"
+	TukuiL.option_combo_shaman = "Aktiviere Schamanen combos"
+	TukuiL.option_combo_dknight = "Aktiviere Todesrittert combos"
+	TukuiL.option_combo_mage = "Aktiviere Magier combos"
+	TukuiL.option_combo_druid = "Aktiviere Druidencombos"
+	TukuiL.option_combo_display = "Aktiviere Combo-Module"
+	TukuiL.option_combo_hunter = "Aktiviere Jaeger combos"
+	TukuiL.option_combo_warlock = "Aktiviere Hexenmeister combos"
+	TukuiL.option_combo_priest = "Aktiviere Priester combos"
+
+	-- other
+	TukuiL.option_others_autoquest = "Aktiviere automatische Quest annahme"
 end

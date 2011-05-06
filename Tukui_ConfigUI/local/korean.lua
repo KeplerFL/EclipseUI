@@ -80,7 +80,7 @@
 	TukuiL.option_unitframes_raidaggro = "위협수준이 높은 공격대원을 강조"
 	TukuiL.option_unitframes_boss = "우두머리 개체창을 사용"
 	TukuiL.option_unitframes_enemyhostilitycolor = " 적대감에 의존한 대상창 바의 색을 사용"
-	TukuiL.option_unitframes_hpvertical = "힐러용 인터페이스일 때 체력이 세로로 줄어듬"
+	TukuiL.option_unitframes_healthvertical = "힐러용 인터페이스일 때 체력이 세로로 줄어듬"
 	TukuiL.option_unitframes_symbol = "공격대 인터페이스에 전술 목표 아이콘을 보여줌"
 	TukuiL.option_unitframes_threatbar = "위협수준 바를 사용"
 	TukuiL.option_unitframes_enablerange = "공격대 인터페이스에 거리에 따른 투명도를 사용"
