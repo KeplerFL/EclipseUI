@@ -106,7 +106,7 @@ local function Shared(self, unit)
 	end
 	
 	-- AuraWatch for DPS layout
-	if C["unitframes"].raidunitdebuffwatch == true then
+	if C["unitframes"].raidunitdebuffwatch and C["unitframes"].dpsunitdebuffwatch then
 		-- AuraWatch (corner icon)
 		--T.createAuraWatch(self,unit)
 		
