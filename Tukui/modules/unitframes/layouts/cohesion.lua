@@ -254,7 +254,6 @@ local function Shared(self, unit)
 			local Combat = health:CreateTexture(nil, "OVERLAY")
 			Combat:Height(19)
 			Combat:Width(19)
-			--Combat:SetPoint("LEFT",7,1)
 			Combat:SetPoint("CENTER",0,-10)
 			Combat:SetVertexColor(0.69, 0.31, 0.31)
 			self.Combat = Combat
@@ -912,7 +911,21 @@ local function Shared(self, unit)
 	------------------------------------------------------------------------
 
 	if (unit == "focustarget") then
-		-- no
+		if T.lowversion then
+			health:Height(14)
+		else
+			health:Height(21)
+		end
+		power:SetHeight(3)
+		
+		-- names
+		local Name = health:CreateFontString(nil, "OVERLAY")
+		Name:SetPoint("CENTER", health, "CENTER", 0, 1)
+		Name:SetJustifyH("CENTER")
+		Name:SetFont(unpack(T.Fonts.uName.setfont))
+		
+		self:Tag(Name, '[Tukui:getnamecolor][Tukui:name_medium][Tukui:dead][Tukui:afk]')
+		self.Name = Name
 	end
 
 	------------------------------------------------------------------------
@@ -1111,11 +1124,15 @@ end)
 
 
 
--- if C["unitframes"].showfocustarget then
--- local focustarget = oUF:Spawn("focustarget", "TukuiFocusTarget")
--- focustarget:SetPoint("BOTTOM", focus, "TOP", 0, 35)
--- focustarget:Size(200, 29)
--- end
+if C["unitframes"].showfocustarget then
+	local focustarget = oUF:Spawn("focustarget", "TukuiFocusTarget")
+	focustarget:SetSize(T.Focus, focustarget.Health:GetHeight() + focustarget.Power:GetHeight() + 3)
+	if T.lowversion then
+		focustarget:Point("BOTTOM", TukuiFocus, "TOP", 0, 7)
+	else
+		focustarget:Point("TOP", TukuiFocus, "BOTTOM", 0, -7)
+	end
+end
 
 
 if C.arena.unitframes then

@@ -918,7 +918,21 @@ local function Shared(self, unit)
 	------------------------------------------------------------------------
 
 	if (unit == "focustarget") then
-		-- no
+		if T.lowversion then
+			health:Height(14)
+		else
+			health:Height(21)
+		end
+		power:SetHeight(3)
+		
+		-- names
+		local Name = health:CreateFontString(nil, "OVERLAY")
+		Name:SetPoint("CENTER", health, "CENTER", 0, 1)
+		Name:SetJustifyH("CENTER")
+		Name:SetFont(unpack(T.Fonts.uName.setfont))
+		
+		self:Tag(Name, '[Tukui:getnamecolor][Tukui:name_medium][Tukui:dead][Tukui:afk]')
+		self.Name = Name
 	end
 
 	------------------------------------------------------------------------
@@ -1117,11 +1131,11 @@ end)
 
 
 
--- if C["unitframes"].showfocustarget then
--- local focustarget = oUF:Spawn("focustarget", "TukuiFocusTarget")
--- focustarget:SetPoint("BOTTOM", focus, "TOP", 0, 35)
--- focustarget:Size(200, 29)
--- end
+if C["unitframes"].showfocustarget then
+	local focustarget = oUF:Spawn("focustarget", "TukuiFocusTarget")
+	focustarget:Point("TOP", TukuiFocus, "BOTTOM", 0, -7)
+	focustarget:SetSize(T.Focus, focustarget.Health:GetHeight() + focustarget.Power:GetHeight() + 3)
+end
 
 
 if C.arena.unitframes then
