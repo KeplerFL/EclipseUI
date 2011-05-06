@@ -155,6 +155,23 @@ local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 	end
 end
 
+local function CreateBackdrop(f, t, tex)
+	if not t then t = "Default" end
+
+	local b = CreateFrame("Frame", nil, f)
+	b:Point("TOPLEFT", -2, 2)
+	b:Point("BOTTOMRIGHT", 2, -2)
+	b:SetTemplate(t, tex)
+
+	if f:GetFrameLevel() - 1 >= 0 then
+		b:SetFrameLevel(f:GetFrameLevel() - 1)
+	else
+		b:SetFrameLevel(0)
+	end
+
+	f.backdrop = b
+end
+
 local function SetTemplate(f, t, tex)
 	if tex then texture = C.media.normTex else texture = C.media.blank end
 	
@@ -252,7 +269,6 @@ local function HighlightUnit(f, r, g, b)
 	f:RegisterEvent("PLAYER_TARGET_CHANGED", HighlightTarget)
 end
 
--- errors with FadeIn and FadeOut
 local function FadeIn(f)
 	UIFrameFadeIn(f, .4, f:GetAlpha(), 1)
 end
@@ -287,6 +303,19 @@ function ColorGradient(perc, ...)
 	return r1 + (r2-r1)*relperc, g1 + (g2-g1)*relperc, b1 + (b2-b1)*relperc
 end
 
+local function StripTextures(object, kill)
+	for i=1, object:GetNumRegions() do
+		local region = select(i, object:GetRegions())
+		if region:GetObjectType() == "Texture" then
+			if kill then
+				region:Kill()
+			else
+				region:SetTexture(nil)
+			end
+		end
+	end		
+end
+
 local function addapi(object)
 	local mt = getmetatable(object).__index
 	if not object.Width then mt.Width = Width end
@@ -294,6 +323,8 @@ local function addapi(object)
 	if not object.Size then mt.Size = Size end
 	if not object.Point then mt.Point = Point end
 	if not object.SetTemplate then mt.SetTemplate = SetTemplate end
+	if not object.CreateBackdrop then mt.CreateBackdrop = CreateBackdrop end
+	if not object.StripTextures then mt.StripTextures = StripTextures end
 	if not object.CreatePanel then mt.CreatePanel = CreatePanel end
 	if not object.CreateShadow then mt.CreateShadow = CreateShadow end
 	if not object.CreateOverlay then mt.CreateOverlay = CreateOverlay end
