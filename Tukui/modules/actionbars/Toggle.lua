@@ -377,13 +377,11 @@ for i = 1, 6 do
 	
 	Toggle[i]:SetScript("OnEnter", function()
 		if InCombatLockdown() then return end
-		--Toggle[i]:FadeIn()
-		Toggle[i]:SetAlpha(1)
+		Toggle[i]:FadeIn()
 	end)
 
 	Toggle[i]:SetScript("OnLeave", function()
-		--Toggle[i]:FadeOut()
-		Toggle[i]:SetAlpha(0)
+		Toggle[i]:FadeOut()
 	end)
 	
 	Toggle[i]:SetScript("OnUpdate", function() 
