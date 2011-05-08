@@ -76,7 +76,7 @@ if C["datatext"].hps_text and C["datatext"].hps_text > 0 then
  
 	function get_hps()
 		if (actual_heals_total == 0) then
-			return ("0.0 " .. L.datatext_hps)
+			return ("0.0 " .. T.cStart .. L.datatext_hps)
 		else
 			return string.format("%.1f " .. T.cStart .. L.datatext_hps, (actual_heals_total or 0) / (cmbt_time or 1))
 		end
