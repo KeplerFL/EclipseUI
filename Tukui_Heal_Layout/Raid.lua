@@ -138,7 +138,7 @@ local function Shared(self, unit)
 	name:SetFont(unpack(T.Fonts.uName.setfont))
 	if C["unitframes"].healthdeficit then
 		if C["unitframes"].unicolor then
-			self:Tag(name, "[Tukui:leader][Tukui:getnamecolor][Tukui:nameshort][Tukui:masterlooter]")
+			self:Tag(name, "[Tukui:leader][Tukui:getnamecolor][Tukui:name_short][Tukui:masterlooter]")
 		else
 			self:Tag(name, "[Tukui:leader][Tukui:nameshort][Tukui:masterlooter]")
 		end

@@ -8,7 +8,7 @@ Stat:SetFrameStrata("BACKGROUND")
 Stat:SetFrameLevel(3)
 
 local Text = TukuiInfoLeft:CreateFontString(nil, "OVERLAY")
-Text:SetFont(C["media"].font, 12)
+Text:SetFont(unpack(T.Fonts.dFont.setfont))
 Text:SetShadowColor(0, 0, 0)
 Text:SetShadowOffset(1.25, -1.25)
 T.PP(C["datatext"].regen, Text)
@@ -27,5 +27,5 @@ Stat:SetScript("OnEvent", function(self)
 		regen = floor(base*5)		
 	end
 	
-	Text:SetText(regen.." "..MANA_REGEN_ABBR)
+	Text:SetText(regen .. " " .. T.cStart .. MANA_REGEN_ABBR)
 end)

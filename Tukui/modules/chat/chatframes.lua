@@ -80,7 +80,7 @@ local function StyleChat(frame)
 	tabtext:ClearAllPoints()
 	tabtext:Point("CENTER", tab, "CENTER", 0, -3)
 	
-	_G[chat]:SetFont(C["media"].caith, 11)
+	_G[chat]:SetFont(unpack(T.Fonts.cGeneral.setfont))
 	_G[chat]:SetClampRectInsets(0,0,0,0)
 	_G[chat]:SetClampedToScreen(false)
 	_G[chat]:SetFading(false)

@@ -109,6 +109,7 @@ T.Fonts = {
 	lootRollFrame = Font(pixel, nil, "MONOCHROMEOUTLINE", nil, nil, nil),
 	cooldown = Font(pixel, nil, "MONOCHROMEOUTLINE", nil, nil, nil), -- actionbar / bag / etc.
 	movers = Font(pixel, nil, "MONOCHROMEOUTLINE", nil, nil, nil), -- /moveui text + vehicle
+	raidAssist = Font(pixel, nil, "MONOCHROMEOUTLINE", nil, nil, nil),
 }
 
 T.Textures = {
