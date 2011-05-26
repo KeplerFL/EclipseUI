@@ -118,6 +118,7 @@ C["actionbar"] = {
 	["buttonspacing"] = 4,                              -- buttons spacing
 	["vertical_rightbars"] = false,						-- vertical or horizontal right bars
 	["vertical_shapeshift"] = true,						-- (NOT FOR SHAMANS/TOTEMS) vertical or horizontal shapeshift bar
+	["mainswap"] = false,								-- swap bottom actionbars (main bar on top)
 }
 
 C["bags"] = {
