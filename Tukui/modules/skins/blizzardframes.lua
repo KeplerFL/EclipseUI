@@ -2338,7 +2338,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		BrowseFilterScrollFrame:Height(300) --Adjust scrollbar height a little off
 
 		AuctionFrameBrowse.bg2 = CreateFrame("Frame", nil, AuctionFrameBrowse)
-		AuctionFrameBrowse.bg2:SetTemplate("Default")
+		AuctionFrameBrowse.bg2:SetTemplate("Transparent")
 		AuctionFrameBrowse.bg2:Point("TOPLEFT", AuctionFrameBrowse.bg1, "TOPRIGHT", 4, 0)
 		AuctionFrameBrowse.bg2:Point("BOTTOMRIGHT", AuctionFrame, "BOTTOMRIGHT", -8, 40)
 		BrowseScrollFrame:Height(300) --Adjust scrollbar height a little off
