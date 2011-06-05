@@ -7,11 +7,11 @@
 
 	<Include file="locales\load_locales.xml"/>
 		
-	<Script file="media\media.lua"/>	
+	<Script file="core\configui.lua"/>
+	<Script file="media\media.lua"/>
 			
 	<Include file="config\load_config.xml"/>
 
-	<Script file="core\configui.lua"/>
 	<Script file="core\uiscale.lua"/>
 	<Script file="core\deprecated.lua"/>
 	<Script file="core\api.lua"/>
