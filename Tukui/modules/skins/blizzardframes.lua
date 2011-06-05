@@ -1,8 +1,8 @@
 local T, C, L = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
 
-local FONT = C["media"].font
+local FONT = C["media"].caith
 local FONTSIZE = 18
-local FONTFLAG = "THINOUTLINE"
+local FONTFLAG = "OUTLINE"
 
 local function SetModifiedBackdrop(self)
 	local color = RAID_CLASS_COLORS[T.myclass]
@@ -1000,7 +1000,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				button:GetPushedTexture():SetAllPoints(icon)
 				
 				if button.Rank then
-					button.Rank:SetFont(FONT, 12, FONTFLAG)
+					button.Rank:Set(FONT, 12, FONTFLAG)
 					button.Rank:ClearAllPoints()
 					button.Rank:SetPoint("BOTTOMRIGHT")
 				end		
@@ -2706,9 +2706,9 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 						_G["AchievementAlertFrame"..i.."Shine"]:Kill()
 						
 						-- Text
-						_G["AchievementAlertFrame"..i.."Unlocked"]:SetFont(C.media.font, 12)
+						_G["AchievementAlertFrame"..i.."Unlocked"]:SetFont(FONT, 12)
 						_G["AchievementAlertFrame"..i.."Unlocked"]:SetTextColor(1, 1, 1)
-						_G["AchievementAlertFrame"..i.."Name"]:SetFont(C.media.font, 14)
+						_G["AchievementAlertFrame"..i.."Name"]:SetFont(FONT, 14)
 
 						-- Icon
 						_G["AchievementAlertFrame"..i.."IconTexture"]:SetTexCoord(0.08, 0.92, 0.08, 0.92)
@@ -3585,14 +3585,14 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 					WorldMapFrameSizeUpButton:Disable()
 				end	
 				
-				WorldMapFrameAreaLabel:SetFont(C["media"].font, 50, "OUTLINE")
+				WorldMapFrameAreaLabel:SetFont(FONT, 50, "OUTLINE")
 				WorldMapFrameAreaLabel:SetShadowOffset(2, -2)
 				WorldMapFrameAreaLabel:SetTextColor(0.90, 0.8294, 0.6407)	
 				
-				WorldMapFrameAreaDescription:SetFont(C["media"].font, 40, "OUTLINE")
+				WorldMapFrameAreaDescription:SetFont(FONT, 40, "OUTLINE")
 				WorldMapFrameAreaDescription:SetShadowOffset(2, -2)	
 				
-				WorldMapZoneInfo:SetFont(C["media"].font, 27, "OUTLINE")
+				WorldMapZoneInfo:SetFont(FONT, 27, "OUTLINE")
 				WorldMapZoneInfo:SetShadowOffset(2, -2)		
 			end
 			
@@ -3665,8 +3665,8 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			local coords = CreateFrame("Frame", "CoordsFrame", WorldMapFrame)
 			local fontheight = select(2, WorldMapQuestShowObjectivesText:GetFont())*1.1
 			coords:SetFrameLevel(90)
-			coords:FontString("PlayerText", C["media"].font, fontheight, "THINOUTLINE")
-			coords:FontString("MouseText", C["media"].font, fontheight, "THINOUTLINE")
+			coords:FontString("PlayerText", FONT, fontheight, "THINOUTLINE")
+			coords:FontString("MouseText", FONT, fontheight, "THINOUTLINE")
 			coords.PlayerText:SetTextColor(WorldMapQuestShowObjectivesText:GetTextColor())
 			coords.MouseText:SetTextColor(WorldMapQuestShowObjectivesText:GetTextColor())
 			coords.PlayerText:SetPoint("BOTTOMLEFT", WorldMapDetailFrame, "BOTTOMLEFT", 5, 5)
@@ -4871,7 +4871,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 					object.BgMiddle:SetTexture(nil)
 
 					object.Check:SetTexture(nil)
-					object.text:SetFont(C["media"].font,12)
+					object.text:SetFont(FONT,12)
 					object.text.SetFont = T.dummy
 				end
 			end)
