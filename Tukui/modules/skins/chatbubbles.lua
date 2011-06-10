@@ -24,7 +24,7 @@ local function skinbubble(frame)
 			frame.text = region
 		end
 	end
-	
+
 	frame:SetBackdrop({
 		bgFile = C["media"].blank,
 		edgeFile = C["media"].blank,
@@ -33,7 +33,7 @@ local function skinbubble(frame)
 	})
 	frame:SetBackdropBorderColor(unpack(C["media"].bordercolor))
 	frame:SetBackdropColor(.1, .1, .1, .8)
-	
+
 	tinsert(bubbles, frame)
 end
 
@@ -60,11 +60,11 @@ chatbubblehook:SetScript("OnUpdate", function(chatbubblehook, elapsed)
 			end
 			numkids = newnumkids
 		end
-		
+
 		for i, frame in next, bubbles do
 			local r, g, b = frame.text:GetTextColor()
 			frame:SetBackdropBorderColor(r, g, b, .8)
-			
+
 			-- bubbles is unfortunatly not compatible with eyefinity, we hide it event if they are enabled. :(
 			if T.eyefinity then frame:SetScale(0.00001) end
 		end

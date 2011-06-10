@@ -21,4 +21,5 @@
 	<Script file="skins\chatbubbles.lua"/>	
 	
 	<Script file="tooltip\tooltipilvl.lua"/>
+	<Include file="skins\load_skins.xml"/>
 </Ui>
