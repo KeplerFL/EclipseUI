@@ -918,21 +918,6 @@ local function Shared(self, unit)
 					castbar.button:SetPoint("RIGHT", castbar, "LEFT", -5, 0)
 				end
 			end
-			--[[castbar:RegisterEvent("PLAYER_ENTERING_WORLD")
-			castbar:RegisterEvent("PLAYER_TARGET_CHANGED")
-			castbar:RegisterEvent("PLAYER_FOCUS_CHANGED")
-			castbar:RegisterEvent("CURRENT_SPELL_CAST_CHANGED")
-			castbar:RegisterEvent("UNIT_SPELLCAST_CHANNEL_START")
-			castbar:RegisterEvent("UNIT_SPELLCAST_START")
-			castbar:SetScript("OnEvent", function(self)
-				-- Only show focus castbar if target is not our focus
-				if not UnitIsUnit("focus", "target") then
-					self:Show()
-				else
-					self:Hide()
-				end
-			end)
-			]]
 		end
 	end
 	
