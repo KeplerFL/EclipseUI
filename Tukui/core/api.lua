@@ -186,7 +186,9 @@ local function SetTemplate(f, t, tex)
 	
 	if t == "Transparent" then
 		backdropa = .7
-	else 
+	elseif t == "Skinning" then
+		backdropa = 1
+	else
 		backdropa = 1
 		f:CreateOverlay()
 	end
