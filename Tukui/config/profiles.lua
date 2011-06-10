@@ -15,19 +15,9 @@ end
 
 if T.myname == "Aereos" then
 	C.datatext.classcolor = false
-	C.unitframes.unitcastbar = false
 end
 
 if T.myname == "Fraiality" then
 	C.datatext.power = 0
 	C.datatext.avd = 4
-	C.unitframes.unitcastbar = false
-end
-
-if T.myname == "Holybawls" then
-	C.unitframes.unitcastbar = false
-end
-
-if T.myname == "Crottychopp" then
-	C.unitframes.unitcastbar = false
 end
