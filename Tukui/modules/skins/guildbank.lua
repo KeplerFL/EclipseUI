@@ -64,10 +64,10 @@ local function LoadSkin()
 		T.SkinTab(_G["GuildBankFrameTab"..i])
 	end
 
-		--Popup
+	--Popup
 	GuildBankPopupFrame:StripTextures()
 	GuildBankPopupScrollFrame:StripTextures()
-	GuildBankPopupFrame:SetTemplate("Transparent")
+	GuildBankPopupFrame:SetTemplate("Skinning")
 	GuildBankPopupFrame:Point("TOPLEFT", GuildBankFrame, "TOPRIGHT", 1, -30)
 	T.SkinButton(GuildBankPopupOkayButton)
 	T.SkinButton(GuildBankPopupCancelButton)
@@ -75,7 +75,7 @@ local function LoadSkin()
 	GuildBankPopupNameLeft:Kill()
 	GuildBankPopupNameRight:Kill()
 	GuildBankPopupNameMiddle:Kill()
-	
+
 	for i=1, 16 do
 		local button = _G["GuildBankPopupButton"..i]
 		local icon = _G[button:GetName().."Icon"]
@@ -86,7 +86,7 @@ local function LoadSkin()
 		icon:Point("TOPLEFT", 2, -2)
 		icon:Point("BOTTOMRIGHT", -2, 2)
 		icon:SetTexCoord(.08, .92, .08, .92)
-	end
+	end	
 end
 
 T.SkinFuncs["Blizzard_GuildBankUI"] = LoadSkin
