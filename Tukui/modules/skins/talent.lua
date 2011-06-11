@@ -72,7 +72,7 @@ local function LoadSkin()
 	PlayerTalentFramePetPanelArrow:SetFrameStrata("HIGH")
 	
 
-	PlayerTalentFrame:SetTemplate("Default")
+	PlayerTalentFrame:SetTemplate("Skinning")
 	PlayerTalentFramePanel1:CreateBackdrop("Default")
 	PlayerTalentFramePanel1.backdrop:Point( "TOPLEFT", PlayerTalentFramePanel1, "TOPLEFT", 3, -3 )
 	PlayerTalentFramePanel1.backdrop:Point( "BOTTOMRIGHT", PlayerTalentFramePanel1, "BOTTOMRIGHT", -3, 3 )
