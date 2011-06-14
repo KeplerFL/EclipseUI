@@ -24,7 +24,6 @@ local function LoadSkin()
 	end
 
 	local pagebackdrop = CreateFrame("Frame", nil, SpellBookPage1:GetParent())
-	pagebackdrop:SetTemplate("Transparent")
 	pagebackdrop:Point("TOPLEFT", SpellBookFrame, "TOPLEFT", 50, -50)
 	pagebackdrop:Point("BOTTOMRIGHT", SpellBookPage1, "BOTTOMRIGHT", 15, 35)
 
@@ -36,7 +35,7 @@ local function LoadSkin()
 		for i=1, SPELLS_PER_PAGE do
 			local button = _G["SpellButton"..i]
 			local icon = _G["SpellButton"..i.."IconTexture"]
-
+			
 			if first then
 				for i=1, button:GetNumRegions() do
 					local region = select(i, button:GetRegions())
@@ -47,7 +46,7 @@ local function LoadSkin()
 					end
 				end
 			end
-
+			
 			if _G["SpellButton"..i.."Highlight"] then
 				_G["SpellButton"..i.."Highlight"]:SetTexture(1, 1, 1, 0.3)
 				_G["SpellButton"..i.."Highlight"]:ClearAllPoints()
@@ -58,13 +57,12 @@ local function LoadSkin()
 				icon:SetTexCoord(.08, .92, .08, .92)
 				icon:ClearAllPoints()
 				icon:SetAllPoints()
-
-				button:SetFrameLevel(button:GetFrameLevel() + 2)
+				
 				if not button.backdrop then
 					button:CreateBackdrop("Default", true)	
 				end
 			end	
-
+			
 			local r, g, b = _G["SpellButton"..i.."SpellName"]:GetTextColor()
 
 			if r < 0.8 then
@@ -90,11 +88,11 @@ local function LoadSkin()
 
 			tab:GetNormalTexture():Point("TOPLEFT", 2, -2)
 			tab:GetNormalTexture():Point("BOTTOMRIGHT", -2, 2)
-
+			
 			tab:CreateBackdrop("Default")
 			tab.backdrop:SetAllPoints()
 			tab:StyleButton(true)				
-
+			
 			local point, relatedTo, point2, x, y = tab:GetPoint()
 			tab:Point(point, relatedTo, point2, 1, y)
 		end
@@ -113,7 +111,7 @@ local function LoadSkin()
 		end
 	end
 	hooksecurefunc("SpellBookFrame_UpdateSkillLineTabs", SkinSkillLine)			
-	SpellBookFrame:SetTemplate("Transparent")
+	SpellBookFrame:SetTemplate("Skinning")
 	SpellBookFrame:CreateShadow("Default")
 
 	--Profession Tab
@@ -150,14 +148,13 @@ local function LoadSkin()
 		local icon = _G[button.."IconTexture"]
 		local button = _G[button]
 		button:StripTextures()
-
+		
 		if icon then
 			icon:SetTexCoord(.08, .92, .08, .92)
 			icon:ClearAllPoints()
 			icon:Point("TOPLEFT", 2, -2)
 			icon:Point("BOTTOMRIGHT", -2, 2)
-
-			button:SetFrameLevel(button:GetFrameLevel() + 2)
+			
 			if not button.backdrop then
 				button:CreateBackdrop("Default", true)	
 				button.backdrop:SetAllPoints()
@@ -180,7 +177,7 @@ local function LoadSkin()
 		statusbar:SetStatusBarTexture(C["media"].normTex)
 		statusbar:SetStatusBarColor(0, 220/255, 0)
 		statusbar:CreateBackdrop("Default")
-
+		
 		statusbar.rankText:ClearAllPoints()
 		statusbar.rankText:SetPoint("CENTER")
 	end
@@ -191,14 +188,13 @@ local function LoadSkin()
 		local icon = _G["SpellBookCompanionButton"..i.."IconTexture"]
 		button:StripTextures()
 		button:StyleButton(false)
-
+		
 		if icon then
 			icon:SetTexCoord(.08, .92, .08, .92)
 			icon:ClearAllPoints()
 			icon:Point("TOPLEFT", 2, -2)
 			icon:Point("BOTTOMRIGHT", -2, 2)
-
-			button:SetFrameLevel(button:GetFrameLevel() + 2)
+			
 			if not button.backdrop then
 				button:CreateBackdrop("Default", true)	
 				button.backdrop:SetAllPoints()
