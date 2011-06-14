@@ -180,14 +180,16 @@ local function Shared(self, unit)
 	ReadyCheck:SetPoint("BOTTOMRIGHT", -2, 2)
 	self.ReadyCheck = ReadyCheck
 	
-	local debuffHighlight = ufbg:CreateTexture(nil, "OVERLAY")
-	debuffHighlight:SetAllPoints()
-	debuffHighlight:SetTexture(C["media"].blank)
-	debuffHighlight:SetBlendMode("DISABLE")
-	debuffHighlight:SetVertexColor(0, 0, 0, 0)
-	self.DebuffHighlight = debuffHighlight
-	self.DebuffHighlightAlpha = 1
-	self.DebuffHighlightFilter = C["unitframes"].debuffHighlightFilter
+	if C["unitframes"].debuffHighlightFilter then
+		local debuffHighlight = ufbg:CreateTexture(nil, "OVERLAY")
+		debuffHighlight:SetAllPoints()
+		debuffHighlight:SetTexture(C["media"].blank)
+		debuffHighlight:SetBlendMode("DISABLE")
+		debuffHighlight:SetVertexColor(0, 0, 0, 0)
+		self.DebuffHighlight = debuffHighlight
+		self.DebuffHighlightAlpha = 0
+		self.DebuffHighlightFilter = C["unitframes"].debuffHighlightFilter
+	end
 	
 	--local picon = self.Health:CreateTexture(nil, 'OVERLAY')
 	--picon:SetPoint('CENTER', self.Health)
