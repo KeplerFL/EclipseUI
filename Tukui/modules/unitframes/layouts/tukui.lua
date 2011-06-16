@@ -167,7 +167,15 @@ local function Shared(self, unit)
 
 	if C["unitframes"].cbicons == true then
 		castbar.button = CreateFrame("Frame", nil, castbar)
-		castbar.button:Size(T.buttonsize, T.buttonsize)
+		if (unit == "player") then
+			castbar.button:Size(T.buttonsize, T.buttonsize)
+		elseif (unit == "target") then
+			if T.lowversion then
+				castbar.button:Size(T.buttonsize + 4, T.buttonsize + 4)
+			else
+				castbar.button:Size(T.buttonsize + 11, T.buttonsize + 11)
+			end
+		end
 		castbar.button:SetTemplate("Default")
 		castbar.button:CreateShadow("Default")
 
@@ -598,18 +606,17 @@ local function Shared(self, unit)
 					castbar:Width(350)
 					castbar:Point("BOTTOM", UIParent, "BOTTOM", 0, 80)
 				end
-			else
-				castbar:Height(21)
-				castbar:Width(T.Target)
+			elseif unit == "target" then
+				if T.lowversion then
+					castbar:Height(T.buttonsize - 4)
+					castbar:Width(245)
 
-				if (C["unitframes"].targetauras) then
-					if T.lowversion then
-						castbar:SetPoint("BOTTOM", self.Debuffs, "TOP", 0, 1)
-					else
-						castbar:SetPoint("BOTTOM", self.Debuffs, "TOP", -5, 5)
-					end
+					castbar:SetPoint("CENTER", UIParent, "CENTER", -((T.buttonsize+5)/2), -97)
 				else
-					castbar:SetPoint("BOTTOMLEFT", self.ufbg, "TOPLEFT", 2, 5)
+					castbar:Height(30)
+					castbar:Width(375)
+					
+					castbar:SetPoint("CENTER", UIParent, "CENTER", -((T.buttonsize+14)/2), -97)
 				end
 			end
 			
@@ -631,7 +638,7 @@ local function Shared(self, unit)
 				if unit == "player" then
 					castbar.button:SetPoint("RIGHT", castbarBG, "LEFT", -3, 0)
 				elseif unit == "target" then
-					castbar.button:SetPoint("BOTTOM", castbarBG, "TOP", 0, 3)
+					castbar.button:SetPoint("LEFT", castbarBG, "RIGHT", 3, 0)
 				end
 			end
 			
@@ -895,21 +902,40 @@ local function Shared(self, unit)
 		end
 		
 		if C["unitframes"].unitcastbar then
-			castbar:SetHeight(T.Scale(25))
-			castbar:SetWidth(T.Scale(240))
+			if T.lowversion then
+				castbar:SetHeight(T.Scale(T.buttonsize - 4))
+				castbar:SetWidth(T.Scale(280))
+				castbar:SetPoint("TOP", UIParent, "TOP", ((T.buttonsize+8)/2), -150)	
+			else
+				castbar:SetHeight(T.Scale(35))
+				castbar:SetWidth(T.Scale(490))
+				castbar:SetPoint("TOP", UIParent, "TOP", ((T.buttonsize+19)/2), -190)		
+			end
 			castbar:SetFrameLevel(6)
-			castbar:SetPoint("CENTER", UIParent, "CENTER", 0, 200)		
-			
 			castbar.time:SetPoint("RIGHT", castbar, "RIGHT", T.Scale(-4), T.Scale(1))
 			castbar.time:SetJustifyH("RIGHT")
-
 			castbar.Text:SetPoint("LEFT", castbar, "LEFT", T.Scale(4), T.Scale(1))
 			
 			if C["unitframes"].cbicons == true then
-				castbar.button:SetHeight(T.Scale(35))
-				castbar.button:SetWidth(T.Scale(35))
-				castbar.button:SetPoint("BOTTOM", castbar, "TOP", 0, T.Scale(6))
+				if T.lowversion then
+					castbar.button:Size(T.buttonsize + 4, T.buttonsize + 4)
+					castbar.button:SetPoint("RIGHT", castbar, "LEFT", -5, 0)
+				else
+					castbar.button:Size(T.buttonsize + 16, T.buttonsize + 16)
+					castbar.button:SetPoint("RIGHT", castbar, "LEFT", -5, 0)
+				end
 			end
+
+			castbar:RegisterEvent("PLAYER_TARGET_CHANGED")
+			castbar:RegisterEvent("PLAYER_FOCUS_CHANGED")
+			castbar:SetScript("OnEvent", function(self)
+				-- Only show focus castbar if target is not our focus
+				if not UnitIsUnit("focus", "target") then
+					self:SetAlpha(1)
+				else
+					self:SetAlpha(0)
+				end
+			end)
 		end
 	end
 	
