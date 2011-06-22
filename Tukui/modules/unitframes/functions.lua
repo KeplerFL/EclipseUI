@@ -402,6 +402,13 @@ T.PostUpdateAura = function(icons, unit, icon, index, offset, filter, isDebuff, 
 	icon.duration = duration
 	icon.timeLeft = expirationTime
 	icon.first = true
+	
+	if T.ReverseTimer and T.ReverseTimer[spellID] then
+		icon.reverse = true
+	else
+		icon.reverse = false
+	end
+	
 	icon:SetScript("OnUpdate", CreateAuraTimer)
 end
 
@@ -733,45 +740,46 @@ if C["unitframes"].raidunitdebuffwatch == true then
 			67479, -- Impale
 			
 			--CATA DEBUFFS
-		--Baradin Hold
+		-- Baradin Hold
 			95173, -- Consuming Darkness
 			
-		--Blackwing Descent
-			--Magmaw
+		-- Blackwing Descent
+			-- Magmaw
 			91911, -- Constricting Chains
 			94679, -- Parasitic Infection
 			94617, -- Mangle
 			
-			--Omintron Defense System
-			79835, --Poison Soaked Shell	
-			91433, --Lightning Conductor
-			91521, --Incineration Security Measure
+			-- Omnotron Defense System
+			79835, -- Poison Soaked Shell	
+			91433, -- Lightning Conductor
+			91521, -- Incineration Security Measure
 			
-			--Maloriak
+			-- Maloriak
 			77699, -- Flash Freeze
 			77760, -- Biting Chill
 			
-			--Atramedes
+			-- Atramedes
 			92423, -- Searing Flame
 			92485, -- Roaring Flame
 			92407, -- Sonic Breath
 			
-			--Chimaeron
+			-- Chimaeron
 			82881, -- Break
 			89084, -- Low Health
 			
-			--Nefarian
+			-- Nefarian
+			79339, -- (Heroic) Explosive Cinders
 			
-		--The Bastion of Twilight
-			--Valiona & Theralion
+		-- The Bastion of Twilight
+			-- Valiona & Theralion
 			92878, -- Blackout
 			86840, -- Devouring Flames
 			95639, -- Engulfing Magic
 			
-			--Halfus Wyrmbreaker
+			-- Halfus Wyrmbreaker
 			39171, -- Malevolent Strikes
 			
-			--Twilight Ascendant Council
+			-- Twilight Ascendant Council
 			92511, -- Hydro Lance
 			82762, -- Waterlogged
 			92505, -- Frozen
@@ -780,42 +788,52 @@ if C["unitframes"].raidunitdebuffwatch == true then
 			92075, -- Gravity Core
 			92488, -- Gravity Crush
 			
-			--Cho'gall
+			-- Cho'gall
 			86028, -- Cho's Blast
 			86029, -- Gall's Blast
 			
-		--Throne of the Four Winds
-			--Conclave of Wind
-				--Nezir <Lord of the North Wind>
-				93131, --Ice Patch
-				--Anshal <Lord of the West Wind>
-				86206, --Soothing Breeze
-				93122, --Toxic Spores
-				--Rohash <Lord of the East Wind>
-				93058, --Slicing Gale 
-			--Al'Akir
+			-- Sinestra
+			92956, -- Wrack
+			
+		-- Throne of the Four Winds
+			-- Conclave of Wind
+				-- Nezir <Lord of the North Wind>
+				93131, -- Ice Patch
+				-- Anshal <Lord of the West Wind>
+				86206, -- Soothing Breeze
+				93122, -- Toxic Spores
+				-- Rohash <Lord of the East Wind>
+				93058, -- Slicing Gale 
+			-- Al'Akir
 			93260, -- Ice Storm
 			93295, -- Lightning Rod
 			
-		--Rise of the Zandalari
-			--Zul'Aman
-				--Akil'zon <Eagle Avatar>
-				97298, --Static Disruption
-				--Nalorakk <Bear Avatar>
-				42402, --Surge
-				--Jan'alai <Dragonhawk Avatar>
-				43299, --Flame Buffet
-				--Daakara <The Invincible>
-				97639, --Grievous Throw	
-			--Zul'Gurub
-				--High Priest Venoxis
-				96466, --Whispers of Hethiss
-				96475, --Toxic Link
-				--Bloodlord Mandokir
-				96776, --Bloodletting
-				--High Priestess Kilnara
-				96958, --Lash of Anguish
+		-- Rise of the Zandalari
+			-- Zul'Aman
+				-- Akil'zon <Eagle Avatar>
+				97298, -- Static Disruption
+				-- Nalorakk <Bear Avatar>
+				42402, -- Surge
+				-- Jan'alai <Dragonhawk Avatar>
+				43299, -- Flame Buffet
+				-- Daakara <The Invincible>
+				97639, -- Grievous Throw	
+			-- Zul'Gurub
+				-- High Priest Venoxis
+				96466, -- Whispers of Hethiss
+				96475, -- Toxic Link
+				-- Bloodlord Mandokir
+				96776, -- Bloodletting
+				-- High Priestess Kilnara
+				96958, -- Lash of Anguish
 		}
+		
+		T.ReverseTimer = {
+			[92956] = true, -- Sinestra (Wrack)
+			[89435] = true, -- Sinestra (Wrack)
+			[92955] = true, -- Sinestra (Wrack)
+			[89421] = true, -- Sinestra (Wrack)
+		},
 		
 		ORD:RegisterDebuffs(T.debuffids)
 	end

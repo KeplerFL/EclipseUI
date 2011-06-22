@@ -41,6 +41,7 @@ C["unitframes"] = {
 	["onlyselfbuffs"] = false,                        -- display only our own buffs applied on target
 	["buffrows"] = 2,                       			-- change how many buff rows are displayed
 	["debuffrows"] = 2,                        			-- change how many debuff rows are displayed
+	["raiddebuffstime"] = true,							-- enable debuff timer on party/raid unitframes
 	
 	-- Misc.
 	["charportrait"] = true,                           -- do i really need to explain this?
@@ -74,8 +75,8 @@ C["unitframes"] = {
 	
 
 	-- Extra Frames
-	["maintank"] = false,                               -- enable maintank
-	["mainassist"] = false,                             -- enable mainassist
+	--["maintank"] = false,                               -- enable maintank
+	--["mainassist"] = false,                             -- enable mainassist
 	["showboss"] = true,                                -- enable boss unit frames for PVELOL encounters.
 	["showfocustarget"] = false,						-- show focus target
 	
@@ -92,11 +93,11 @@ C["unitframes"] = {
 		["paladin"] = true,
 		
 	-- layout
-	["style"] = "Cohesion",                                -- unitframe style, ("Cohesion" or "Eclipse" for default)
+	["style"] = "Eclipse",                                -- unitframe style, ("Cohesion" or "Eclipse" for default)
 	
 	-- credits to Hydra
 	["gradienthealth"] = true,                          -- change raid health color based on health percent. (heal layout only)
-	["mouseoverhighlight"] = true						-- enable mouseover highlight on raid frames (heal layout only)
+	["mouseoverhighlight"] = true,						-- enable mouseover highlight on raid frames (heal layout only)
 }
 
 C["arena"] = {
