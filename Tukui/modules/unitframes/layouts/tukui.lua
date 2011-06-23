@@ -187,6 +187,11 @@ local function Shared(self, unit)
 	self.Castbar = castbar
 	self.Castbar.Time = castbar.time
 	self.Castbar.Icon = castbar.icon
+	
+	-- spark
+	castbar.Spark = castbar:CreateTexture(nil, 'OVERLAY')
+	castbar.Spark:SetWidth(15)
+	castbar.Spark:SetBlendMode('ADD')
 
 	------------------------------------------------------------------------
 	--	Player and Target units layout (mostly mirror'd)
@@ -606,17 +611,20 @@ local function Shared(self, unit)
 					castbar:Width(350)
 					castbar:Point("BOTTOM", UIParent, "BOTTOM", 0, 80)
 				end
+				castbar.Spark:SetHeight(T.buttonsize + 14)
 			elseif unit == "target" then
 				if T.lowversion then
 					castbar:Height(T.buttonsize - 4)
 					castbar:Width(245)
 
 					castbar:SetPoint("CENTER", UIParent, "CENTER", -((T.buttonsize+5)/2), -97)
+					castbar.Spark:SetHeight(T.buttonsize + 14)
 				else
 					castbar:Height(30)
 					castbar:Width(375)
 					
 					castbar:SetPoint("CENTER", UIParent, "CENTER", -((T.buttonsize+14)/2), -97)
+					castbar.Spark:SetHeight(T.buttonsize + 24)
 				end
 			end
 			
@@ -906,10 +914,14 @@ local function Shared(self, unit)
 				castbar:SetHeight(T.Scale(T.buttonsize - 4))
 				castbar:SetWidth(T.Scale(280))
 				castbar:SetPoint("TOP", UIParent, "TOP", ((T.buttonsize+8)/2), -150)	
+				
+				castbar.Spark:SetHeight(T.buttonsize + 14)
 			else
 				castbar:SetHeight(T.Scale(35))
 				castbar:SetWidth(T.Scale(490))
-				castbar:SetPoint("TOP", UIParent, "TOP", ((T.buttonsize+19)/2), -190)		
+				castbar:SetPoint("TOP", UIParent, "TOP", ((T.buttonsize+19)/2), -190)
+				
+				castbar.Spark:SetHeight(T.buttonsize + 32)
 			end
 			castbar:SetFrameLevel(6)
 			castbar.time:SetPoint("RIGHT", castbar, "RIGHT", T.Scale(-4), T.Scale(1))

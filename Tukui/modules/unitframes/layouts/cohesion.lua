@@ -180,6 +180,11 @@ local function Shared(self, unit)
 	self.Castbar = castbar
 	self.Castbar.Time = castbar.time
 	self.Castbar.Icon = castbar.icon
+	
+	-- spark
+	castbar.Spark = castbar:CreateTexture(nil, 'OVERLAY')
+	castbar.Spark:SetWidth(15)
+	castbar.Spark:SetBlendMode('ADD')
 
 	------------------------------------------------------------------------
 	--	Player and Target units layout (mostly mirror'd)
@@ -207,7 +212,7 @@ local function Shared(self, unit)
 		-- portraits
 		if (C["unitframes"].charportrait == true) then
 			local portrait = CreateFrame("PlayerModel", self:GetName().."_Portrait", self)
-			portrait:Height( ((health:GetHeight()) + (power:GetHeight() + 4) + (panel:GetHeight()) + 2))
+			portrait:Height( ((health:GetHeight()+4) + (power:GetHeight() + 8) + (panel:GetHeight()) + 6))
 			portrait:SetWidth(portrait:GetHeight())
 			portrait:SetAlpha(1)
 			portrait:SetFrameLevel(0)
@@ -215,9 +220,9 @@ local function Shared(self, unit)
 			portrait:SetTemplate("Transparent")
 
 			if unit == "player" then
-				portrait:Point("TOPRIGHT", ufbg, "TOPLEFT", -3, 0)
+				portrait:Point("BOTTOMRIGHT", ufbg, "BOTTOMLEFT", -3, 0)
 			elseif unit == "target" then
-				portrait:Point("TOPLEFT", ufbg, "TOPRIGHT", 3, 0)
+				portrait:Point("BOTTOMLEFT", ufbg, "BOTTOMRIGHT", 3, 0)
 			end
 
 			table.insert(self.__elements, T.HidePortrait)
@@ -599,17 +604,20 @@ local function Shared(self, unit)
 					castbar:Width(350)
 					castbar:Point("BOTTOM", UIParent, "BOTTOM", 0, 80)
 				end
+				castbar.Spark:SetHeight(T.buttonsize + 14)
 			elseif unit == "target" then
 				if T.lowversion then
 					castbar:Height(T.buttonsize - 4)
 					castbar:Width(245)
 
 					castbar:SetPoint("CENTER", UIParent, "CENTER", -((T.buttonsize+5)/2), -97)
+					castbar.Spark:SetHeight(T.buttonsize + 14)
 				else
 					castbar:Height(30)
 					castbar:Width(375)
 
 					castbar:SetPoint("CENTER", UIParent, "CENTER", -((T.buttonsize+14)/2), -97)
+					castbar.Spark:SetHeight(T.buttonsize + 24)
 				end
 			end
 			
@@ -898,11 +906,13 @@ local function Shared(self, unit)
 			if T.lowversion then
 				castbar:SetHeight(T.Scale(T.buttonsize - 4))
 				castbar:SetWidth(T.Scale(280))
-				castbar:SetPoint("TOP", UIParent, "TOP", ((T.buttonsize+8)/2), -150)	
+				castbar:SetPoint("TOP", UIParent, "TOP", ((T.buttonsize+8)/2), -150)
+				castbar.Spark:SetHeight(T.buttonsize + 14)
 			else
 				castbar:SetHeight(T.Scale(35))
 				castbar:SetWidth(T.Scale(490))
-				castbar:SetPoint("TOP", UIParent, "TOP", ((T.buttonsize+19)/2), -190)		
+				castbar:SetPoint("TOP", UIParent, "TOP", ((T.buttonsize+19)/2), -190)
+				castbar.Spark:SetHeight(T.buttonsize + 14)
 			end
 			castbar:SetFrameLevel(6)
 			castbar.time:SetPoint("RIGHT", castbar, "RIGHT", T.Scale(-4), T.Scale(1))
@@ -918,6 +928,19 @@ local function Shared(self, unit)
 					castbar.button:SetPoint("RIGHT", castbar, "LEFT", -5, 0)
 				end
 			end
+
+			castbar.Spark:SetHeight(T.buttonsize + 32)
+			
+			castbar:RegisterEvent("PLAYER_TARGET_CHANGED")
+			castbar:RegisterEvent("PLAYER_FOCUS_CHANGED")
+			castbar:SetScript("OnEvent", function(self)
+				-- Only show focus castbar if target is not our focus
+				if not UnitIsUnit("focus", "target") then
+					self:SetAlpha(1)
+				else
+					self:SetAlpha(0)
+				end
+			end)
 		end
 	end
 	
