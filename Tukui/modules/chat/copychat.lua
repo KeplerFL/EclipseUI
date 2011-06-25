@@ -10,6 +10,13 @@ local frame = nil
 local editBox = nil
 local isf = nil
 
+local sizes = {
+	":14:14",
+	":16:16",
+	":12:20",
+	":14",
+}
+
 local function CreatCopyFrame()
 	frame = CreateFrame("Frame", "CopyFrame", UIParent)
 	frame:SetTemplate("Default")
@@ -42,6 +49,17 @@ local function CreatCopyFrame()
 	editBox:Height(250)
 	editBox:SetScript("OnEscapePressed", function() frame:Hide() end)
 
+	--EXTREME HACK..
+	editBox:SetScript("OnTextSet", function(self)
+		local text = self:GetText()
+
+		for _, size in pairs(sizes) do
+			if string.find(text, size) then
+				self:SetText(string.gsub(text, size, ":12:12"))
+			end		
+		end
+	end)
+	
 	scrollArea:SetScrollChild(editBox)
 
 	local close = CreateFrame("Button", "CopyCloseButton", frame, "UIPanelCloseButton")
