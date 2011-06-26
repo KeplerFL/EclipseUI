@@ -1179,7 +1179,7 @@ end)
 
 
 if C["unitframes"].showfocustarget then
-	local focustarget = oUF:Spawn("focustarget", "TukuiFocusTarget")
+	local focustarget = oUF:Spawn('focustarget', "TukuiFocusTarget")
 	focustarget:SetSize(T.Focus, focustarget.Health:GetHeight() + focustarget.Power:GetHeight() + 3)
 	if T.lowversion then
 		focustarget:Point("BOTTOM", TukuiFocus, "TOP", 0, 7)
@@ -1224,7 +1224,7 @@ if C["unitframes"].showboss then
 	end
 end
 
-local assisttank_width = 100
+local assisttank_width = 90
 local assisttank_height  = 20
 if C["unitframes"].maintank then
 	local tank = oUF:SpawnHeader('TukuiMainTank', nil, 'raid',
