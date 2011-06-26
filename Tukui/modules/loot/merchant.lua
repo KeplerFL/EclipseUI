@@ -12,6 +12,7 @@ local filter = {
 	[43244] = true, -- Crystal Citrine Necklace
 	[43571] = true, -- Sewer Carp
 	[43572] = true, -- Magic Eater		
+	[53062] = true, -- Sharptooth	
 }
 
 local f = CreateFrame("Frame")

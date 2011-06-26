@@ -442,4 +442,5 @@ TukuiTooltip:SetScript("OnEvent", function(self, event, addon)
 			EventTraceTooltip:HookScript("OnShow", function(self) self:SetTemplate("Default") end)
 		end
 	end
+	T.SkinCloseButton(ItemRefCloseButton)
 end)
