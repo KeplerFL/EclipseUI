@@ -1084,7 +1084,23 @@ local function Shared(self, unit)
 	------------------------------------------------------------------------
 	
 	if(self:GetParent():GetName():match"TukuiMainTank" or self:GetParent():GetName():match"TukuiMainAssist") then
-		-- no
+		if T.lowversion then
+			health:Height(14)
+		else
+			health:Height(21)
+		end
+		
+		ufbg:Point("TOPLEFT", health, -2, 2)
+		ufbg:Point("BOTTOMRIGHT", health, 2, -2)
+		
+		-- names
+		local Name = health:CreateFontString(nil, "OVERLAY")
+		Name:SetPoint("CENTER", health, "CENTER", 0, 1)
+		Name:SetJustifyH("CENTER")
+		Name:SetFont(unpack(T.Fonts.uName.setfont))
+		
+		self:Tag(Name, '[Tukui:getnamecolor][Tukui:nameshort]')
+		self.Name = Name
 	end
 	
 	return self
@@ -1222,7 +1238,7 @@ if C["unitframes"].maintank then
 		'point' , 'BOTTOM',
 		'template', 'oUF_TukuiMtt'
 	)
-	tank:Point("CENTER", UIParent, "CENTER", 0, 0)
+	tank:Point("BOTTOMLEFT", TukuiPetBar, "TOPLEFT", -60, 6)
 end
  
 if C["unitframes"].mainassist then
@@ -1240,7 +1256,7 @@ if C["unitframes"].mainassist then
 	if C["unitframes"].maintank then
 		assist:Point("TOPLEFT", TukuiMainTank, "BOTTOMLEFT", 2, -50)
 	else
-		assist:Point("CENTER", UIParent, "CENTER", 0, 0)
+		assist:Point("BOTTOMLEFT", TukuiPetBar, "TOPLEFT", -60, 6)
 	end
 end
 

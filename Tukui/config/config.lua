@@ -75,8 +75,8 @@ C["unitframes"] = {
 	
 
 	-- Extra Frames
-	--["maintank"] = false,                               -- enable maintank
-	--["mainassist"] = false,                             -- enable mainassist
+	["maintank"] = false,                               -- enable maintank
+	["mainassist"] = false,                             -- enable mainassist
 	["showboss"] = true,                                -- enable boss unit frames for PVELOL encounters.
 	["showfocustarget"] = false,						-- show focus target
 	
