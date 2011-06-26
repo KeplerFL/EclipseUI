@@ -13,6 +13,7 @@ local filter = {
 	[43571] = true, -- Sewer Carp
 	[43572] = true, -- Magic Eater		
 	[53062] = true, -- Sharptooth	
+	[53069] = true, -- Murglesnout	
 }
 
 local f = CreateFrame("Frame")
