@@ -1,3 +1,4 @@
+
 local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
 if C["chat"].enable ~= true then return end
 
@@ -172,11 +173,18 @@ local function ChatPosition(self)
 			chat:Point("BOTTOMRIGHT", TukuiInfoLeft, "TOPRIGHT", 0, 4)
 		elseif i == 4 then
 			if C["chat"].rightchat == true then
-				chat:ClearAllPoints()
-				chat:Point("TOPLEFT", TukuiTabsRight, "BOTTOMLEFT", 0, -4)
-				chat:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 4)
-				chat:SetJustifyH("RIGHT") 
-				FCF_SavePositionAndDimensions(chat)
+				if not chat.isDocked then
+					chat:ClearAllPoints()
+					chat:Point("TOPLEFT", TukuiTabsRight, "BOTTOMLEFT", 0, -4)
+					chat:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 4)
+				else
+					FCF_UnDockFrame(chat)
+					FCF_SetTabPosition(chat, 0)
+					
+					chat:ClearAllPoints()
+					chat:Point("TOPLEFT", TukuiTabsRight, "BOTTOMLEFT", 0, -4)
+					chat:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 4)
+				end
 			else
 				FCF_DockFrame(chat)
 			end
