@@ -17,4 +17,6 @@
 	<Script file="combo\shaman.lua"/>	
 	<Script file="combo\warlock.lua"/>	
 	<Script file="combo\warrior.lua"/>
+	
+	<Script file="raidutility.lua"/>
 </Ui>
