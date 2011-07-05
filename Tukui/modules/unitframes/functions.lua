@@ -800,6 +800,7 @@ if C["unitframes"].raidunitdebuffwatch == true then
 				93122, -- Toxic Spores
 				-- Rohash <Lord of the East Wind>
 				93058, -- Slicing Gale 
+
 			-- Al'Akir
 			93260, -- Ice Storm
 			93295, -- Lightning Rod
@@ -822,6 +823,34 @@ if C["unitframes"].raidunitdebuffwatch == true then
 				96776, -- Bloodletting
 				-- High Priestess Kilnara
 				96958, -- Lash of Anguish
+				
+		--Firelands	
+			--Beth'tilac
+			99506, -- Widows Kiss
+
+			--Alysrazor
+			101296, -- Fiero Blast
+			100723, -- Gushing Wound
+
+			--Shannox
+			99837, -- Crystal Prison
+			99937, -- Jagged Tear
+
+			--Baleroc
+			99403, -- Tormented
+			99256, -- Torment
+
+			--Lord Rhyolith
+				--<< NONE KNOWN YET >>
+
+			--Majordomo Staghelm
+			98450, -- Searing Seeds
+
+			--Ragnaros
+			99399, -- Burning Wound
+
+			--Trash
+			99532, -- Melt Armor
 		}
 		
 		T.ReverseTimer = {
