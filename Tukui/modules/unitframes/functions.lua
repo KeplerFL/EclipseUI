@@ -149,7 +149,7 @@ T.PostUpdateHealth = function(health, unit, min, max)
 end
 
 T.PostUpdateHealthRaid = function(health, unit, min, max)
-	if (not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit)) and (not unit:find('partypet%d')) then
+	if (not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit)) then
 		if not UnitIsConnected(unit) then
 			health.value:SetText("|cffe45050"..L.unitframes_ouf_offline.."|r")
 			health:SetStatusBarColor(.8, .3, .3) -- Red health if offline/dead/dc'd
@@ -177,12 +177,10 @@ T.PostUpdateHealthRaid = function(health, unit, min, max)
 			end
 		end
 		
-		if not unit:find('partypet%d') then
-			if min ~= max then
-				health.value:SetText("|cff559655-"..ShortValueNegative(max-min).."|r")
-			else
-				health.value:SetText(" ")
-			end
+		if min ~= max then
+			health.value:SetText("|cff559655-"..ShortValueNegative(max-min).."|r")
+		else
+			health.value:SetText(" ")
 		end
 	end
 end
@@ -212,8 +210,6 @@ T.PostNamePosition = function(self)
 		else
 			self.Name:SetPoint("LEFT", self.panel, "LEFT", 4, 1)
 		end
-		--self.Power:SetPoint("LEFT", self.Health, "LEFT", 7, 1)
-		--self.Name:SetPoint("CENTER", self.Health, "CENTER", 0, 1)
 	end
 end
 

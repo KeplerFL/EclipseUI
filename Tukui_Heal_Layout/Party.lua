@@ -88,20 +88,16 @@ local function Shared(self, unit)
 	-- mouseover highlight, credits to Hydra
 	if C.unitframes.unicolor and C.unitframes.mouseoverhighlight then
 		self:HookScript("OnEnter", function(self)
-			if not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit) then return end
+			if not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit) or (not UnitInRange(self.unit) and not UnitIsPlayer(self.unit)) then return end
 			local hover = RAID_CLASS_COLORS[select(2, UnitClass(self.unit))]
 			health:SetStatusBarColor(hover.r, hover.g, hover.b)
-			health.classcolored = true -- Thanks nc for this clever idea
+			health.classcolored = true
 		end)
 		
 		self:HookScript("OnLeave", function(self)
 			if not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit) then return end
-			if C.unitframes.gradienthealth then
-				local r, g, b = oUF.ColorGradient(UnitHealth(self.unit)/UnitHealthMax(self.unit), unpack(C["media"].gradienthealth))
-				health:SetStatusBarColor(r, g, b)
-			else
-				health:SetStatusBarColor(unpack(C["unitframes"].healthColor))
-			end
+			local r, g, b = oUF.ColorGradient(UnitHealth(self.unit)/UnitHealthMax(self.unit), unpack(C["media"].gradienthealth))
+			health:SetStatusBarColor(r, g, b)
 			health.classcolored = false
 		end)
 	end
