@@ -8,6 +8,11 @@ ns._Headers = {}
 local T, C, L = unpack(Tukui) -- Import: T - functions, constants, variables; C - config; L - locales
 if not C["unitframes"].enable == true then return end
 
+local backdrop = {
+	bgFile = C["media"].blank,
+	insets = {top = -T.mult, left = -T.mult, bottom = -T.mult, right = -T.mult},
+}
+
 local function Shared(self, unit)
 	self.colors = T.oUF_colors
 	self:RegisterForClicks("AnyUp")

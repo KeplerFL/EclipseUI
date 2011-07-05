@@ -31,6 +31,7 @@ Stat:SetFrameLevel(3)
 
 local Text  = TukuiInfoLeft:CreateFontString(nil, "OVERLAY")
 Text:SetFont(unpack(T.Fonts.dFont.setfont))
+Text:SetShadowOffset(T.mult, -T.mult)
 T.PP(C["datatext"].friends, Text)
 
 local menuFrame = CreateFrame("Frame", "TukuiFriendRightClickMenu", UIParent, "UIDropDownMenuTemplate")
@@ -135,7 +136,7 @@ local function BuildBNTable(total)
 		if T.toc < 40200 then
 			_, _, _, realmName, faction, race, class, _, zoneName, level = BNGetToonInfo(presenceID)
 		else
-			_, _, _, realmName, faction, _, race, class, _, zoneName, level = BNGetToonInfo(presenceID)
+			_, _, _, realmName, _, faction, race, class, _, zoneName, level = BNGetToonInfo(presenceID)
 		end
 		for k,v in pairs(LOCALIZED_CLASS_NAMES_MALE) do if class == v then class = k end end
 		
@@ -160,7 +161,7 @@ local function UpdateBNTable(total)
 		if T.toc < 40200 then
 			_, _, _, realmName, faction, race, class, _, zoneName, level = BNGetToonInfo(presenceID)
 		else
-			_, _, _, realmName, faction, _, race, class, _, zoneName, level = BNGetToonInfo(presenceID)
+			_, _, _, realmName, _, faction, race, class, _, zoneName, level = BNGetToonInfo(presenceID)
 		end
 		for k,v in pairs(LOCALIZED_CLASS_NAMES_MALE) do if class == v then class = k end end
 		
