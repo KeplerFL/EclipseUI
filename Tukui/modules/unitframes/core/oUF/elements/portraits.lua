@@ -1,6 +1,5 @@
 local parent, ns = ...
 local oUF = ns.oUF
-local race = UnitRace("player")
 
 local Update = function(self, event, unit)
 	if(not unit or not UnitIsUnit(self.unit, unit)) then return end
@@ -15,21 +14,12 @@ local Update = function(self, event, unit)
 			portrait:SetPosition(0, 0, -1.5)
 			portrait:SetModel"Interface\\Buttons\\talktomequestionmark.mdx"
 		elseif(portrait.guid ~= guid or event == 'UNIT_MODEL_CHANGED') then
-			if race == "Worgen" then -- Fucking furries...
-				portrait:SetUnit(unit)
-				portrait:SetCamera(1)
-				portrait.guid = guid
-			else
-				portrait:SetUnit(unit)
-				portrait:SetCamera(0)
-				portrait.guid = guid
-			end
+			portrait:SetUnit(unit)
+			portrait:SetCamera(0)
+
+			portrait.guid = guid
 		else
-			if race == "Worgen" then
-				portrait:SetCamera(1)
-			else
-				portrait:SetCamera(0)
-			end
+			portrait:SetCamera(0)
 		end
 	else
 		SetPortraitTexture(portrait, unit)
