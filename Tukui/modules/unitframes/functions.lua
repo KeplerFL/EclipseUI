@@ -149,7 +149,7 @@ T.PostUpdateHealth = function(health, unit, min, max)
 end
 
 T.PostUpdateHealthRaid = function(health, unit, min, max)
-	if (not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit)) then
+	if (not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit)) and (not unit:find('partypet%d')) then
 		if not UnitIsConnected(unit) then
 			health.value:SetText("|cffe45050"..L.unitframes_ouf_offline.."|r")
 			health:SetStatusBarColor(.8, .3, .3) -- Red health if offline/dead/dc'd
@@ -177,10 +177,12 @@ T.PostUpdateHealthRaid = function(health, unit, min, max)
 			end
 		end
 		
-		if min ~= max then
-			health.value:SetText("|cff559655-"..ShortValueNegative(max-min).."|r")
-		else
-			health.value:SetText(" ")
+		if not unit:find('partypet%d') then
+			if min ~= max then
+				health.value:SetText("|cff559655-"..ShortValueNegative(max-min).."|r")
+			else
+				health.value:SetText(" ")
+			end
 		end
 	end
 end

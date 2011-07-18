@@ -6,4 +6,5 @@
 	<Script file="taiwan.lua"/>
 	<Script file="spanish.lua"/>
 	<Script file="korean.lua"/>	
+	<Script file="chinese.lua"/>	
 </Ui>
