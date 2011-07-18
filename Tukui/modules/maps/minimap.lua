@@ -167,7 +167,7 @@ end)
 
 local menuFrame = CreateFrame("Frame", "TukuiMinimapMiddleClickMenu", TukuiMinimap, "UIDropDownMenuTemplate")
 local menuList = {
-    {text = CHARACTER_BUTTON,
+	{text = CHARACTER_BUTTON,
 	func = function() ToggleCharacter("PaperDollFrame") end},
 	{text = SPELLBOOK_ABILITIES_BUTTON,
 	func = function() ToggleFrame(SpellBookFrame) end},
