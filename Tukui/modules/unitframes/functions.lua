@@ -835,31 +835,33 @@ if C["unitframes"].raidunitdebuffwatch == true then
 				-- High Priestess Kilnara
 				96958, -- Lash of Anguish
 				
-		--Firelands	
-			--Beth'tilac
-			99506, -- Widows Kiss
-
-			--Alysrazor
-			101296, -- Fiero Blast
-			100723, -- Gushing Wound
-
-			--Shannox
-			99837, -- Crystal Prison
-			99937, -- Jagged Tear
-
-			--Baleroc
-			99403, -- Tormented
-			99256, -- Torment
-
-			--Lord Rhyolith
-				--<< NONE KNOWN YET >>
-
-			--Majordomo Staghelm
-			98450, -- Searing Seeds
-
-			--Ragnaros
-			99399, -- Burning Wound
-
+		-- Firelands, thanks Kaelhan :)
+			-- Beth'tilac
+				99506,	-- Widows Kiss
+				97202,	-- Fiery Web Spin
+				49026,	-- Fixate
+				97079,	-- Seeping Venom
+			-- Lord Rhyolith
+				-- none, hehe, fake boss
+			-- Alysrazor
+				101296,	-- Fieroblast
+				100723,	-- Gushing Wound
+				99389,	-- Imprinted
+				101729,	-- Blazing Claw
+			-- Shannox
+				99837,	-- Crystal Prison
+				99937,	-- Jagged Tear
+			-- Baleroc
+				99256,	-- Torment
+				99252,	-- Blaze of Glory
+				99516,	-- Countdown
+			-- Majordomo Staghelm
+				98450,	-- Searing Seeds
+			-- Ragnaros
+				99399,	-- Burning Wound
+				100293,	-- Lava Wave
+				98313,	-- Magma Blast
+				100675,	-- Dreadflame
 			--Trash
 			99532, -- Melt Armor
 		}

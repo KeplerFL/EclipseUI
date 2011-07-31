@@ -9,6 +9,8 @@
 	TukuiL.option_general_override = "使用高解析度設定於低解析度"
 	TukuiL.option_general_multisample = "多重採樣保護"
 	TukuiL.option_general_customuiscale = "使用者介面比例(需要關閉自動調整)"
+	TukuiL.option_general_backdropcolor = "設定面板背景顏色"
+	TukuiL.option_general_bordercolor = "設定面板邊框顏色"	
  
 	-- nameplate
 	TukuiL.option_nameplates = "名條"
@@ -96,6 +98,7 @@
 	TukuiL.option_unitframes_threatbar = "啟用仇恨條"
 	TukuiL.option_unitframes_enablerange = "啟用隊伍/團隊距離淡出"
 	TukuiL.option_unitframes_focus = "啟用專注目標的目標"
+	TukuiL.option_unitframes_bordercolor = "設定單位框架的邊框顏色"
 	TukuiL.option_unitframes_latency = "顯示施法延遲"
 	TukuiL.option_unitframes_icon = "顯示施法條法術圖示"
 	TukuiL.option_unitframes_playeraura = "啟用玩家其它光環模式"
