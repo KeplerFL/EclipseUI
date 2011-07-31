@@ -146,10 +146,10 @@ local function LoadSkin()
 
 	for _, button in pairs(professionbuttons) do
 		local icon = _G[button.."IconTexture"]
-		local button = _G[button]
 		local rank = _G[button.."SubSpellName"]
+		local button = _G[button]
 		button:StripTextures()
-		
+
 		if rank then rank:SetTextColor(1, 1, 1) end
 		if icon then
 			icon:SetTexCoord(.08, .92, .08, .92)
