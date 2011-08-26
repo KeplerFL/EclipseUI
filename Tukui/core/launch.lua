@@ -480,6 +480,7 @@ StaticPopupDialogs["TUKUIDISABLE_UI"] = {
 	OnAccept = DisableTukui,
 	timeout = 0,
 	whileDead = 1,
+	preferredIndex = 3,
 }
 
 StaticPopupDialogs["TUKUIDISABLE_RAID"] = {
@@ -490,6 +491,7 @@ StaticPopupDialogs["TUKUIDISABLE_RAID"] = {
 	OnCancel = function() EnableAddOn("Tukui_Heal_Layout") DisableAddOn("Tukui_Dps_Layout") ReloadUI() end,
 	timeout = 0,
 	whileDead = 1,
+	preferredIndex = 3,
 }
 
 ------------------------------------------------------------------------

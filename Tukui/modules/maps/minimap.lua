@@ -60,6 +60,30 @@ MiniMapBattlefieldFrame:ClearAllPoints()
 MiniMapBattlefieldFrame:Point("BOTTOMRIGHT", Minimap, 3, 0)
 MiniMapBattlefieldBorder:Hide()
 
+-- Ticket Frame
+local TukuiTicket = CreateFrame("Frame", "TukuiTicket", TukuiMinimap)
+TukuiTicket:CreatePanel("Default", 1, 1, "CENTER", TukuiMinimap, "CENTER", 0, 0)
+TukuiTicket:Size(TukuiMinimap:GetWidth() - 4, 24)
+TukuiTicket:SetFrameStrata("MEDIUM")
+TukuiTicket:SetFrameLevel(20)
+TukuiTicket:Point("TOP", 0, -2)
+TukuiTicket:FontString("Text", C.media.font, 12)
+TukuiTicket.Text:SetPoint("CENTER")
+TukuiTicket.Text:SetText(HELP_TICKET_EDIT)
+TukuiTicket:SetBackdropBorderColor(255/255, 243/255,  82/255)
+TukuiTicket.Text:SetTextColor(255/255, 243/255,  82/255)
+TukuiTicket:SetAlpha(0)
+
+HelpOpenTicketButton:SetParent(TukuiTicket)
+HelpOpenTicketButton:SetFrameLevel(TukuiTicket:GetFrameLevel() + 1)
+HelpOpenTicketButton:SetFrameStrata(TukuiTicket:GetFrameStrata())
+HelpOpenTicketButton:ClearAllPoints()
+HelpOpenTicketButton:SetAllPoints()
+HelpOpenTicketButton:SetHighlightTexture(nil)
+HelpOpenTicketButton:SetAlpha(0)
+HelpOpenTicketButton:HookScript("OnShow", function(self) TukuiTicket:SetAlpha(1) end)
+HelpOpenTicketButton:HookScript("OnHide", function(self) TukuiTicket:SetAlpha(0) end)
+
 -- Hide world map button
 MiniMapWorldMapButton:Hide()
 
@@ -98,6 +122,7 @@ local function UpdateLFGTooltip()
 		LFDSearchStatus:SetPoint("TOPRIGHT", MiniMapLFGFrame, "TOPLEFT", 0, 0)	
 	end
 end
+LFDSearchStatus:HookScript("OnShow", UpdateLFGTooltip)
 
 -- Enable mouse scrolling
 Minimap:EnableMouseWheel(true)
@@ -117,9 +142,7 @@ function GetMinimapShape() return "SQUARE" end
 
 -- do some stuff on addon loaded or player login event
 TukuiMinimap:SetScript("OnEvent", function(self, event, addon)
-	if event == "PLAYER_LOGIN" then
-		UpdateLFGTooltip()
-	elseif addon == "Blizzard_TimeManager" then
+	if addon == "Blizzard_TimeManager" then
 		-- Hide Game Time
 		TimeManagerClockButton:Kill()
 	else

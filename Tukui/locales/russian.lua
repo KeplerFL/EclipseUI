@@ -162,6 +162,9 @@ if T.client == "ruRU" then
 	L.bags_stackend = "Заполнение завершено."
 	L.bags_rightclick_search = "ПКМ для поиска."
  
+	L.loot_fish = "Fishy loot"
+	L.loot_empty = "Empty slot"
+	
 	L.chat_invalidtarget = "Неверная цель"
  
 	L.mount_wintergrasp = "Озеро Ледяных Оков"

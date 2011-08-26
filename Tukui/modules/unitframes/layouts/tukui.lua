@@ -227,7 +227,11 @@ local function Shared(self, unit)
 			portrait:SetTemplate("Transparent")
 
 			if unit == "player" then
-				portrait:Point("TOPRIGHT", ufbg, "TOPLEFT", -3, 0)
+				if T.myclass == "DRUID" then
+					portrait:Point("BOTTOMRIGHT", panel, "BOTTOMLEFT", -3, 0)
+				else
+					portrait:Point("TOPRIGHT", ufbg, "TOPLEFT", -3, 0)
+				end
 			elseif unit == "target" then
 				portrait:Point("TOPLEFT", ufbg, "TOPRIGHT", 3, 0)
 			end
@@ -298,14 +302,72 @@ local function Shared(self, unit)
 			
 			-- show druid mana when shapeshifted in bear, cat or whatever
 			if T.myclass == "DRUID" then
+				ufbg:Point("TOPLEFT", health, -2, 10)
+				ufbg:Point("BOTTOMRIGHT", power, 2, -2)
 				CreateFrame("Frame"):SetScript("OnUpdate", function() T.UpdateDruidMana(self) end)
 				local DruidMana = T.SetFontString(health, unpack(T.Fonts.uPower.setfont))
 				DruidMana:SetTextColor(1, 0.49, 0.04)
-				self.DruidMana = DruidMana
+				self.DruidManaText = DruidMana
+
+				local DruidManaBackground = CreateFrame("Frame", nil, self)
+				DruidManaBackground:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 3)
+				if T.lowversion then
+					DruidManaBackground:Width(T.Player)
+				else
+					DruidManaBackground:Width(T.Player)
+				end
+				DruidManaBackground:Height(5)
+				DruidManaBackground:SetFrameLevel(8)
+				DruidManaBackground:SetFrameStrata("MEDIUM")
+				DruidManaBackground:SetTemplate("Default")
+				DruidManaBackground:SetBackdropBorderColor(0,0,0,0)
+
+				local DruidManaBarStatus = CreateFrame('StatusBar', nil, DruidManaBackground)
+				DruidManaBarStatus:SetPoint('LEFT', DruidManaBackground, 'LEFT', 0, 0)
+				DruidManaBarStatus:SetSize(DruidManaBackground:GetWidth(), DruidManaBackground:GetHeight())
+				DruidManaBarStatus:SetStatusBarTexture(normTex)
+				DruidManaBarStatus:SetStatusBarColor(.30, .52, .90)
+
+				DruidManaBarStatus:SetScript("OnShow", function() T.DruidBarDisplay(self, false) end)
+				DruidManaBarStatus:SetScript("OnUpdate", function() T.DruidBarDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
+				DruidManaBarStatus:SetScript("OnHide", function() T.DruidBarDisplay(self, false) end)
+
+				self.DruidManaBackground = DruidManaBackground
+				self.DruidMana = DruidManaBarStatus
 			end
 			
 			if C["unitframes"].classbar then
-				if T.myclass == "DRUID" and C["unitframes"].druid then			
+				if T.myclass == "DRUID" and C["unitframes"].druid then
+					-- DRUID MANA BAR
+					local DruidManaBackground = CreateFrame("Frame", nil, self)
+					--DruidManaBackground:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 1)
+					DruidManaBackground:Point("BOTTOMLEFT", health, "TOPLEFT", 0, 3)
+					DruidManaBackground:Point("BOTTOMRIGHT", health, "TOPRIGHT", 0, 3)
+					if T.lowversion then
+						DruidManaBackground:Width(T.Player)
+					else
+						DruidManaBackground:Width(T.Player)
+					end
+					DruidManaBackground:Height(5)
+					DruidManaBackground:SetFrameLevel(8)
+					DruidManaBackground:SetFrameStrata("MEDIUM")
+					DruidManaBackground:SetTemplate("Default")
+					DruidManaBackground:SetBackdropBorderColor(0,0,0,0)
+
+					local DruidManaBarStatus = CreateFrame('StatusBar', nil, DruidManaBackground)
+					DruidManaBarStatus:SetPoint('LEFT', DruidManaBackground, 'LEFT', 0, 0)
+					DruidManaBarStatus:SetSize(DruidManaBackground:GetWidth(), DruidManaBackground:GetHeight())
+					DruidManaBarStatus:SetStatusBarTexture(C["media"].blank)
+					DruidManaBarStatus:SetStatusBarColor(.30, .52, .90)
+
+					DruidManaBarStatus:SetScript("OnShow", function() T.DruidBarDisplay(self, false) end)
+					DruidManaBackground:SetScript("OnUpdate", function() T.DruidBarDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
+					DruidManaBarStatus:SetScript("OnHide", function() T.DruidBarDisplay(self, false) end)
+
+					self.DruidManaBackground = DruidManaBackground
+					self.DruidMana = DruidManaBarStatus
+					
+					-- ECLIPSE BAR
 					local eclipseBar = CreateFrame('Frame', nil, self)
 					eclipseBar:Point("LEFT", health, "TOPLEFT", 10, 1)
 					if T.lowversion then
@@ -314,9 +376,8 @@ local function Shared(self, unit)
 						eclipseBar:Size(150, 6)
 					end
 					eclipseBar:SetBackdropBorderColor(0,0,0,0)
-					eclipseBar:SetScript("OnShow", function() T.EclipseDisplay(self, false) end)
-					eclipseBar:SetScript("OnUpdate", function() T.EclipseDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
-					eclipseBar:SetScript("OnHide", function() T.EclipseDisplay(self, false) end)
+					eclipseBar:SetScript("OnShow", function() T.DruidBarDisplay(self, false) end)
+					eclipseBar:SetScript("OnHide", function() T.DruidBarDisplay(self, false) end)
 					eclipseBar:SetFrameLevel(health: GetFrameLevel() + 2)
 					eclipseBar:SetFrameStrata(health:GetFrameStrata())
 
@@ -331,7 +392,7 @@ local function Shared(self, unit)
 					lunarBar:SetPoint('LEFT', eclipseBar, 'LEFT', 0, 0)
 					lunarBar:SetSize(eclipseBar:GetWidth(), eclipseBar:GetHeight())
 					lunarBar:SetStatusBarTexture(unpack(T.Textures.statusBars))
-					lunarBar:SetStatusBarColor(.30, .52, .90)
+					lunarBar:SetStatusBarColor(.50, .52, .70)
 					eclipseBar.LunarBar = lunarBar
 
 					local solarBar = CreateFrame('StatusBar', nil, eclipseBar)
@@ -1288,6 +1349,10 @@ TestUI = function()
 end
 SlashCmdList.TestUI = TestUI
 SLASH_TestUI1 = "/testui"
+
+-- Hunter Dismiss Pet Taint (Blizzard issue)
+local PET_DISMISS = "PET_DISMISS"
+if T.myclass == "HUNTER" then PET_DISMISS = nil end
 
 do
 	UnitPopupMenus["SELF"] = { "PVP_FLAG", "LOOT_METHOD", "LOOT_THRESHOLD", "OPT_OUT_LOOT_TITLE", "LOOT_PROMOTE", "DUNGEON_DIFFICULTY", "RAID_DIFFICULTY", "RESET_INSTANCES", "RAID_TARGET_ICON", "SELECT_ROLE", "CONVERT_TO_PARTY", "CONVERT_TO_RAID", "LEAVE", "CANCEL" };

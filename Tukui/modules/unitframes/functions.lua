@@ -494,22 +494,30 @@ T.EclipseDirection = function(self)
 	end
 end
 
-T.EclipseDisplay = function(self, login)
+T.DruidBarDisplay = function(self, login)
 	local eb = self.EclipseBar
+	local dm = self.DruidMana
 	local txt = self.EclipseBar.Text
+	local bg = self.DruidManaBackground
+	local buffs = self.Buffs
+	local flash = self.FlashInfo
 
 	if login then
-		eb:SetScript("OnUpdate", nil)
+		dm:SetScript("OnUpdate", nil)
 	end
 	
-	if eb:IsShown() then
-		txt:Show()
-		self.FlashInfo:Hide()
-		if self.Buffs then self.Buffs:SetPoint("BOTTOMLEFT", self.ufbg, "TOPLEFT", 0, 7) end
+	if eb:IsShown() or dm:IsShown() then
+		if eb:IsShown() then
+			txt:Show()
+			flash:Hide()
+		end
+		bg:SetAlpha(1)
+		if buffs then buffs:SetPoint("BOTTOMLEFT", self.ufbg, "TOPLEFT", 0, 7) end
 	else
 		txt:Hide()
-		self.FlashInfo:Show()
-		if self.Buffs then self.Buffs:SetPoint("BOTTOMLEFT", self.ufbg, "TOPLEFT", 0, 3) end
+		flash:Hide()
+		bg:SetAlpha(0)
+		if buffs then buffs:SetPoint("BOTTOMLEFT", self.ufbg, "TOPLEFT", 0, 3) end
 	end
 end
 
@@ -561,19 +569,19 @@ T.UpdateDruidMana = function(self)
 
 		if min ~= max then
 			if self.Power.value:GetText() then
-				self.DruidMana:SetPoint("LEFT", self.Power.value, "RIGHT", 1, 0)
-				self.DruidMana:SetFormattedText("|cffD7BEA5-|r  |cff4693FF%d%%|r|r", floor(min / max * 100))
+				self.DruidManaText:SetPoint("LEFT", self.Power.value, "RIGHT", 1, 0)
+				self.DruidManaText:SetFormattedText("|cffD7BEA5-|r  |cff4693FF%d%%|r|r", floor(min / max * 100))
 			else
-				self.DruidMana:SetPoint("LEFT", self.panel, "LEFT", 7, 1)
-				self.DruidMana:SetFormattedText("%d%%", floor(min / max * 100))
+				self.DruidManaText:SetPoint("LEFT", self.panel, "LEFT", 4, 1)
+				self.DruidManaText:SetFormattedText("%d%%", floor(min / max * 100))
 			end
 		else
-			self.DruidMana:SetText()
+			self.DruidManaText:SetText()
 		end
 
-		self.DruidMana:SetAlpha(1)
+		self.DruidManaText:SetAlpha(1)
 	else
-		self.DruidMana:SetAlpha(0)
+		self.DruidManaText:SetAlpha(0)
 	end
 end
 

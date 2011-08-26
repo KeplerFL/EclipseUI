@@ -162,6 +162,9 @@ if T.client == "zhTW" then
 	L.bags_stackend = "é‡æ–°å †ç–Šå®Œæˆ"
 	L.bags_rightclick_search = "é»žæ“Šå³éµä»¥æœå°‹ç‰©å“."
  
+	L.loot_fish = "Fishy loot"
+	L.loot_empty = "Empty slot"
+	
 	L.chat_invalidtarget = "ç„¡æ•ˆçš„ç›®æ¨™"
  
 	L.mount_wintergrasp = "å†¬æ¡æ¹–"
