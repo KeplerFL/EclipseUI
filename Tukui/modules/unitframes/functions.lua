@@ -861,6 +861,7 @@ if C["unitframes"].raidunitdebuffwatch == true then
 				99937,	-- Jagged Tear
 			-- Baleroc
 				99256,	-- Torment
+				100231,	-- Torment
 				99252,	-- Blaze of Glory
 				99516,	-- Countdown
 			-- Majordomo Staghelm
