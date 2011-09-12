@@ -1,8 +1,9 @@
 local T, C, L = unpack(select(2, ...))
 
+local Taint = T.FullMapQuestTaintFix
+
 local function LoadSkin()
 	WorldMapFrame:CreateBackdrop("Transparent")
-	-- WorldMapDetailFrame:SetFrameLevel(WorldMapDetailFrame:GetFrameLevel() + 1)
 	WorldMapDetailFrame.backdrop = CreateFrame("Frame", nil, WorldMapFrame)
 	WorldMapDetailFrame.backdrop:SetTemplate("Skinning")
 	WorldMapDetailFrame.backdrop:Point("TOPLEFT", WorldMapDetailFrame, "TOPLEFT", -2, 2)
@@ -113,7 +114,12 @@ local function LoadSkin()
 	WorldMapFrame:HookScript("OnShow", FixSkin)
 	hooksecurefunc("WorldMapFrame_SetFullMapView", LargeSkin)
 	hooksecurefunc("WorldMapFrame_SetQuestMapView", QuestSkin)
-	hooksecurefunc("WorldMap_ToggleSizeUp", FixSkin)
+	hooksecurefunc("WorldMap_ToggleSizeUp", function() 
+		if WORLDMAP_SETTINGS.size == WORLDMAP_QUESTLIST_SIZE then
+			Taint = true
+		end
+		FixSkin()
+	end)
 
 	WorldMapFrame:RegisterEvent("PLAYER_LOGIN")
 	WorldMapFrame:RegisterEvent("PLAYER_REGEN_ENABLED") -- fix taint with small map & big map
@@ -131,12 +137,12 @@ local function LoadSkin()
 			WorldMapFrameSizeDownButton:Disable()
 			WorldMapFrameSizeUpButton:Disable()
 
-			if quest then
+			if (quest) and (miniWorldMap or Taint) then
 				if WorldMapFrame:IsShown() then
 					HideUIPanel(WorldMapFrame)
 				end
-
-				if not miniWorldMap then
+				
+				if not miniWorldMap and Taint and WORLDMAP_SETTINGS.size == WORLDMAP_QUESTLIST_SIZE then
 					WorldMapFrame_SetFullMapView()
 				end
 
@@ -158,7 +164,7 @@ local function LoadSkin()
 			WorldMapFrameSizeDownButton:Enable()
 			WorldMapFrameSizeUpButton:Enable()
 
-			if quest then
+			if (quest) and (miniWorldMap or Taint) then
 				WorldMapQuestShowObjectives.Show = WorldMapQuestShowObjectives:Show()
 				WorldMapTitleButton.Show = WorldMapTitleButton:Show()
 				WorldMapBlobFrame.Show = WorldMapBlobFrame:Show()
@@ -167,15 +173,20 @@ local function LoadSkin()
 				WorldMapTitleButton:Show()
 
 				WatchFrame.showObjectives = true
-
-				if not miniWorldMap then
-					WorldMapFrame_SetQuestMapView()
+				
+				if not miniWorldMap and Taint and WORLDMAP_SETTINGS.size == WORLDMAP_FULLMAP_SIZE then
+					WorldMapFrame_SetFullMapView()
 				end
 
 				WorldMapBlobFrame:Show()
 				WorldMapPOIFrame:Show()
 
 				WatchFrame_Update()
+				
+				if Taint and not miniWorldMap and WorldMapFrame:IsShown() and WORLDMAP_SETTINGS.size == WORLDMAP_FULLMAP_SIZE then
+					HideUIPanel(WorldMapFrame)
+					ShowUIPanel(WorldMapFrame)
+				end
 			end
 			WorldMapQuestShowObjectives:Show()
 		end

@@ -19,4 +19,5 @@
 	<Script file="combo\warrior.lua"/>
 	
 	<Script file="raidutility.lua"/>
+	<Script file="micromenu.lua"/>
 </Ui>
