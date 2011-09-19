@@ -226,6 +226,7 @@ local function Shared(self, unit)
 			end
 
 			table.insert(self.__elements, T.HidePortrait)
+			portrait.PostUpdate = T.PortraitUpdate --Worgen Fix (Hydra)
 			self.Portrait = portrait
 			
 			local portraitBG = CreateFrame("Frame", nil, portrait)
