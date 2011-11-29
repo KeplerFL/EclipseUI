@@ -2,7 +2,7 @@
 local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
 if C["chat"].enable ~= true then return end
 
-local TukuiChat = CreateFrame("Frame")
+local TukuiChat = CreateFrame("Frame", "TukuiChat")
 local _G = _G
 local origs = {}
 local type = type
@@ -65,7 +65,12 @@ local function StyleChat(frame)
 
 	tabtext:SetFont(unpack(T.Fonts.cTab.setfont))
 	if id < 11 then
-		tabtext:SetTextColor(unpack(C["datatext"].color))
+		if C["datatext"].classcolor then
+			local c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
+			tabtext:SetTextColor(c.r, c.g, c.b)
+		else
+			tabtext:SetTextColor(unpack(C["datatext"].color))
+		end
 		tabtext.SetTextColor = T.dummy
 	end
 	tabtext:SetShadowOffset(0, 0)
@@ -130,9 +135,20 @@ local function StyleChat(frame)
 	if _G[chat] ~= _G["ChatFrame2"] then
 		origs[_G[chat]] = _G[chat].AddMessage
 		_G[chat].AddMessage = AddMessage
+	else
+		CombatLogQuickButtonFrame_Custom:StripTextures()
+		CombatLogQuickButtonFrame_Custom:SetTemplate("Default")
+		T.SkinCloseButton(CombatLogQuickButtonFrame_CustomAdditionalFilterButton)
+		CombatLogQuickButtonFrame_CustomAdditionalFilterButton.t:SetText("V")
+		CombatLogQuickButtonFrame_CustomAdditionalFilterButton.t:ClearAllPoints()
+		CombatLogQuickButtonFrame_CustomAdditionalFilterButton.t:Point("RIGHT", -8, 4)
+		CombatLogQuickButtonFrame_CustomProgressBar:ClearAllPoints()
+		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("TOPLEFT", CombatLogQuickButtonFrame_Custom, 2, -2)
+		CombatLogQuickButtonFrame_CustomProgressBar:SetPoint("BOTTOMRIGHT", CombatLogQuickButtonFrame_Custom, -2, 2)
+		CombatLogQuickButtonFrame_CustomProgressBar:SetStatusBarTexture(C.media.normTex)
 	end
 
-	frame.skinned = true
+	frame.isSkinned = true
 end
 
 -- Setup chatframes 1 to 10 on login.
@@ -155,59 +171,45 @@ local function SetupChat(self)
 	ChatTypeInfo.CHANNEL.sticky = 1
 end
 
-local function ChatPosition(self)
+-- default chat position of left and right (1 & 4) windows
+T.SetDefaultChatPosition = function()
 	for i = 1, NUM_CHAT_WINDOWS do
-		local chat = _G[format("ChatFrame%s", i)]
-		
+		local frame = _G[format("ChatFrame%s", i)]
+		local chatFrameId = frame:GetID()
+		local chatName = FCF_GetChatWindowInfo(chatFrameId)
+
+		-- set the size of chat frames
+		frame:Size(T.InfoLeftRightWidth + 1, 111)
+
+		-- tell wow that we are using new size
+		SetChatWindowSavedDimensions(chatFrameId, T.Scale(T.InfoLeftRightWidth + 1), T.Scale(111))
+
+		-- move general bottom left or Loot (if found) on right
 		if i == 1 then
-			chat:ClearAllPoints()
-			chat:Point("TOPLEFT", TukuiTabsLeft, "BOTTOMLEFT", 0, -4)
-			chat:Point("BOTTOMRIGHT", TukuiInfoLeft, "TOPRIGHT", 0, 4)
-		elseif i == 4 then
-			if C["chat"].rightchat == true then
-				if not chat.isDocked then
-					chat:ClearAllPoints()
-					chat:Point("TOPLEFT", TukuiTabsRight, "BOTTOMLEFT", 0, -4)
-					chat:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 4)
-				else
-					FCF_UnDockFrame(chat)
-					FCF_SetTabPosition(chat, 0)
-					
-					chat:ClearAllPoints()
-					chat:Point("TOPLEFT", TukuiTabsRight, "BOTTOMLEFT", 0, -4)
-					chat:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 4)
-				end
-			else
-				FCF_DockFrame(chat)
+			frame:ClearAllPoints()
+			frame:Point("TOPLEFT", TukuiTabsLeft, "BOTTOMLEFT", 0, -4)
+			frame:Point("BOTTOMRIGHT", TukuiInfoLeft, "TOPRIGHT", 0, 4)
+		elseif i == 4 and chatName == LOOT then
+			if not frame.isDocked then
+				frame:ClearAllPoints()
+				frame:Point("TOPLEFT", TukuiTabsRight, "BOTTOMLEFT", 0, -4)
+				frame:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 4)
 			end
 		end
-		FCF_SavePositionAndDimensions(chat)
-	end
-end
-hooksecurefunc("FCF_DockFrame", ChatPosition)
-hooksecurefunc("FCF_UnDockFrame", ChatPosition)
 
-local function ToastFramePosition(self)
-	BNToastFrame:HookScript("OnShow", function(self)
-		self:ClearAllPoints()
-		self:Point("BOTTOMLEFT", TukuiChatLeft, "TOPLEFT", 0, 3)
-	end)
+		-- save new default position and dimension
+		FCF_SavePositionAndDimensions(frame)
+
+		-- lock them if unlocked
+		if not frame.isLocked then FCF_SetLocked(frame, 1) end
+	end
 end
 
 TukuiChat:RegisterEvent("ADDON_LOADED")
-TukuiChat:RegisterEvent("UPDATE_CHAT_WINDOWS")
-TukuiChat:RegisterEvent("PLAYER_ENTERING_WORLD")
 TukuiChat:SetScript("OnEvent", function(self, event, addon)
-	if event == "ADDON_LOADED" then
-		if addon == "Blizzard_CombatLog" then
-			self:UnregisterEvent("ADDON_LOADED")
-			SetupChat(self)
-		end
-	elseif event == "PLAYER_ENTERING_WORLD" then
-		ChatPosition(self)
-		ToastFramePosition(self)
-	elseif event == "UPDATE_CHAT_WINDOWS" then
-		ChatPosition(self)
+	if addon == "Blizzard_CombatLog" then
+		self:UnregisterEvent("ADDON_LOADED")
+		SetupChat(self)
 	end
 end)
 
@@ -215,8 +217,59 @@ end)
 local function SetupTempChat(id)
 	local frame = FCF_GetCurrentChatFrame()
 	
-	if frame.skinned == true then return end
+	if frame.isSkinned then return end
 	
+	frame.temp = true
 	StyleChat(frame)
 end
 hooksecurefunc("FCF_OpenTemporaryWindow", SetupTempChat)
+
+-- reposition battle.net popup
+BNToastFrame:HookScript("OnShow", function(self)
+	self:ClearAllPoints()
+	self:Point("BOTTOMLEFT", TukuiChatLeft, "TOPLEFT", 0, 3)
+end)
+
+-- reskin Toast Frame Close Button
+T.SkinCloseButton(BNToastFrameCloseButton)
+
+-- kill the default reset button
+ChatConfigFrameDefaultButton:Kill()
+
+-- default position of chat #1 (left) and chat #4 (right)
+T.SetDefaultChatPosition = function(frame)
+	if frame then
+		local id = frame:GetID()
+		local name = FCF_GetChatWindowInfo(id)
+
+		-- set the size of chat frames
+		frame:Size(T.InfoLeftRightWidth + 1, 111)
+
+		-- tell wow that we are using new size
+		SetChatWindowSavedDimensions(id, T.Scale(T.InfoLeftRightWidth + 1), T.Scale(111))
+
+		if id == 1 then
+			frame:ClearAllPoints()
+			frame:Point("TOPLEFT", TukuiTabsLeft, "BOTTOMLEFT", 0, -4)
+			frame:Point("BOTTOMRIGHT", TukuiInfoLeft, "TOPRIGHT", 0, 4)
+		elseif id == 4 and name == LOOT then
+			if not frame.isDocked then
+				frame:ClearAllPoints()
+				frame:Point("TOPLEFT", TukuiTabsRight, "BOTTOMLEFT", 0, -4)
+				frame:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 4)
+				if C.chat.justifyRight then
+					frame:SetJustifyH("RIGHT")
+				else
+					frame:SetJustifyH("LEFT")
+				end
+			end
+		end
+
+		-- save new default position and dimension
+		FCF_SavePositionAndDimensions(frame)
+
+		-- lock them if unlocked
+		if not frame.isLocked then FCF_SetLocked(frame, 1) end
+	end
+end
+hooksecurefunc("FCF_RestorePositionAndDimensions", T.SetDefaultChatPosition)

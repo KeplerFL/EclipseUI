@@ -18,7 +18,7 @@ local sizes = {
 }
 
 local function CreatCopyFrame()
-	frame = CreateFrame("Frame", "CopyFrame", UIParent)
+	frame = CreateFrame("Frame", "TukuiChatCopyFrame", UIParent)
 	frame:SetTemplate("Default")
 	if T.lowversion then
 		frame:Width(TukuiBar1:GetWidth() + 10)
@@ -31,7 +31,7 @@ local function CreatCopyFrame()
 	frame:Hide()
 	frame:SetFrameStrata("DIALOG")
 
-	local scrollArea = CreateFrame("ScrollFrame", "CopyScroll", frame, "UIPanelScrollFrameTemplate")
+	local scrollArea = CreateFrame("ScrollFrame", "TukuiChatCopyScroll", frame, "UIPanelScrollFrameTemplate")
 	scrollArea:Point("TOPLEFT", frame, "TOPLEFT", 8, -30)
 	scrollArea:Point("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -30, 8)
 
@@ -64,6 +64,8 @@ local function CreatCopyFrame()
 
 	local close = CreateFrame("Button", "CopyCloseButton", frame, "UIPanelCloseButton")
 	close:SetPoint("TOPRIGHT", frame, "TOPRIGHT")
+	T.SkinCloseButton(close)
+	T.SkinScrollBar(TukuiChatCopyScrollScrollBar)
 
 	isf = true
 end

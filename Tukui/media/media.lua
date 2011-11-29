@@ -31,6 +31,10 @@ C["media"] = {
 	["kr_uffont"] = [[Fonts\2002.TTF]], -- general font of unitframes
 	["kr_dmgfont"] = [[Fonts\2002.TTF]], -- general font of dmg / sct
 	
+	["cn_font"] = [=[Fonts\ZYKai_T.TTF]=], -- general font of tukui
+	["cn_uffont"] = [[Fonts\ZYHei.TTF]], -- general font of unitframes
+	["cn_dmgfont"] = [[Fonts\ZYKai_C.TTF]], -- general font of dmg / sct
+	
 	-- textures
 	["normTex"] = [[Interface\AddOns\Tukui\media\textures\normTex]], -- texture used for tukui healthbar/powerbar/etc
 	["glowTex"] = [[Interface\AddOns\Tukui\media\textures\glowTex]], -- the glow text around some frame.
@@ -46,10 +50,8 @@ C["media"] = {
 	-- colors
 	["bordercolor"] = { .1, .1, .1, 1 }, -- border color of tukui panels
 	["backdropcolor"] = { 0, 0, 0, 1 }, -- background color of tukui panels
-	["altbordercolor"] = { .4, .4, .4 }, -- alternative border color, mainly for unitframes text panels.
 	--["bordercolor"] = C.general.bordercolor or { .1, .1, .1, 1 }, -- border color of tukui panels
 	--["backdropcolor"] = C.general.backdropcolor or { 0, 0, 0, 1 }, -- background color of tukui panels
-	--["altbordercolor"] = C.unitframes.altbordercolor or { .4, .4, .4 }, -- alternative border color, mainly for unitframes text panels.
 	["gradienthealth"] = {                                    -- health gradient color if unicolor is true. Credits to Hydra
 		1.0, 0.3, 0.3, -- R, G, B (low HP)
 		0.6, 0.3, 0.3, -- R, G, B (medium HP)
@@ -64,3 +66,17 @@ C["media"] = {
 	["pixel_font"] = [[Interface\Addons\Tukui\media\fonts\visitor2.ttf]],
 	["caith"] = [[Interface\Addons\Tukui\media\fonts\caith.ttf]],
 }
+
+-------------------------------------------------------------------
+-- Used to overwrite default medias outside Tukui
+-------------------------------------------------------------------
+
+local settings = TukuiEditedDefaultConfig
+if settings then
+	local media = settings.media
+	if media then
+		for option, value in pairs(media) do
+			C.media[option] = value
+		end
+	end
+end

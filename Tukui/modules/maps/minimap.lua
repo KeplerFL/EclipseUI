@@ -6,9 +6,6 @@ local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, vari
 local TukuiMinimap = CreateFrame("Frame", "TukuiMinimap", UIParent)
 TukuiMinimap:CreatePanel("Default", 1, 1, "CENTER", UIParent, "CENTER", 0, 0)
 TukuiMinimap:RegisterEvent("ADDON_LOADED")
-TukuiMinimap:RegisterEvent("CALENDAR_UPDATE_PENDING_INVITES")
-TukuiMinimap:RegisterEvent("UPDATE_PENDING_MAIL")
-TukuiMinimap:RegisterEvent("PLAYER_ENTERING_WORLD")
 TukuiMinimap:Point("TOPRIGHT", UIParent, "TOPRIGHT", -8, -8)
 TukuiMinimap:Size(144, 144)
 TukuiMinimap:SetClampedToScreen(true)
@@ -67,7 +64,7 @@ TukuiTicket:Size(TukuiMinimap:GetWidth() - 4, 24)
 TukuiTicket:SetFrameStrata("MEDIUM")
 TukuiTicket:SetFrameLevel(20)
 TukuiTicket:Point("TOP", 0, -2)
-TukuiTicket:FontString("Text", C.media.font, 12)
+TukuiTicket:FontString("Text", C.media.caith, 12)
 TukuiTicket.Text:SetPoint("CENTER")
 TukuiTicket.Text:SetText(HELP_TICKET_EDIT)
 TukuiTicket:SetBackdropBorderColor(255/255, 243/255,  82/255)
@@ -103,26 +100,32 @@ local function UpdateLFG()
 	MiniMapLFGFrame:Point("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 2, 1)
 	MiniMapLFGFrameBorder:Hide()
 end
-hooksecurefunc("MiniMapLFG_UpdateIsShown", UpdateLFG)
+if T.toc < 40300 then
+	hooksecurefunc("MiniMapLFG_UpdateIsShown", UpdateLFG)
+else
+	hooksecurefunc("MiniMapLFG_Update", UpdateLFG)
+end
 
 -- reskin LFG dropdown
-LFDSearchStatus:SetTemplate("Default")
+local status
+if T.toc >= 40300 then status = LFGSearchStatus else status = LFDSearchStatus end
+status:SetTemplate("Default")
 
--- for t13+, if we move map we need to point LFDSearchStatus according to our Minimap position.
+-- for t13+, if we move map we need to point status according to our Minimap position.
 local function UpdateLFGTooltip()
 	local position = TukuiMinimap:GetPoint()
-	LFDSearchStatus:ClearAllPoints()
+	status:ClearAllPoints()
 	if position:match("BOTTOMRIGHT") then
-		LFDSearchStatus:SetPoint("BOTTOMRIGHT", MiniMapLFGFrame, "BOTTOMLEFT", 0, 0)
+		status:SetPoint("BOTTOMRIGHT", MiniMapLFGFrame, "BOTTOMLEFT", 0, 0)
 	elseif position:match("BOTTOM") then
-		LFDSearchStatus:SetPoint("BOTTOMLEFT", MiniMapLFGFrame, "BOTTOMRIGHT", 4, 0)
-	elseif position:match("LEFT") then		
-		LFDSearchStatus:SetPoint("TOPLEFT", MiniMapLFGFrame, "TOPRIGHT", 4, 0)
+		status:SetPoint("BOTTOMLEFT", MiniMapLFGFrame, "BOTTOMRIGHT", 4, 0)
+	elseif position:match("LEFT") then
+		status:SetPoint("TOPLEFT", MiniMapLFGFrame, "TOPRIGHT", 4, 0)
 	else
-		LFDSearchStatus:SetPoint("TOPRIGHT", MiniMapLFGFrame, "TOPLEFT", 0, 0)	
+		status:SetPoint("TOPRIGHT", MiniMapLFGFrame, "TOPLEFT", 0, 0)
 	end
 end
-LFDSearchStatus:HookScript("OnShow", UpdateLFGTooltip)
+status:HookScript("OnShow", UpdateLFGTooltip)
 
 -- Enable mouse scrolling
 Minimap:EnableMouseWheel(true)
@@ -145,42 +148,6 @@ TukuiMinimap:SetScript("OnEvent", function(self, event, addon)
 	if addon == "Blizzard_TimeManager" then
 		-- Hide Game Time
 		TimeManagerClockButton:Kill()
-	else
-		local inv = CalendarGetNumPendingInvites()
-		local mail = HasNewMail()
-		if inv > 0 and mail then -- New invites and mail
-			TukuiMinimap:SetBackdropBorderColor(1, .5, 0)
-			if TukuiMinimapStatsLeft then
-				TukuiMinimapStatsLeft:SetBackdropBorderColor(1, .5, 0)
-			end
-			if TukuiMinimapStatsRight then
-				TukuiMinimapStatsRight:SetBackdropBorderColor(1, .5, 0)
-			end
-		elseif inv > 0 and not mail then -- New invites and no mail
-			TukuiMinimap:SetBackdropBorderColor(1, 30/255, 60/255)
-			if TukuiMinimapStatsLeft then
-				TukuiMinimapStatsLeft:SetBackdropBorderColor(1, 30/255, 60/255)
-			end
-			if TukuiMinimapStatsRight then
-				TukuiMinimapStatsRight:SetBackdropBorderColor(1, 30/255, 60/255)
-			end
-		elseif inv==0 and mail then -- No invites and new mail
-			TukuiMinimap:SetBackdropBorderColor(0, 1, 0)
-			if TukuiMinimapStatsLeft then
-				TukuiMinimapStatsLeft:SetBackdropBorderColor(0, 1, 0)
-			end
-			if TukuiMinimapStatsRight then
-				TukuiMinimapStatsRight:SetBackdropBorderColor(0, 1, 0)
-			end
-		else -- None of the above
-			TukuiMinimap:SetBackdropBorderColor(unpack(C.media.bordercolor))
-			if TukuiMinimapStatsLeft then
-				TukuiMinimapStatsLeft:SetBackdropBorderColor(unpack(C.media.bordercolor))
-			end
-			if TukuiMinimapStatsRight then
-				TukuiMinimapStatsRight:SetBackdropBorderColor(unpack(C.media.bordercolor))
-			end
-		end
 	end
 end)
 
@@ -193,7 +160,7 @@ Minimap:SetScript("OnMouseUp", function(self, btn)
 	local position = TukuiMinimap:GetPoint()
 	
 	if btn == "RightButton" then		
-		if position:match("RIGHT") then xoff = T.Scale(-16) end
+		if position:match("RIGHT") then xoff = T.Scale(-8) end
 		ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, TukuiMinimap, xoff, T.Scale(-2))
 	elseif btn == "MiddleButton" then
 		if not TukuiMicroMenu then return end

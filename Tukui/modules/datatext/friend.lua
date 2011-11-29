@@ -1,12 +1,13 @@
+local T, C, L = unpack(select(2, ...))
+
 --------------------------------------------------------------------
 -- FRIEND
 --------------------------------------------------------------------
-local T, C, L = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
 
 if not C["datatext"].friends or C["datatext"].friends == 0 then return end
 
 -- create a popup
-StaticPopupDialogs.SET_BN_BROADCAST = {
+StaticPopupDialogs.TUKUI_SET_BN_BROADCAST = {
 	text = BN_BROADCAST_TOOLTIP,
 	button1 = ACCEPT,
 	button2 = CANCEL,
@@ -25,12 +26,13 @@ StaticPopupDialogs.SET_BN_BROADCAST = {
 	preferredIndex = 3,
 }
 
-local Stat = CreateFrame("Frame")
+local Stat = CreateFrame("Frame", "TukuiStatFriends")
 Stat:EnableMouse(true)
 Stat:SetFrameStrata("MEDIUM")
 Stat:SetFrameLevel(3)
+Stat.Option = C.datatext.friends
 
-local Text  = TukuiInfoLeft:CreateFontString(nil, "OVERLAY")
+local Text  = Stat:CreateFontString("TukuiStatFriendsText", "OVERLAY")
 Text:SetFont(unpack(T.Fonts.dFont.setfont))
 Text:SetShadowOffset(T.mult, -T.mult)
 T.PP(C["datatext"].friends, Text)
@@ -47,7 +49,7 @@ local menuList = {
 			{ text = "|cffFF0000"..AFK.."|r", notCheckable=true, func = function() if not IsChatAFK() then SendChatMessage("", "AFK") end end },
 		},
 	},
-	{ text = BN_BROADCAST_TOOLTIP, notCheckable=true, func = function() StaticPopup_Show("SET_BN_BROADCAST") end },
+	{ text = BN_BROADCAST_TOOLTIP, notCheckable=true, func = function() StaticPopup_Show("TUKUI_SET_BN_BROADCAST") end },
 }
 
 local function GetTableIndex(table, fieldIndex, value)

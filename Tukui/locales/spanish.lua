@@ -1,7 +1,6 @@
-local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
+local T, C, L = unpack(select(2, ...))
 
 if T.client == "esES" then
-
 	L.chat_BATTLEGROUND_GET = "[B]"
 	L.chat_BATTLEGROUND_LEADER_GET = "[B]"
 	L.chat_BN_WHISPER_GET = "From"
@@ -26,8 +25,9 @@ if T.client == "esES" then
 	L.chat_recrutment = "ReclutamientoHermandad"
 	L.chat_lfg = "BuscandoGrupo"
 	
-	L.disband = "Deshacer grupo."
- 
+	L.disband = "Deshacer grupo ?"
+
+	L.datatext_notalents ="No Talents"
 	L.datatext_download = "Descarga: "
 	L.datatext_bandwidth = "Ancho de banda: "
 	L.datatext_guild = "Hermandad"
@@ -69,10 +69,10 @@ if T.client == "esES" then
 	L.datatext_servertime = "Hora del servidor: "
 	L.datatext_localtime = "Hora Local: "
 	L.datatext_mitigation = "Mitigación por Nivel: "
-	L.datatext_healing = "Sanación: "
-	L.datatext_damage = "Daño: "
-	L.datatext_honor = "Honor: "
-	L.datatext_killingblows = "Golpes de Gracia: "
+	L.datatext_healing = "Sanación : "
+	L.datatext_damage = "Daño : "
+	L.datatext_honor = "Honor : "
+	L.datatext_killingblows = "Golpes de Gracia : "
 	L.datatext_ttstatsfor = "Estadísticas para "
 	L.datatext_ttkillingblows = "Golpes de Gracia :"
 	L.datatext_tthonorkills = "Golpes de Gracia con Honor :"
@@ -115,6 +115,7 @@ if T.client == "esES" then
 	L.popup_install_no = "No, ¡realmente apesta!"
 	L.popup_reset_yes = "¡Oh, si nena!"
 	L.popup_reset_no = "No, ¡preguntare en los foros!"
+	L.popup_fix_ab = "There is something wrong with your action bar. Do you want to reloadui to fix it?"
  
 	L.merchant_repairnomoney = "¡No tienes suficiente dinero para reparar!"
 	L.merchant_repaircost = "Tus objetos han sido reparados por"
@@ -161,10 +162,10 @@ if T.client == "esES" then
 	L.bags_bids = "Usando las bolsas: "
 	L.bags_stackend = "Se ha acabado de amontonar."
 	L.bags_rightclick_search = "Click derecho para buscar."
- 
+	
 	L.loot_fish = "Fishy loot"
 	L.loot_empty = "Empty slot"
-	
+ 
 	L.chat_invalidtarget = "Objetivo Invalido"
  
 	L.mount_wintergrasp = "Conquista De Invierno"
@@ -221,8 +222,9 @@ if T.client == "esES" then
 	L.move_achievements = "Mover Logros"
 	L.move_roll = "Mover Marco de Lanzamiento de Dados por Objetos"
 	L.move_vehicle = "Mover Asiento del vehiculo"
+	L.move_extrabutton = "Extra Button"
 	L.move_durability = "Move Durability"
-	
+
 	L.actionbars_locked = "Actionbars |cffe45050Locked|r"
 	L.actionbars_unlocked = "Actionbars |cff50e468Unlocked|r"
 	

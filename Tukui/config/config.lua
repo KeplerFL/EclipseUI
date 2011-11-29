@@ -1,12 +1,16 @@
 ﻿local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
 
+-----------------------------------------
+-- This is the default configuration file
+-----------------------------------------
+
 C["general"] = {
 	["autoscale"] = true,                               -- mainly enabled for users that don't want to mess with the config file
 	["uiscale"] = 0.71,                                 -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
 	["overridelowtohigh"] = false,                      -- EXPERIMENTAL ONLY! override lower version to higher version on a lower reso.
-	["multisampleprotect"] = true,                      -- i don't recommend this because of shitty border but, voila!
 	--["bordercolor"] = { .1, .1, .1, 1 },				-- default border color of panels > currently not working
 	--["backdropcolor"] = { 0, 0, 0, 1 },					-- default backdrop color of panels > currently not working
+	["blizzardreskin"] = true                           -- reskin all Blizzard frames
 }
 
 C["unitframes"] = {
@@ -25,6 +29,8 @@ C["unitframes"] = {
 	["unitcastbar"] = true,                             -- enable tukui castbar
 	["cblatency"] = true,                              	-- enable castbar latency
 	["cbicons"] = true,                                 -- enable icons on castbar
+	["classiccombo"] = true,                           -- display classic combo points (from Tukui 13 or less)
+	["movecombobar"] = false,                            -- display the new combo bar (t14+) from target to player (ROGUE ONLY)
 	["cbclasscolor"] = false,
 		-- if cbclasscolor == false then it uses this color
 		["cbcustomcolor"] = { .15, .15, .15 },
@@ -32,7 +38,6 @@ C["unitframes"] = {
 	-- Auras
 	["auratimer"] = true,                               -- enable timers on buffs/debuffs
 	["auratextscale"] = 11,                             -- the font size of buffs/debuffs timers on unitframes
-	["playerauras"] = false,                            -- enable auras
 	["targetauras"] = true,                             -- enable auras on target unit frame
 	["totdebuffs"] = false,                             -- enable tot debuffs (high reso only)
 	["focusdebuffs"] = false,                             -- enable focus debuffs
@@ -60,11 +65,11 @@ C["unitframes"] = {
 		["showsymbols"] = true,	                            -- show symbol.
 		["aggro"] = true,                                   -- show aggro on all raids layouts
 		["raidunitdebuffwatch"] = true,                     -- track important spell to watch in pve for heal mode.
-			["dpsunitdebuffwatch"] = true,					-- track important spell to watch in pve for dps mode (requires raidunitdebuffwatch = true)
 		["healcomm"] = true,                               -- enable healprediction support.
 		["debuffHighlightFilter"] = true,					-- filter debuff border coloring
 			-- enable player / target debuff highlight
 			["playerHighlight"] = true,				
+		["gridvertical"] = false,                           -- grid group displayed vertically
 		
 		-- Heal
 		["healthvertical"] = true,						-- change orientation of health bars in heal mode
@@ -73,7 +78,6 @@ C["unitframes"] = {
 		-- Dps
 		["hidepower"] = false,							-- hide power bar in dps party/raid15 mode
 	
-
 	-- Extra Frames
 	["maintank"] = false,                               -- enable maintank
 	["mainassist"] = false,                             -- enable mainassist
@@ -106,11 +110,13 @@ C["arena"] = {
 
 C["auras"] = {
 	["player"] = true,                                  -- enable tukui buffs/debuffs
+	["consolidate"] = true,                          -- enable downpdown menu with consolidate buff
+	["flash"] = true,                                   -- flash warning for buff with time < 30 sec
 }
 
 C["actionbar"] = {
 	["enable"] = true,                                  -- enable tukui action bars
-	["hotkey"] = true,                                 -- enable hotkey display because it was a lot requested
+	["hotkey"] = true,                                  -- enable hotkey display because it was a lot requested
 	["hideshapeshift"] = false,                         -- hide shapeshift or totembar because it was a lot requested.
 	["showgrid"] = true,                                -- show grid on empty button
 	["buttonsize"] = 27,                                -- normal buttons size
@@ -120,6 +126,7 @@ C["actionbar"] = {
 	["vertical_rightbars"] = false,						-- vertical or horizontal right bars
 	["vertical_shapeshift"] = true,						-- (NOT FOR SHAMANS/TOTEMS) vertical or horizontal shapeshift bar
 	["mainswap"] = false,								-- swap bottom actionbars (main bar on top)
+	["ownshdbar"] = false,                              -- use a complete new stance bar for shadow dance (rogue only)
 }
 
 C["bags"] = {
@@ -158,9 +165,10 @@ C["datatext"] = {
 	["system"] = 0,                                     -- show total memory and others systems infos on panels
 	["wowtime"] = 0,                                    -- show time on panels
 	["regen"] = 0,										-- show mana regeneration
-	["location"] = true,								-- enable location panel
+
+	["location"] = false,								-- enable location panel
 		-- coordinates display only if location == true
-		["location_coords"] = true,						-- display location coordinates
+		["location_coords"] = false,						-- display location coordinates
 	["exprepbars"] = true,								-- enable experience and reputation bar
 		["expreptext"] = false,							-- enable text on experience and reputation bars
 
@@ -169,10 +177,14 @@ C["datatext"] = {
 	["localtime"] = true,                              -- set time to local time instead of server time.
 	
 	["classcolor"] = true,
-		["color"] = { .2, .4, .7 },
+		["color"] = { 0, .8, 1 },
 		
 	["statblock"] = true,								-- display statblock in topleft corner
 	["maptime"] = true,									-- show display clock below minimap
+	
+	["talent"] = 0,                                     -- show talent
+	["calltoarms"] = 0,                                 -- show dungeon and call to arms
+	["battleground"] = true,
 }
 
 C["chat"] = {
@@ -222,13 +234,8 @@ C["invite"] = {
 	["autoaccept"] = true,                              -- auto-accept invite from guildmate and friends.
 }
 
-C["buffreminder"] = {
-	["enable"] = true,                                  -- this is now the new innerfire warning script for all armor/aspect class.
-	["sound"] = false,                                   -- enable warning sound notification for reminder.
-}
-
 C["combo"] = {											-- credit to Dajova
-	["display"] = true,									-- enable numeric combo display
+	["display"] = false,									-- enable numeric combo display
 	-- combo setup
 		["dknight"] = false,                   			-- enable death knight combo module (odd behaviour and not updating correctly, disabled until further notice)
 		["druid"] = false,                    			-- enable druid combo module (odd behaviour and not updating correctly, disabled until further notice)

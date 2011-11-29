@@ -10,7 +10,11 @@ local function style(self)
 	local name = self:GetName()
 	
 	--> fixing a taint issue while changing totem flyout button in combat.
-	if name:match("MultiCastActionButton") then return end 
+	if name:match("MultiCast") then return end
+
+	--> don't skin the boss encounter extra button to match texture (4.3 patch)
+	--> http://www.tukui.org/storage/viewer.php?id=913811extrabar.jpg
+	if name:match("ExtraActionButton") then return end
 	
 	local action = self.action
 	local Button = self
@@ -21,19 +25,24 @@ local function style(self)
 	local Border  = _G[name.."Border"]
 	local Btname = _G[name.."Name"]
 	local normal  = _G[name.."NormalTexture"]
+	local BtnBG = _G[name..'FloatingBG']
  
 	Flash:SetTexture("")
 	Button:SetNormalTexture("")
  
-	Border:Hide()
-	Border = T.dummy
+	if Border then
+		Border:Hide()
+		Border = T.dummy
+	end
  
 	Count:ClearAllPoints()
 	Count:Point(unpack(T.Fonts.aCount.setoffsets))
 	Count:SetFont(unpack(T.Fonts.aCount.setfont))
  
-	Btname:SetText("")
-	Btname:Kill()
+	if Btname then
+		Btname:SetText("")
+		Btname:Kill()
+	end
  
 	if not _G[name.."Panel"] then
 		-- resize all button not matching T.buttonsize
@@ -69,16 +78,20 @@ local function style(self)
 		normal:Point("TOPLEFT")
 		normal:Point("BOTTOMRIGHT")
 	end
+	
+	if BtnBG then
+		BtnBG:Kill()
+	end
 end
 
 local function stylesmallbutton(normal, button, icon, name, pet)
-	local Flash	 = _G[name.."Flash"]
 	button:SetNormalTexture("")
 	
-	-- another bug fix reported by Affli in t12 beta
+	-- bug fix when moving spell from bar
 	button.SetNormalTexture = T.dummy
 	
-	Flash:SetTexture(media.buttonhover)
+	local Flash	 = _G[name.."Flash"]
+	Flash:SetTexture("")
 	
 	if not _G[name.."Panel"] then
 		if pet then
@@ -96,11 +109,11 @@ local function stylesmallbutton(normal, button, icon, name, pet)
 			local shine = _G[name.."Shine"]
 			shine:Size(T.petbuttonsize, T.petbuttonsize)
 		else
-			button:Width(T.stancebuttonsize)
-			button:Height(T.stancebuttonsize)
+			button:Width(T.buttonsize)
+			button:Height(T.buttonsize)
 
 			local panel = CreateFrame("Frame", name.."Panel", button)
-			panel:CreatePanel("Default", T.stancebuttonsize, T.stancebuttonsize, "CENTER", button, "CENTER", 0, 0)
+			panel:CreatePanel("Default", T.buttonsize, T.buttonsize, "CENTER", button, "CENTER", 0, 0)
 			panel:SetFrameStrata(button:GetFrameStrata())
 			panel:SetFrameLevel(button:GetFrameLevel() - 1)
 		end
@@ -316,6 +329,8 @@ SpellFlyout:HookScript("OnShow", SetupFlyoutButton)
  
 --Hide the Mouseover texture and attempt to find the ammount of buttons to be skinned
 local function styleflyout(self)
+	if not self.FlyoutArrow then return end
+
 	self.FlyoutBorder:SetAlpha(0)
 	self.FlyoutBorderShadow:SetAlpha(0)
 	
@@ -432,7 +447,7 @@ local function StyleTotemFlyout(flyout)
 		icon:Point("TOPLEFT",button,"TOPLEFT",2,-2)
 		icon:Point("BOTTOMRIGHT",button,"BOTTOMRIGHT",-2,2)			
 		if not InCombatLockdown() then
-			button:Size(T.stancebuttonsize)
+			button:Size(T.buttonsize)
 			button:ClearAllPoints()
 			button:Point("BOTTOM",last,"TOP",0,4)
 		end			
@@ -504,7 +519,7 @@ local function StyleTotemSlotButton(button, index)
 	button.background:ClearAllPoints()
 	button.background:Point("TOPLEFT",button,"TOPLEFT",2,-2)
 	button.background:Point("BOTTOMRIGHT",button,"BOTTOMRIGHT",-2,2)
-	if not InCombatLockdown() then button:Size(T.stancebuttonsize) end
+	if not InCombatLockdown() then button:Size(T.buttonsize) end
 	button:SetBackdropBorderColor(unpack(bordercolors[((index-1) % 4) + 1]))
 	button:CreateShadow("Default")
 	button:StyleButton()
@@ -542,7 +557,7 @@ local function StyleTotemSpellButton(button, index)
 	icon:Point("BOTTOMRIGHT",button,"BOTTOMRIGHT",-2,2)
 	button:SetTemplate("Default")
 	button:GetNormalTexture():SetTexture(nil)
-	if not InCombatLockdown() then button:Size(T.stancebuttonsize) end
+	if not InCombatLockdown() then button:Size(T.buttonsize) end
 	_G[button:GetName().."Highlight"]:SetTexture(nil)
 	_G[button:GetName().."NormalTexture"]:SetTexture(nil)
 	button:CreateShadow("Default")

@@ -1,5 +1,6 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">	
 	<Script file="commands.lua"/>
+	<Script file="combo.lua"/>
 	<Script file="invite.lua"/>
 	<Script file="damage.lua"/>
 	<Script file="altpowerbar.lua"/>
@@ -20,4 +21,5 @@
 	
 	<Script file="raidutility.lua"/>
 	<Script file="micromenu.lua"/>
+	<Script file="dropdownlist.lua"/>
 </Ui>

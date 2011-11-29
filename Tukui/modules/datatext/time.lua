@@ -15,12 +15,13 @@ local lockoutColorExtended, lockoutColorNormal = { r=0.3,g=1,b=0.3 }, { r=1,g=1,
 local difficultyInfo = { "N", "N", "H", "H" }
 local curHr, curMin, curAmPm
 
-local Stat = CreateFrame("Frame")
+local Stat = CreateFrame("Frame", "TukuiStatTime")
 Stat:EnableMouse(true)
 Stat:SetFrameStrata("MEDIUM")
 Stat:SetFrameLevel(3)
+Stat.Option = C.datatext.wowtime
 
-local Text = Stat:CreateFontString(nil, "OVERLAY")
+local Text = Stat:CreateFontString("TukuiStatTimeText", "OVERLAY")
 Text:SetFont(unpack(T.Fonts.dFont.setfont))
 T.PP(C["datatext"].wowtime, Text)
 
@@ -107,12 +108,6 @@ local function Update(self, t)
 	
 	local Hr, Min, AmPm = CalculateTimeValues()
 	
-	if CalendarGetNumPendingInvites() > 0 then
-		Text:SetTextColor(1, 0, 0)
-	else
-		Text:SetTextColor(1, 1, 1)
-	end
-	
 	-- no update quick exit
 	if (Hr == curHr and Min == curMin and AmPm == curAmPm) then
 		int = 2
@@ -192,8 +187,6 @@ Stat:SetScript("OnEnter", function(self)
 end)
 
 Stat:SetScript("OnLeave", function() GameTooltip:Hide() end)
-Stat:RegisterEvent("CALENDAR_UPDATE_PENDING_INVITES")
-Stat:RegisterEvent("PLAYER_ENTERING_WORLD")
 Stat:SetScript("OnUpdate", Update)
 Stat:RegisterEvent("UPDATE_INSTANCE_INFO")
 Stat:SetScript("OnMouseDown", function(self, btn)

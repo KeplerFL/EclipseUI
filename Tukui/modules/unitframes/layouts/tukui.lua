@@ -22,7 +22,7 @@ end
 
 local function Shared(self, unit)
 	-- set our own colors
-	self.colors = T.oUF_colors
+	self.colors = T.UnitColor
 	
 	-- register click
 	self:RegisterForClicks("AnyUp")
@@ -303,10 +303,11 @@ local function Shared(self, unit)
 			if T.myclass == "DRUID" then
 				ufbg:Point("TOPLEFT", health, -2, 10)
 				ufbg:Point("BOTTOMRIGHT", power, 2, -2)
-				CreateFrame("Frame"):SetScript("OnUpdate", function() T.UpdateDruidMana(self) end)
-				local DruidMana = T.SetFontString(health, unpack(T.Fonts.uPower.setfont))
-				DruidMana:SetTextColor(1, 0.49, 0.04)
-				self.DruidManaText = DruidMana
+				local DruidManaUpdate = CreateFrame("Frame")
+				DruidManaUpdate:SetScript("OnUpdate", function() T.UpdateDruidManaText(self) end)
+				local DruidManaText = T.SetFontString(health, unpack(T.Fonts.uPower.setfont))
+				DruidManaText:SetTextColor(1, 0.49, 0.04)
+				self.DruidManaText = DruidManaText
 
 				local DruidManaBackground = CreateFrame("Frame", nil, self)
 				DruidManaBackground:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 3)
@@ -573,22 +574,40 @@ local function Shared(self, unit)
 
 			self:Tag(Name, '[Tukui:getnamecolor][Tukui:name_medium] [Tukui:diffcolor][level] [shortclassification]')
 			self.Name = Name
+			
+			-- standard combo points on target if classbar is disabled
+			if C["unitframes"].classiccombo then
+				local CPoints = {}
+				CPoints.unit = PlayerFrame.unit
+				for i = 1, 5 do
+					CPoints[i] = self:CreateTexture(nil, "OVERLAY")
+					CPoints[i]:Height(12)
+					CPoints[i]:Width(12)
+					CPoints[i]:SetTexture(bubbleTex)
+					if i == 1 then
+						if T.lowversion then
+							CPoints[i]:Point("TOPRIGHT", 15, 1.5)
+						else
+							CPoints[i]:Point("TOPLEFT", -15, 1.5)
+						end
+						CPoints[i]:SetVertexColor(0.69, 0.31, 0.31)
+					else
+						CPoints[i]:Point("TOP", CPoints[i-1], "BOTTOM", 1)
+					end
+				end
+				CPoints[2]:SetVertexColor(0.69, 0.31, 0.31)
+				CPoints[3]:SetVertexColor(0.65, 0.63, 0.35)
+				CPoints[4]:SetVertexColor(0.65, 0.63, 0.35)
+				CPoints[5]:SetVertexColor(0.33, 0.59, 0.33)
+				self.CPoints = CPoints
+ 			end
 		end
 
-		if (unit == "target" and C["unitframes"].targetauras) or (unit == "player" and C["unitframes"].playerauras) then
+		if (unit == "target" and C["unitframes"].targetauras) then
 			local buffs = CreateFrame("Frame", nil, self)
 			local debuffs = CreateFrame("Frame", nil, self)
 			
-			if (T.myclass == "SHAMAN" and C["unitframes"].shaman) or
-				(T.myclass == "DEATHKNIGHT" and C["unitframes"].deathknight) or
-				(T.myclass == "WARLOCK" and C["unitframes"].warlock) or
-				(T.myclass == "PALADIN" and C["unitframes"].paladin) or
-				(T.myclass == "DRUID" and C["unitframes"].druid) and 
-				(C["unitframes"].classbar and C["unitframes"].playerauras and unit == "player") then
-				buffs:SetPoint("BOTTOMLEFT", ufbg, "TOPLEFT", 0, 7)
-			else
-				buffs:SetPoint("BOTTOMLEFT", ufbg, "TOPLEFT", 0, 3)
-			end
+			buffs:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 3)
 			
 			local bs = 26
 			local bh = 0
@@ -1363,8 +1382,13 @@ do
 	UnitPopupMenus["PET"] = { "PET_PAPERDOLL", "PET_RENAME", "PET_ABANDON", "PET_DISMISS", "CANCEL" };
 	UnitPopupMenus["PARTY"] = { "MUTE", "UNMUTE", "PARTY_SILENCE", "PARTY_UNSILENCE", "RAID_SILENCE", "RAID_UNSILENCE", "BATTLEGROUND_SILENCE", "BATTLEGROUND_UNSILENCE", "WHISPER", "PROMOTE", "PROMOTE_GUIDE", "LOOT_PROMOTE", "VOTE_TO_KICK", "UNINVITE", "INSPECT", "ACHIEVEMENTS", "TRADE", "FOLLOW", "DUEL", "RAID_TARGET_ICON", "SELECT_ROLE", "PVP_REPORT_AFK", "RAF_SUMMON", "RAF_GRANT_LEVEL", "CANCEL" }
 	UnitPopupMenus["PLAYER"] = { "WHISPER", "INSPECT", "INVITE", "ACHIEVEMENTS", "TRADE", "FOLLOW", "DUEL", "RAID_TARGET_ICON", "RAF_SUMMON", "RAF_GRANT_LEVEL", "CANCEL" }
-	UnitPopupMenus["RAID_PLAYER"] = { "MUTE", "UNMUTE", "RAID_SILENCE", "RAID_UNSILENCE", "BATTLEGROUND_SILENCE", "BATTLEGROUND_UNSILENCE", "WHISPER", "INSPECT", "ACHIEVEMENTS", "TRADE", "FOLLOW", "DUEL", "RAID_TARGET_ICON", "SELECT_ROLE", "RAID_LEADER", "RAID_PROMOTE", "RAID_DEMOTE", "LOOT_PROMOTE", "RAID_REMOVE", "PVP_REPORT_AFK", "RAF_SUMMON", "RAF_GRANT_LEVEL", "CANCEL" };
-	UnitPopupMenus["RAID"] = { "MUTE", "UNMUTE", "RAID_SILENCE", "RAID_UNSILENCE", "BATTLEGROUND_SILENCE", "BATTLEGROUND_UNSILENCE", "RAID_LEADER", "RAID_PROMOTE", "RAID_MAINTANK", "RAID_MAINASSIST", "RAID_TARGET_ICON", "LOOT_PROMOTE", "RAID_DEMOTE", "RAID_REMOVE", "PVP_REPORT_AFK", "CANCEL" };
+	if T.toc < 40300 then
+		UnitPopupMenus["RAID_PLAYER"] = {"MUTE", "UNMUTE", "RAID_SILENCE", "RAID_UNSILENCE", "BATTLEGROUND_SILENCE", "BATTLEGROUND_UNSILENCE", "WHISPER", "INSPECT", "ACHIEVEMENTS", "TRADE", "FOLLOW", "DUEL", "RAID_TARGET_ICON", "SELECT_ROLE", "RAID_LEADER", "RAID_PROMOTE", "RAID_DEMOTE", "LOOT_PROMOTE", "RAID_REMOVE", "PVP_REPORT_AFK", "RAF_SUMMON", "RAF_GRANT_LEVEL", "CANCEL"}
+		UnitPopupMenus["RAID"] = {"MUTE", "UNMUTE", "RAID_SILENCE", "RAID_UNSILENCE", "BATTLEGROUND_SILENCE", "BATTLEGROUND_UNSILENCE", "RAID_LEADER", "RAID_PROMOTE", "RAID_MAINTANK", "RAID_MAINASSIST", "LOOT_PROMOTE", "RAID_DEMOTE", "RAID_REMOVE", "PVP_REPORT_AFK", "CANCEL"}
+	else
+		UnitPopupMenus["RAID_PLAYER"] = {"MUTE", "UNMUTE", "RAID_SILENCE", "RAID_UNSILENCE", "BATTLEGROUND_SILENCE", "BATTLEGROUND_UNSILENCE", "WHISPER", "INSPECT", "ACHIEVEMENTS", "TRADE", "FOLLOW", "DUEL", "RAID_TARGET_ICON", "SELECT_ROLE", "RAID_LEADER", "RAID_PROMOTE", "RAID_DEMOTE", "LOOT_PROMOTE", "VOTE_TO_KICK", "RAID_REMOVE", "PVP_REPORT_AFK", "RAF_SUMMON", "RAF_GRANT_LEVEL", "CANCEL"}
+		UnitPopupMenus["RAID"] = {"MUTE", "UNMUTE", "RAID_SILENCE", "RAID_UNSILENCE", "BATTLEGROUND_SILENCE", "BATTLEGROUND_UNSILENCE", "RAID_LEADER", "RAID_PROMOTE", "RAID_MAINTANK", "RAID_MAINASSIST", "LOOT_PROMOTE", "RAID_DEMOTE", "VOTE_TO_KICK", "RAID_REMOVE", "PVP_REPORT_AFK", "CANCEL"}
+	end
 	UnitPopupMenus["VEHICLE"] = { "RAID_TARGET_ICON", "VEHICLE_LEAVE", "CANCEL" }
 	UnitPopupMenus["TARGET"] = { "RAID_TARGET_ICON", "CANCEL" }
 	UnitPopupMenus["ARENAENEMY"] = { "CANCEL" }
