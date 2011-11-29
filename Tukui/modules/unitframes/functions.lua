@@ -907,6 +907,38 @@ if C["unitframes"].raidunitdebuffwatch == true then
 				100675,	-- Dreadflame
 			--Trash
 			99532, -- Melt Armor
+			
+		-- Dragon Soul
+			-- Morchok
+				103541,	-- Safe
+				103536,	-- Warning
+				103534,	-- Danger
+				108570,	-- Black Blood of the Earth
+
+			-- Warlord Zon'ozz
+				103434,	-- Disrupting Shadows
+
+			-- Yor'sahj the Unsleeping
+				105171,	-- Deep Corruption
+
+			-- Hagara the Stormbinder
+				105465,	-- Lighting Storm
+				104451,	-- Ice Tomb
+				109325,	-- Frostflake
+				105289,	-- Shattered Ice
+				105285,	-- Target
+
+			-- Ultraxion
+				110079,	-- Fading Light
+				109075,	-- Fading Light
+
+			-- Warmaster Blackhorn
+
+			-- Spine of Deathwing
+				105479,	-- Searing Plasma
+				105490,	-- Fiery Grip
+
+			-- Madness of Deathwing
 		}
 		
 		T.ReverseTimer = {
