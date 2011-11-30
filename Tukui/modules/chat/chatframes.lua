@@ -178,12 +178,6 @@ T.SetDefaultChatPosition = function()
 		local chatFrameId = frame:GetID()
 		local chatName = FCF_GetChatWindowInfo(chatFrameId)
 
-		-- set the size of chat frames
-		frame:Size(T.InfoLeftRightWidth + 1, 111)
-
-		-- tell wow that we are using new size
-		SetChatWindowSavedDimensions(chatFrameId, T.Scale(T.InfoLeftRightWidth + 1), T.Scale(111))
-
 		-- move general bottom left or Loot (if found) on right
 		if i == 1 then
 			frame:ClearAllPoints()
@@ -196,9 +190,6 @@ T.SetDefaultChatPosition = function()
 				frame:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 4)
 			end
 		end
-
-		-- save new default position and dimension
-		FCF_SavePositionAndDimensions(frame)
 
 		-- lock them if unlocked
 		if not frame.isLocked then FCF_SetLocked(frame, 1) end
