@@ -101,8 +101,11 @@ local function LoadSkin()
 	end)
 	
 	if T.toc < 40300 then
-		LFDDungeonReadyDialog:SetTemplate("Default")
-		LFDDungeonReadyDialog:CreateShadow("Default")
+		LFGDungeonReadyPopup:SetTemplate("Default")
+		LFGDungeonReadyPopup:CreateShadow("Default")
+		LFGDungeonReadyDialog.SetBackdrop = T.dummy
+		LFGDungeonReadyDialog.filigree:SetAlpha(0)
+		LFGDungeonReadyDialog.bottomArt:SetAlpha(0)
 		T.SkinCloseButton(LFDDungeonReadyDialogCloseButton,LFDDungeonReadyDialog)
 		T.SkinButton(LFDDungeonReadyDialogEnterDungeonButton)
 		T.SkinButton(LFDDungeonReadyDialogLeaveQueueButton)
