@@ -302,6 +302,9 @@ oUF:Factory(function(self)
 	if C.unitframes.gridvertical then
 		point = "TOP"
 		columnAnchorPoint = "LEFT"
+	else
+		point = "LEFT"
+		columnAnchorPoint = "BOTTOM"
 	end
 
 	local raid = self:SpawnHeader("TukuiHealRaid", nil, "raid",
