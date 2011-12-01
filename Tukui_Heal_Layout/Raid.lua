@@ -88,6 +88,7 @@ local function Shared(self, unit)
 		health.colorReaction = true
 		
 		power.colorPower = true
+		power.PostUpdate = T.PreUpdatePower
 	end
 	
 	-- mouseover highlight, credits to Hydra

@@ -90,6 +90,7 @@ local function Shared(self, unit)
 			power.colorClass = true
 		else
 			power.colorPower = true		
+			power.PostUpdate = T.PreUpdatePower
 		end
 	end
 	
