@@ -1345,9 +1345,6 @@ if C["unitframes"].mainassist then
 	end
 end
 
--- this is just a fake party to hide Blizzard frame if no Tukui raid layout are loaded.
-local party = oUF:SpawnHeader("oUF_noParty", nil, "party", "showParty", true)
-
 ------------------------------------------------------------------------
 -- Right-Click on unit frames menu. 
 -- Doing this to remove SET_FOCUS eveywhere.
