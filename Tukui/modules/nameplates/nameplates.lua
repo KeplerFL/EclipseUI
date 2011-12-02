@@ -443,7 +443,7 @@ local function UpdateThreat(frame, elapsed)
 			local r, g, b = frame.region:GetVertexColor()
 			if g + b == 0 then
 				--Have Threat
-				if T.Role == "Tank" then
+				if Role == "Tank" then
 					frame.hp:SetStatusBarColor(goodR, goodG, goodB)
 					frame.hp.hpbg:SetTexture(goodR, goodG, goodB, 0.25)
 				else
