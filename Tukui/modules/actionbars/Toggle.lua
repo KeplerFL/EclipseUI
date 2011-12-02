@@ -78,8 +78,6 @@ local RightBars = function()
 			if not C["chat"].background then
 				TukuiPetBar:Point("RIGHT", TukuiRightBar, "LEFT", -3, 0)
 				
-				Toggle[2]:ClearAllPoints()
-				Toggle[2]:Show()
 				Toggle[3]:ClearAllPoints()
 				if HasPetUI() then
 					Toggle[3]:Size(T.buttonsize / 2, TukuiPetBar:GetHeight())
@@ -88,8 +86,6 @@ local RightBars = function()
 					Toggle[3]:Size(T.buttonsize / 2, TukuiRightBar:GetHeight())
 					Toggle[3]:SetPoint("RIGHT", TukuiRightBar, "LEFT", -3, 0)
 				end
-				--Toggle[2]:SetPoint("TOP", TukuiRightBar, "BOTTOM", 0, -3)
-				--Toggle[3]:SetPoint("TOP", Toggle[2], "BOTTOM", 0, -3)
 			else
 				TukuiPetBar:Point("BOTTOMRIGHT", TukuiRightBar, "BOTTOMLEFT", -3, 0)
 			end
@@ -102,8 +98,6 @@ local RightBars = function()
 			if not C["chat"].background then
 				TukuiPetBar:Point("RIGHT", UIParent, "RIGHT", -8, 0)
 				
-				Toggle[2]:ClearAllPoints()
-				Toggle[2]:SetPoint("BOTTOMRIGHT", UIParent, "TOPLEFT", -5, -5)
 				Toggle[3]:ClearAllPoints()
 				if HasPetUI() then
 					Toggle[3]:Size(T.buttonsize / 2, TukuiPetBar:GetHeight())
@@ -330,7 +324,11 @@ for i = 1, 6 do
 			Toggle[i]:CreatePanel("Default", T.buttonsize, TukuiTabsRight:GetHeight() - 6, "RIGHT", TukuiTabsRight, "RIGHT", -3, 0)
 			Toggle[i]:SetFrameLevel(TukuiTabsRight:GetFrameLevel() + 1)
 		else
-			Toggle[i]:CreatePanel("Default", TukuiRightBar:GetWidth(), T.buttonsize / 2, "TOP", TukuiRightBar, "BOTTOM", 0, -3)
+			if C["actionbar"].vertical_rightbars then
+				Toggle[i]:CreatePanel("Default", TukuiRightBar:GetWidth(), T.buttonsize / 2, "BOTTOMRIGHT", UIParent, "TOPLEFT", -5, -5)
+			else
+				Toggle[i]:CreatePanel("Default", TukuiRightBar:GetWidth(), T.buttonsize / 2, "TOP", TukuiRightBar, "BOTTOM", 0, -3)
+			end
 		end
 		
 		if C["actionbar"].vertical_rightbars then
