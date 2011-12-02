@@ -63,7 +63,7 @@ C["media"] = {
 	["warning"] = [[Interface\AddOns\Tukui\media\sounds\warning.mp3]],
 	
 	-- custom fonts
-	["pixel_font"] = [[Interface\Addons\Tukui\media\fonts\visitor2.ttf]],
+	["pixelfont"] = [[Interface\Addons\Tukui\media\fonts\visitor2.ttf]],
 	["caith"] = [[Interface\Addons\Tukui\media\fonts\caith.ttf]],
 }
 
