@@ -1,4 +1,4 @@
-local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
+T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
 
 if not C["actionbar"].enable then return end
 
@@ -77,6 +77,19 @@ local RightBars = function()
 		if C["actionbar"].vertical_rightbars == true then
 			if not C["chat"].background then
 				TukuiPetBar:Point("RIGHT", TukuiRightBar, "LEFT", -3, 0)
+				
+				Toggle[2]:ClearAllPoints()
+				Toggle[2]:Show()
+				Toggle[3]:ClearAllPoints()
+				if HasPetUI() then
+					Toggle[3]:Size(T.buttonsize / 2, TukuiPetBar:GetHeight())
+					Toggle[3]:SetPoint("RIGHT", TukuiPetBar, "LEFT", -3, 0)
+				else
+					Toggle[3]:Size(T.buttonsize / 2, TukuiRightBar:GetHeight())
+					Toggle[3]:SetPoint("RIGHT", TukuiRightBar, "LEFT", -3, 0)
+				end
+				--Toggle[2]:SetPoint("TOP", TukuiRightBar, "BOTTOM", 0, -3)
+				--Toggle[3]:SetPoint("TOP", Toggle[2], "BOTTOM", 0, -3)
 			else
 				TukuiPetBar:Point("BOTTOMRIGHT", TukuiRightBar, "BOTTOMLEFT", -3, 0)
 			end
@@ -85,8 +98,38 @@ local RightBars = function()
 		end
 	else
 		TukuiPetBar:ClearAllPoints()
-		if not C["chat"].background then
-			TukuiPetBar:Point("RIGHT", UIParent, "RIGHT", -8, 0)
+		if C["actionbar"].vertical_rightbars == true then
+			if not C["chat"].background then
+				TukuiPetBar:Point("RIGHT", UIParent, "RIGHT", -8, 0)
+				
+				Toggle[2]:ClearAllPoints()
+				Toggle[2]:SetPoint("BOTTOMRIGHT", UIParent, "TOPLEFT", -5, -5)
+				Toggle[3]:ClearAllPoints()
+				if HasPetUI() then
+					Toggle[3]:Size(T.buttonsize / 2, TukuiPetBar:GetHeight())
+					Toggle[3]:SetPoint("RIGHT", TukuiPetBar, "LEFT", -3, 0)
+				else
+					Toggle[3]:Size(T.buttonsize / 2, TukuiRightBar:GetHeight())
+					Toggle[3]:SetPoint("RIGHT", UIParent, "RIGHT", -3, 0)
+				end
+				
+				local OnPetShow = function(self, event)
+						if HasPetUI() then
+							Toggle[3]:Size(T.buttonsize / 2, TukuiPetBar:GetHeight())
+							Toggle[3]:SetPoint("RIGHT", TukuiPetBar, "LEFT", -3, 0)
+						else
+							Toggle[3]:Size(T.buttonsize / 2, TukuiRightBar:GetHeight())
+							Toggle[3]:SetPoint("RIGHT", UIParent, "RIGHT", -3, 0)
+						end
+				end
+
+				local RegisterPet = CreateFrame("Frame")
+				RegisterPet:RegisterEvent("UNIT_PET")
+				RegisterPet:RegisterEvent("PLAYER_ENTERING_WORLD")
+				RegisterPet:SetScript("OnEvent", OnPetShow)
+			else
+				TukuiPetBar:Point("BOTTOMRIGHT", TukuiChatRight, "TOPRIGHT", 0, 3)
+			end
 		else
 			TukuiPetBar:Point("BOTTOMRIGHT", TukuiChatRight, "TOPRIGHT", 0, 3)
 		end
@@ -154,11 +197,12 @@ local RightBars = function()
 	elseif TukuiSaved.rightbars == 0 then
 		TukuiRightBar:Hide()
 		TukuiBar4:Hide()
-
+		
 		if TukuiSaved.splitbars ~= true then
 			MultiBarLeft:SetParent(TukuiBar3)
 			TukuiBar3:Hide()
 		end			
+		
 	end
 end
 
@@ -282,8 +326,12 @@ for i = 1, 6 do
 		end)
 		Toggle[i]:SetScript("OnEvent", MainBars)
 	elseif i == 2 then
-		Toggle[i]:CreatePanel("Default", T.buttonsize, TukuiTabsRight:GetHeight() - 6, "RIGHT", TukuiTabsRight, "RIGHT", -3, 0)
-		Toggle[i]:SetFrameLevel(TukuiTabsRight:GetFrameLevel() + 1)
+		if C.chat.background then
+			Toggle[i]:CreatePanel("Default", T.buttonsize, TukuiTabsRight:GetHeight() - 6, "RIGHT", TukuiTabsRight, "RIGHT", -3, 0)
+			Toggle[i]:SetFrameLevel(TukuiTabsRight:GetFrameLevel() + 1)
+		else
+			Toggle[i]:CreatePanel("Default", TukuiRightBar:GetWidth(), T.buttonsize / 2, "TOP", TukuiRightBar, "BOTTOM", 0, -3)
+		end
 		
 		if C["actionbar"].vertical_rightbars then
 			ToggleText(i, ">", false, true)
@@ -309,8 +357,12 @@ for i = 1, 6 do
 		end)
 		Toggle[i]:SetScript("OnEvent", RightBars)	
 	elseif i == 3 then
-		Toggle[i]:CreatePanel("Default", Toggle[i-1]:GetWidth(), Toggle[i-1]:GetHeight(), "TOPRIGHT", Toggle[i-1], "TOPLEFT", -3, 0)
-		Toggle[i]:SetFrameLevel(Toggle[i-1]:GetFrameLevel())
+		if C.chat.background then
+			Toggle[i]:CreatePanel("Default", Toggle[i-1]:GetWidth(), Toggle[i-1]:GetHeight(), "TOPRIGHT", Toggle[i-1], "TOPLEFT", -3, 0)
+			Toggle[i]:SetFrameLevel(Toggle[i-1]:GetFrameLevel())
+		else
+			Toggle[i]:CreatePanel("Default", TukuiRightBar:GetWidth(), T.buttonsize / 2, "TOP", Toggle[i-1], "BOTTOM", 0, -3)
+		end
 		
 		if C["actionbar"].vertical_rightbars then
 			ToggleText(i, "<", true, false)

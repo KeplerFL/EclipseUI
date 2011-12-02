@@ -61,6 +61,9 @@ if C["actionbar"].enable then
 	if not C["chat"].background then
 		TukuiRightBar:ClearAllPoints()
 		TukuiRightBar:Point("RIGHT", UIParent, "RIGHT", -8, 0)
+		if not C["actionbar"].vertical_rightbars then
+			C["actionbar"].vertical_rightbars = true
+		end
 	end
 	
 	local TukuiPetBar = CreateFrame("Frame", "TukuiPetBar", UIParent)
