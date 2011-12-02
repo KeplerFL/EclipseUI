@@ -506,7 +506,7 @@ function T.SkinCloseButton(f, point)
 	f:SetPushedTexture("")
 	f:SetHighlightTexture("")
 	f.t = f:CreateFontString(nil, "OVERLAY")
-	f.t:SetFont(C.media.pixel_font, 12, "MONOCHROME")
+	f.t:SetFont(C.media.pixelfont, 12, "MONOCHROME")
 	f.t:SetPoint("CENTER", 0, 1)
 	f.t:SetText("X")
 end

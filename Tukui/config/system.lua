@@ -1,6 +1,6 @@
 ﻿local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
 
-local font, caith, pixel = C["media"].font, C["media"].caith, C["media"].pixel_font
+local font, caith, pixel = C["media"].font, C["media"].caith, C.media.pixelfont
 local blank, norm, empath = C["media"].blank, C["media"].normTex, C["media"].empath
 
 -- font template used for fallback values if incorrect or no values are entered

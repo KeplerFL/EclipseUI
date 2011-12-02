@@ -280,12 +280,12 @@ local function Shared(self, unit)
 		--]]
 		
 		RaidDebuffs.count = RaidDebuffs:CreateFontString(nil, 'OVERLAY')
-		RaidDebuffs.count:SetFont(C["media"].pixel_font, 12, "MONOCHROMEOUTLINE")
+		RaidDebuffs.count:SetFont(C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
 		RaidDebuffs.count:SetPoint('BOTTOMRIGHT', RaidDebuffs, 'BOTTOMRIGHT', 0, 2)
 		RaidDebuffs.count:SetTextColor(1, .9, 0)
 		
 		if C["unitframes"].raiddebuffstime == true then
-			RaidDebuffs:FontString('time', C["media"].pixel_font, 12, "MONOCHROMEOUTLINE")
+			RaidDebuffs:FontString('time', C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
 			RaidDebuffs.time:SetPoint('CENTER', 2, 0)
 			RaidDebuffs.time:SetTextColor(1, .9, 0)
 		end

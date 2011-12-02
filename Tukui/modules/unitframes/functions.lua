@@ -720,7 +720,7 @@ T.createAuraWatch = function(self, unit)
 			end
 
 			local count = icon:CreateFontString(nil, "OVERLAY")
-			count:SetFont(C["media"].pixel_font, 12, "MONOCHROMEOUTLINE")
+			count:SetFont(C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
 			count:SetPoint("CENTER", unpack(T.countOffsets[spell[2]]))
 			icon.count = count
 

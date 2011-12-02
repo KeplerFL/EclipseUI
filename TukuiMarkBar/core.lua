@@ -2,7 +2,7 @@
 local T, C, L = unpack(Tukui)
 
 local Options = {
-	font = C.media.pixel_font or C.media.font,
+	font = C.media.pixelfont or C.media.font,
 	fontsize = 12,
 	buttonwidth = T.Scale(30),    		
 	buttonheight = T.Scale(30),   		
@@ -115,7 +115,7 @@ if Options.datatext == false then
 	CloseButton:SetScript("OnEnter", ButtonEnter)
 	CloseButton:SetScript("OnLeave", ButtonLeave)
 	
-	local CloseButtonText = T.SetFontString(CloseButton, C["media"].pixel_font, 12, "MONOCHROME")
+	local CloseButtonText = T.SetFontString(CloseButton, C.media.pixelfont, 12, "MONOCHROME")
 	CloseButtonText:SetText("X")
 	CloseButtonText:SetPoint("CENTER", CloseButton, "CENTER")
 
