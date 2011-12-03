@@ -4,6 +4,8 @@ local T, C, L = unpack(select(2, ...))
 local parent = TukuiTarget
 local stick
 
+if T.myclass ~= "ROGUE" and T.myclass ~= "DRUID" then return end
+
 if T.myclass == "ROGUE" and C.unitframes.movecombobar then
 	parent = TukuiPlayer
 	stick = true
