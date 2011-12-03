@@ -79,12 +79,15 @@ local function OnUpdate(self)
 end
 
 -- create the bar
-local TukuiCombo = CreateFrame("Frame", "TukuiCombo", parent)
-TukuiCombo:Point("BOTTOMLEFT", parent, "TOPLEFT", 0, 1)
-TukuiCombo:SetWidth(parent:GetWidth())
-TukuiCombo:SetHeight(8)
-TukuiCombo:SetTemplate("Default")
-TukuiCombo:SetBackdropBorderColor(unpack(C.media.backdropcolor))
+local TukuiCombo = CreateFrame("Frame", nil, parent)
+TukuiCombo:CreatePanel("Default", parent:GetWidth() - 20, 9, "LEFT", parent.Health, "TOPLEFT", 10, 1)
+if T.lowversion then
+	TukuiCombo:Width(150)
+end
+TukuiCombo:SetFrameLevel(parent:GetFrameLevel() + 2)
+TukuiCombo:SetFrameStrata(parent:GetFrameStrata())
+TukuiCombo.shadow:SetFrameStrata("BACKGROUND")
+
 TukuiCombo:RegisterEvent("PLAYER_ENTERING_WORLD")
 TukuiCombo:RegisterEvent("UNIT_COMBO_POINTS")
 TukuiCombo:RegisterEvent("PLAYER_TARGET_CHANGED")
@@ -94,18 +97,24 @@ TukuiCombo:Show()
 -- create combos
 for i = 1, 5 do
 	TukuiCombo[i] = CreateFrame("StatusBar", "TukuiComboBar"..i, TukuiCombo)
-	TukuiCombo[i]:Height(8)
-	TukuiCombo[i]:SetStatusBarTexture(C.media.blank)
+	TukuiCombo[i]:Height(TukuiCombo:GetHeight() - 4)
+	TukuiCombo[i]:SetStatusBarTexture(unpack(T.Textures.statusBars))
 	TukuiCombo[i]:GetStatusBarTexture():SetHorizTile(false)
-	TukuiCombo[i]:SetFrameLevel(TukuiCombo:GetFrameLevel() + 1)
+	TukuiCombo[i]:SetFrameLevel(TukuiCombo:GetFrameLevel())
+	TukuiCombo[i]:SetFrameStrata(TukuiCombo:GetFrameStrata())
+	TukuiCombo[i].bg = TukuiCombo[i]:CreateTexture(nil, 'BORDER')
+	TukuiCombo[i].bg:SetAllPoints(TukuiCombo[i])
+	TukuiCombo[i].bg:SetTexture(unpack(T.Textures.statusBars))					
+	TukuiCombo[i].bg:SetAlpha(.15)
 	TukuiCombo[i]:SetStatusBarColor(unpack(Colors[i]))
+	TukuiCombo[i].bg:SetTexture(unpack(Colors[i]))
 	
 	if i == 1 then
-		TukuiCombo[i]:Point("LEFT", TukuiCombo, "LEFT", 0, 0)
-		TukuiCombo[i]:Width(parent:GetWidth() / 5)
+		TukuiCombo[i]:Point("TOPLEFT", TukuiCombo, 2, -2)
+		TukuiCombo[i]:Width(TukuiCombo:GetWidth() / 5)
 	else
 		TukuiCombo[i]:Point("LEFT", TukuiCombo[i-1], "RIGHT", 1, 0)
-		TukuiCombo[i]:Width(parent:GetWidth() / 5 - 1)
+		TukuiCombo[i]:Width(TukuiCombo:GetWidth() / 5 - 2)
 	end
 	
 	if stick then
