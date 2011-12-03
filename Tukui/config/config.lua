@@ -29,11 +29,13 @@ C["unitframes"] = {
 	["unitcastbar"] = true,                             -- enable tukui castbar
 	["cblatency"] = true,                              	-- enable castbar latency
 	["cbicons"] = true,                                 -- enable icons on castbar
-	["classiccombo"] = true,                           -- display classic combo points (from Tukui 13 or less)
-	["movecombobar"] = false,                            -- display the new combo bar (t14+) from target to player (ROGUE ONLY)
 	["cbclasscolor"] = false,
 		-- if cbclasscolor == false then it uses this color
 		["cbcustomcolor"] = { .15, .15, .15 },
+		
+	-- Combo Bar
+	["classiccombo"] = false,                           -- display classic combo points (from Tukui 13 or less)
+	["movecombobar"] = false,                            -- display the new combo bar (t14+) from target to player (ROGUE ONLY)
 		
 	-- Auras
 	["auratimer"] = true,                               -- enable timers on buffs/debuffs

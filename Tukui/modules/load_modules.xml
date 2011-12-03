@@ -7,8 +7,8 @@
 	<Include file="chat\load_chat.xml"/>
 	<Include file="datatext\load_datatext.xml"/>
 	<Include file="loot\load_loot.xml"/>
-	<Include file="misc\load_misc.xml"/>
 	<Include file="unitframes\load_unitframes.xml"/>
+	<Include file="misc\load_misc.xml"/>
 
 	<Script file="bags\bags.lua"/>
 	<Include file="buffs\template.xml"/>
@@ -16,8 +16,8 @@
 	<Script file="buffs\header.lua"/>
 	<Script file="tooltip\tooltip.lua"/>
 	<Script file="tooltip\tooltipids.lua"/>
+	<Script file="tooltip\tooltipilvl.lua"/>
 	<Script file="nameplates\nameplates.lua"/>
 	
-	<Script file="tooltip\tooltipilvl.lua"/>
 	<Include file="skins\load_skins.xml"/>
 </Ui>

@@ -95,7 +95,7 @@ TukuiCombo:Show()
 for i = 1, 5 do
 	TukuiCombo[i] = CreateFrame("StatusBar", "TukuiComboBar"..i, TukuiCombo)
 	TukuiCombo[i]:Height(8)
-	TukuiCombo[i]:SetStatusBarTexture(C.media.normTex)
+	TukuiCombo[i]:SetStatusBarTexture(C.media.blank)
 	TukuiCombo[i]:GetStatusBarTexture():SetHorizTile(false)
 	TukuiCombo[i]:SetFrameLevel(TukuiCombo:GetFrameLevel() + 1)
 	TukuiCombo[i]:SetStatusBarColor(unpack(Colors[i]))
