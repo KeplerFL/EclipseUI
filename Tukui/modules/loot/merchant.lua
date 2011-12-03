@@ -16,7 +16,7 @@ local filter = {
 	[53069] = true, -- Murglesnout	
 }
 
-local f = CreateFrame("Frame")
+local f = CreateFrame("Frame", "TukuiMerchant")
 f:SetScript("OnEvent", function()
 	if C["merchant"].sellgrays or C["merchant"].sellmisc then
 		local c = 0
