@@ -13,18 +13,18 @@ if C["datatext"].dps_text and C["datatext"].dps_text > 0 then
 
 	local pet_id = UnitGUID("pet")
     
-	local Text = DPS_FEED:CreateFontString("TukuiStatDPSText", "OVERLAY")
-	Text:SetFont(unpack(T.Fonts.dFont.setfont))
-	Text:SetText("0.0 ", T.cStart .. L.datatext_dps)
+	local dText = DPS_FEED:CreateFontString("TukuiStatDPSText", "OVERLAY")
+	dText:SetFont(unpack(T.Fonts.dFont.setfont))
+	dText:SetText("0.0 ", T.cStart .. L.datatext_dps)
 
-	T.PP(C["datatext"].dps_text, Text)
+	T.PP(C["datatext"].dps_text, dText)
 
 	DPS_FEED:EnableMouse(true)
 	DPS_FEED:SetFrameStrata("BACKGROUND")
 	DPS_FEED:SetFrameLevel(3)
 	DPS_FEED:Height(20)
 	DPS_FEED:Width(100)
-	DPS_FEED:SetAllPoints(Text)
+	DPS_FEED:SetAllPoints(dText)
 
 	DPS_FEED:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 	DPS_FEED:RegisterEvent("PLAYER_LOGIN")
@@ -92,7 +92,7 @@ if C["datatext"].dps_text and C["datatext"].dps_text > 0 then
 	end
 
 	function DPS_FEED:PLAYER_REGEN_ENABLED()
-		Text:SetText(getDPS())
+		dText:SetText(getDPS())
 	end
 	
 	function DPS_FEED:PLAYER_REGEN_DISABLED()

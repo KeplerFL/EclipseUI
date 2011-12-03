@@ -12,18 +12,18 @@ if C["datatext"].hps_text and C["datatext"].hps_text > 0 then
 	local actual_heals_total, cmbt_time = 0
 	local amount_healed, amount_over_healed = 0
  
-	local Text = HPS_FEED:CreateFontString("TukuiStatHealText", "OVERLAY")
-	Text:SetFont(unpack(T.Fonts.dFont.setfont))
-	Text:SetText("0.0 ", T.cStart .. L.datatext_hps)
+	local hText = HPS_FEED:CreateFontString("TukuiStatHealText", "OVERLAY")
+	hText:SetFont(unpack(T.Fonts.dFont.setfont))
+	hText:SetText("0.0 ", T.cStart .. L.datatext_hps)
  
-	T.PP(C["datatext"].hps_text, Text)
+	T.PP(C["datatext"].hps_text, hText)
  
 	HPS_FEED:EnableMouse(true)
 	HPS_FEED:SetFrameStrata("BACKGROUND")
 	HPS_FEED:SetFrameLevel(3)
 	HPS_FEED:Height(20)
 	HPS_FEED:Width(100)
-	HPS_FEED:SetAllPoints(Text)
+	HPS_FEED:SetAllPoints(hText)
  
 	HPS_FEED:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 	HPS_FEED:RegisterEvent("PLAYER_LOGIN")
@@ -75,7 +75,7 @@ if C["datatext"].hps_text and C["datatext"].hps_text > 0 then
 	end
  
 	function HPS_FEED:PLAYER_REGEN_ENABLED()
-		Text:SetText(get_hps)
+		hText:SetText(get_hps)
 	end
    
 	function HPS_FEED:PLAYER_REGEN_DISABLED()
