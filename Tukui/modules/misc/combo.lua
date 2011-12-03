@@ -116,8 +116,4 @@ for i = 1, 5 do
 		TukuiCombo[i]:Point("LEFT", TukuiCombo[i-1], "RIGHT", 1, 0)
 		TukuiCombo[i]:Width(TukuiCombo:GetWidth() / 5 - 2)
 	end
-	
-	if stick then
-		shadow:Point("TOPLEFT", -4, 12)
-	end
 end
