@@ -930,6 +930,7 @@ function Stuffing:PLAYER_ENTERING_WORLD()
 	
 	-- bug fix when entering world in combat and when we try to use an item in bag (example: hearthstone)
  	ToggleBackpack()
+ 	ToggleBackpack()
 	
 	if T.toc >= 40200 then return end
 
