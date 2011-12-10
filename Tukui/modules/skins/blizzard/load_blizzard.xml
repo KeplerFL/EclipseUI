@@ -30,6 +30,7 @@
 	<Script file="lfd.lua"/>
 	<Script file="lfg.lua"/>
 	<Script file="lfr.lua"/>
+	<Script file="loot.lua"/>
 	<Script file="macosx.lua"/>
 	<Script file="macro.lua"/>
 	<Script file="mail.lua"/>
