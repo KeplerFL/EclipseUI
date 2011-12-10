@@ -11,39 +11,34 @@ local dummy = T.dummy
 -- move these to kill.lua when implemented
 FriendsMicroButton:Kill()
 ChatFrameMenuButton:Kill()
+local strings = {
+	BATTLEGROUND = L.chat_BATTLEGROUND_GET,
+	GUILD = L.chat_GUILD_GET,
+	PARTY = L.chat_PARTY_GET,
+	RAID = L.chat_RAID_GET,
+	OFFICER = L.chat_OFFICER_GET,
+}
 
 -- function to rename channel and other stuff
-local AddMessage = function(self, text, ...)
-	if(type(text) == "string") then
-		text = text:gsub('|h%[(%d+)%. .-%]|h', '|h[%1]|h')
-	end
-	return origs[self](self, text, ...)
+local function ShortChannel(channel)
+	return string.format("|Hchannel:%s|h[%s]|h", channel, strings[channel] or channel:gsub("channel:", ""))
 end
-
--- Shortcut channel name
-_G.CHAT_BATTLEGROUND_GET = "|Hchannel:Battleground|h"..L.chat_BATTLEGROUND_GET.."|h %s:\32"
-_G.CHAT_BATTLEGROUND_LEADER_GET = "|Hchannel:Battleground|h"..L.chat_BATTLEGROUND_LEADER_GET.."|h %s:\32"
-_G.CHAT_BN_WHISPER_GET = L.chat_BN_WHISPER_GET.." %s:\32"
-_G.CHAT_GUILD_GET = "|Hchannel:Guild|h"..L.chat_GUILD_GET.."|h %s:\32"
-_G.CHAT_OFFICER_GET = "|Hchannel:o|h"..L.chat_OFFICER_GET.."|h %s:\32"
-_G.CHAT_PARTY_GET = "|Hchannel:Party|h"..L.chat_PARTY_GET.."|h %s:\32"
-_G.CHAT_PARTY_GUIDE_GET = "|Hchannel:party|h"..L.chat_PARTY_GUIDE_GET.."|h %s:\32"
-_G.CHAT_PARTY_LEADER_GET = "|Hchannel:party|h"..L.chat_PARTY_LEADER_GET.."|h %s:\32"
-_G.CHAT_RAID_GET = "|Hchannel:raid|h"..L.chat_RAID_GET.."|h %s:\32"
-_G.CHAT_RAID_LEADER_GET = "|Hchannel:raid|h"..L.chat_RAID_LEADER_GET.."|h %s:\32"
-_G.CHAT_RAID_WARNING_GET = L.chat_RAID_WARNING_GET.." %s:\32"
-_G.CHAT_SAY_GET = "%s:\32"
-_G.CHAT_WHISPER_GET = L.chat_WHISPER_GET.." %s:\32"
-_G.CHAT_YELL_GET = "%s:\32"
  
--- color afk, dnd, gm
-_G.CHAT_FLAG_AFK = "|cffFF0000"..L.chat_FLAG_AFK.."|r "
-_G.CHAT_FLAG_DND = "|cffE7E716"..L.chat_FLAG_DND.."|r "
-_G.CHAT_FLAG_GM = "|cff4154F5"..L.chat_FLAG_GM.."|r "
+local function AddMessage(frame, str, ...)
+	str = str:gsub("|Hplayer:(.-)|h%[(.-)%]|h", "|Hplayer:%1|h%2|h")
+	str = str:gsub("|HBNplayer:(.-)|h%[(.-)%]|h", "|HBNplayer:%1|h%2|h")
+	str = str:gsub("|Hchannel:(.-)|h%[(.-)%]|h", ShortChannel)
+	
+	str = str:gsub("^To (.-|h)", "|cffad2424@|r%1")
+	str = str:gsub("^(.-|h) whispers", "%1")
+	str = str:gsub("^(.-|h) says", "%1")
+	str = str:gsub("^(.-|h) yells", "%1")
+	str = str:gsub("<"..AFK..">", "|cffFF0000"..L.chat_FLAG_AFK.."|r ")
+	str = str:gsub("<"..DND..">", "|cffE7E716"..L.chat_FLAG_DND.."|r ")
+	str = str:gsub("^%["..RAID_WARNING.."%]", L.chat_RAID_WARNING_GET)
 
--- customize online/offline msg
-_G.ERR_FRIEND_ONLINE_SS = "|Hplayer:%s|h[%s]|h "..L.chat_ERR_FRIEND_ONLINE_SS.."!"
-_G.ERR_FRIEND_OFFLINE_S = "%s "..L.chat_ERR_FRIEND_OFFLINE_S.."!"
+	return origs[frame](frame, str, ...)
+end
 
 -- set the chat style
 local function StyleChat(frame)
@@ -53,6 +48,7 @@ local function StyleChat(frame)
 	local tabtext = _G[chat.."TabText"]
 	local editbox = _G[chat.."EditBox"]
 	
+	-- always set alpha to 1, don't fade it anymore
 	tab:SetAlpha(1)
 	tab.SetAlpha = T.dummy
 	tab:HookScript("OnClick", function() editbox:Hide() end)
