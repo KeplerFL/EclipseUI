@@ -31,7 +31,7 @@ local function freestyle(bar)
 	end
 
 	-- reparent and hide icon background
-	local ibg = bar:Get("bigwigs:Tukui:bg")
+	local ibg = bar:Get("bigwigs:Tukui:ibg")
 	if ibg then
 		ibg:ClearAllPoints()
 		ibg:SetParent(UIParent)
@@ -43,6 +43,30 @@ local function freestyle(bar)
 	bar.candyBarBar.SetPoint=bar.candyBarBar.OldSetPoint
 	bar.candyBarIconFrame.SetWidth=bar.candyBarIconFrame.OldSetWidth
 	bar.SetScale=bar.OldSetScale
+
+	--Reset Positions
+	--Icon
+	bar.candyBarIconFrame:ClearAllPoints()
+	bar.candyBarIconFrame:SetPoint("TOPLEFT")
+	bar.candyBarIconFrame:SetPoint("BOTTOMLEFT")
+	bar.candyBarIconFrame:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+
+	--Status Bar
+	bar.candyBarBar:ClearAllPoints()
+	bar.candyBarBar:SetPoint("TOPRIGHT")
+	bar.candyBarBar:SetPoint("BOTTOMRIGHT")
+
+	--BG
+	bar.candyBarBackground:SetAllPoints()
+
+	--Duration
+	bar.candyBarDuration:ClearAllPoints()
+	bar.candyBarDuration:SetPoint("RIGHT", bar.candyBarBar, "RIGHT", -2, 0)
+
+	--Name
+	bar.candyBarLabel:ClearAllPoints()
+	bar.candyBarLabel:SetPoint("LEFT", bar.candyBarBar, "LEFT", 2, 0)
+	bar.candyBarLabel:SetPoint("RIGHT", bar.candyBarBar, "RIGHT", -2, 0)
 end
 
 local applystyle = function(bar)
@@ -59,7 +83,7 @@ local applystyle = function(bar)
 	else
 		bg = createbg()
 	end
-	
+
 	bg:SetParent(bar)
 	bg:ClearAllPoints()
 	bg:Point("TOPLEFT", bar, "TOPLEFT", -2, 2)
@@ -82,7 +106,7 @@ local applystyle = function(bar)
 		ibg:Point("BOTTOMRIGHT", bar.candyBarIconFrame, "BOTTOMRIGHT", 2, -2)
 		ibg:SetFrameStrata("BACKGROUND")
 		ibg:Show()
-		bar:Set("bigwigs:Tukui:bg", ibg)
+		bar:Set("bigwigs:Tukui:ibg", ibg)
 	end
 
 	-- setup timer and bar name fonts and positions
@@ -91,8 +115,8 @@ local applystyle = function(bar)
 	bar.candyBarLabel:SetJustifyH("LEFT")
 	bar.candyBarLabel:ClearAllPoints()
 	bar.candyBarLabel:Point("LEFT", bar, "LEFT", 4, 0)
-	
-	bar.candyBarDuration:SetFont(unpack(T.Fonts.dFont.setfont))
+
+	bar.candyBarDuration:SetFont(unpack(T.Fonts.addons.setfont))
 	bar.candyBarDuration:SetShadowColor(0, 0, 0, 0)
 	bar.candyBarDuration:SetJustifyH("RIGHT")
 	bar.candyBarDuration:ClearAllPoints()
@@ -105,7 +129,7 @@ local applystyle = function(bar)
 	bar.candyBarBar.SetPoint=T.dummy
 	bar.candyBarBar:SetStatusBarTexture(C["media"].normTex)
 	bar.candyBarBackground:SetTexture(unpack(C.media.backdropcolor))
-	
+
 	-- setup icon positions and other things
 	bar.candyBarIconFrame:ClearAllPoints()
 	bar.candyBarIconFrame:Point("BOTTOMRIGHT", bar, "BOTTOMLEFT", -7, 0)
@@ -114,7 +138,7 @@ local applystyle = function(bar)
 	bar.candyBarIconFrame.SetWidth=T.dummy
 	bar.candyBarIconFrame:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 end
-	
+
 
 local f = CreateFrame("Frame")
 
