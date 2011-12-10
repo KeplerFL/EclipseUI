@@ -202,6 +202,7 @@ local function LoadSkin()
 
 	RolePollPopup:SetTemplate("Default")
 	RolePollPopup:CreateShadow("Default")
+	T.SkinCloseButton(RolePollPopupCloseButton)
 	
 	for i = 1, 4 do
 		local button = _G["StaticPopup"..i.."CloseButton"]

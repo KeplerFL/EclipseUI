@@ -1257,8 +1257,6 @@ f:SetScript("OnEvent", function(self, event, addon)
 	end
 end)
 
-
-
 if C["unitframes"].showfocustarget then
 	local focustarget = oUF:Spawn('focustarget', "TukuiFocusTarget")
 	focustarget:SetSize(T.Focus, focustarget.Health:GetHeight() + focustarget.Power:GetHeight() + 3)
@@ -1350,24 +1348,6 @@ local party = oUF:SpawnHeader("oUF_noParty", nil, "party", "showParty", true)
 -- SET_FOCUS work only on default unitframes.
 -- Main Tank and Main Assist, use /maintank and /mainassist commands.
 ------------------------------------------------------------------------
-
-local testui = TestUI or function() end
-TestUI = function()
-	testui()
-	UnitAura = function()
-		-- name, rank, texture, count, dtype, duration, timeLeft, caster
-		return 'penancelol', 'Rank 2', 'Interface\\Icons\\Spell_Holy_Penance', random(5), 'Magic', 0, 0, "player"
-	end
-	if(oUF) then
-		for i, v in pairs(oUF.units) do
-			if(v.UNIT_AURA) then
-				v:UNIT_AURA("UNIT_AURA", v.unit)
-			end
-		end
-	end
-end
-SlashCmdList.TestUI = TestUI
-SLASH_TestUI1 = "/testui"
 
 -- Hunter Dismiss Pet Taint (Blizzard issue)
 local PET_DISMISS = "PET_DISMISS"

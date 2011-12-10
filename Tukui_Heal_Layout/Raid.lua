@@ -326,7 +326,7 @@ oUF:Factory(function(self)
 		"columnSpacing", T.Scale(3),
 		"columnAnchorPoint", columnAnchorPoint
 	)
-	raid:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, T.Scale(145))
+	raid:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, T.Scale(115))
 end)
 
 -- only show 5 groups in raid (25 mans raid)
