@@ -11,36 +11,13 @@ local dummy = T.dummy
 -- move these to kill.lua when implemented
 FriendsMicroButton:Kill()
 ChatFrameMenuButton:Kill()
-local strings = {
-	BATTLEGROUND = L.chat_BATTLEGROUND_GET,
-	GUILD = L.chat_GUILD_GET,
-	PARTY = L.chat_PARTY_GET,
-	RAID = L.chat_RAID_GET,
-	OFFICER = L.chat_OFFICER_GET,
-	BATTLEGROUND_LEADER = L.chat_BATTLEGROUND_LEADER_GET,
-	PARTY_LEADER = L.chat_PARTY_LEADER_GET,
-	RAID_LEADER = L.chat_RAID_LEADER_GET,
-}
 
 -- function to rename channel and other stuff
-local function ShortChannel(channel)
-	return string.format("|Hchannel:%s|h[%s]|h", channel, strings[channel] or channel:gsub("channel:", ""))
-end
- 
-local function AddMessage(frame, str, ...)
-	str = str:gsub("|Hplayer:(.-)|h%[(.-)%]|h", "|Hplayer:%1|h%2|h")
-	str = str:gsub("|HBNplayer:(.-)|h%[(.-)%]|h", "|HBNplayer:%1|h%2|h")
-	str = str:gsub("|Hchannel:(.-)|h%[(.-)%]|h", ShortChannel)
-	
-	str = str:gsub("^To (.-|h)", "|cffad2424@|r%1")
-	str = str:gsub("^(.-|h) whispers", "%1")
-	str = str:gsub("^(.-|h) says", "%1")
-	str = str:gsub("^(.-|h) yells", "%1")
-	str = str:gsub("<"..AFK..">", "|cffFF0000"..L.chat_FLAG_AFK.."|r ")
-	str = str:gsub("<"..DND..">", "|cffE7E716"..L.chat_FLAG_DND.."|r ")
-	str = str:gsub("^%["..RAID_WARNING.."%]", L.chat_RAID_WARNING_GET)
-
-	return origs[frame](frame, str, ...)
+local AddMessage = function(self, text, ...)
+	if(type(text) == "string") then
+		text = text:gsub('|h%[(%d+)%. .-%]|h', '|h[%1]|h')
+	end
+	return origs[self](self, text, ...)
 end
 
 -- set the chat style
