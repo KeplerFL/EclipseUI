@@ -14,10 +14,10 @@ if C["datatext"].dur and C["datatext"].dur > 0 then
 	Text:SetFont(unpack(T.Fonts.dFont.setfont))
 	T.PP(C["datatext"].dur, Text)
 
-	local Total = 0
-	local current, max
-
 	local function OnEvent(self)
+		local Total = 0
+		local current, max
+
 		for i = 1, 11 do
 			if GetInventoryItemLink("player", L.Slots[i][1]) ~= nil then
 				current, max = GetInventoryItemDurability(L.Slots[i][1])
@@ -52,6 +52,7 @@ if C["datatext"].dur and C["datatext"].dur > 0 then
 		GameTooltip:ClearLines()
 		for i = 1, 11 do
 			if L.Slots[i][3] ~= 1000 then
+				local green, red
 				green = L.Slots[i][3]*2
 				red = 1 - green
 				GameTooltip:AddDoubleLine(L.Slots[i][2], floor(L.Slots[i][3]*100) .. "%",1 ,1 , 1, red + 1, green, 0)
