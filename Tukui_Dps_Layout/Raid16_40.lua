@@ -13,7 +13,7 @@ local backdrop = {
 	insets = {top = -T.mult, left = -T.mult, bottom = -T.mult, right = -T.mult},
 }
 
-local rwidth = T.InfoLeftRightWidth / 5 - 2.5
+local rwidth = C.chat.width / 5 - 2.5
 
 local function Shared(self, unit)
 	self.colors = T.UnitColor
