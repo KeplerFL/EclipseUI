@@ -53,7 +53,7 @@ if C.auras.consolidate then
 end
 
 -- set our buff header
-buffs:SetPoint("TOPRIGHT", UIParent, -184, -22)
+buffs:SetPoint("TOPRIGHT", UIParent, -160, -8)
 buffs:SetAttribute("filter", "HELPFUL")
 buffs:SetAttribute("consolidateProxy", CreateFrame("Frame", buffs:GetName() .. "ProxyButton", buffs, "TukuiAurasProxyTemplate"))
 buffs:SetAttribute("consolidateHeader", consolidate)
