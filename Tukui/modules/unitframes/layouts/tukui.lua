@@ -607,7 +607,7 @@ local function Shared(self, unit)
 			local buffs = CreateFrame("Frame", nil, self)
 			local debuffs = CreateFrame("Frame", nil, self)
 			
-			buffs:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 3)
+			buffs:SetPoint("BOTTOMLEFT", self, "TOPLEFT", -2, 5)
 			
 			local bs = 26
 			local bh = 0
