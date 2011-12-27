@@ -39,7 +39,7 @@ local function UpdateBuffs(self, points)
 		-- update Y position of buffs
 		if buffs then 
 			buffs:ClearAllPoints() 
-			buffs:SetPoint("BOTTOMLEFT", parent, "TOPLEFT", 0, 14)
+			buffs:SetPoint("BOTTOMLEFT", parent, "TOPLEFT", -2, 9)
 		end
 	else
 		self:Hide()
@@ -52,7 +52,7 @@ local function UpdateBuffs(self, points)
 		-- update Y position of buffs
 		if buffs then 
 			buffs:ClearAllPoints() 
-			buffs:SetPoint("BOTTOMLEFT", parent, "TOPLEFT", 0, 4)
+			buffs:SetPoint("BOTTOMLEFT", parent, "TOPLEFT", -2, 5)
 		end
 	end
 end
