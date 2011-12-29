@@ -40,7 +40,7 @@ T.patch, T.buildtext, T.releasedate, T.toc = GetBuildInfo()
 T.build = tonumber(T.buildtext)
 T.level = UnitLevel("player")
 T.myrealm = GetRealmName()
-T.InfoLeftRightWidth = 370
+T.InfoLeftRightWidth = 378
 
 if not TukuiSaved then
 	TukuiSaved = {	
