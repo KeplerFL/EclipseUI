@@ -91,9 +91,6 @@ end
 local function Stuffing_Toggle()
 	if Stuffing.frame:IsShown() then
 		Stuffing.frame:Hide()
-		if ContainerFrame1:IsShown() then
-			ToggleKeyRing() -- we want keyring to close when we close bags :)
-		end
 	else
 		Stuffing.frame:Show()
 	end
@@ -187,12 +184,7 @@ function Stuffing:SlotUpdate(b)
 	SetItemButtonTexture(b.frame, texture)
 	SetItemButtonCount(b.frame, count)
 	SetItemButtonDesaturated(b.frame, locked, 0.5, 0.5, 0.5)
-	
-	local scount = _G[b.frame:GetName() .. "Count"]
-	scount:SetFont(unpack(T.Fonts.baCount.setfont))
-	scount:Point(unpack(T.Fonts.baCount.setoffsets))
-	b.scount = scount
-
+		
 	b.frame:Show()
 end
 
@@ -237,11 +229,6 @@ function Stuffing:BagFrameSlotNew (slot, p)
 		icon:Point("BOTTOMRIGHT", -2, 2)
 		border:SetTexture("")
 		ret.frame:SetID(slot + 4)
-		ret.frame:SetNormalTexture("")
-		ret.frame:SetPushedTexture("")
-		ret.frame:SetHeight(30)
-		ret.frame:SetWidth(30)
-
 		table.insert(self.bagframe_buttons, ret)
 
 		BankFrameItemButton_Update(ret.frame)
@@ -262,11 +249,6 @@ function Stuffing:BagFrameSlotNew (slot, p)
 		icon:Point("TOPLEFT", 2, -2)
 		icon:Point("BOTTOMRIGHT", -2, 2)
 		border:SetTexture("")
-		ret.frame:SetNormalTexture("")
-		ret.frame:SetPushedTexture("")
-		ret.frame:SetHeight(30)
-		ret.frame:SetWidth(30)
-
 		ret.slot = slot
 		table.insert(self.bagframe_buttons, ret)
 	end
@@ -431,9 +413,6 @@ end
 function Stuffing:CreateBagFrame(w)
 	local n = "Tukui"  .. w
 	local f = CreateFrame ("Frame", n, UIParent)
-	f:SetTemplate("Transparent")
-	f:CreateShadow("Default")
-	f:CreateBorder(true, true)
 	f:EnableMouse(1)
 	f:SetMovable(1)
 	f:SetToplevel(1)
@@ -929,11 +908,11 @@ function Stuffing:PLAYER_ENTERING_WORLD()
 	Stuffing:UnregisterEvent("PLAYER_ENTERING_WORLD")
 	
 	-- bug fix when entering world in combat and when we try to use an item in bag (example: hearthstone)
- 	ToggleBackpack()
- 	ToggleBackpack()
+	ToggleBackpack()
+	ToggleBackpack()
 	
 	if T.toc >= 40200 then return end
-
+	
 	-- hooking and setting key ring bag
 	-- this is just a reskin of Blizzard key bag to fit Tukui
 	-- hooking OnShow because sometime key max slot changes.
@@ -959,14 +938,13 @@ function Stuffing:PLAYER_ENTERING_WORLD()
 			t:Point("TOPLEFT", slot, 2, -2)
 			t:Point("BOTTOMRIGHT", slot, -2, 2)
 			slot:SetTemplate("Default")
-			slot.overlay:Kill()
-			slot:SetBackdropColor(.05, .05, .05)
+			slot:SetBackdropColor(0, 0, 0, 0)
 			slot:StyleButton()
 		end		
 	end)
 	
 	ContainerFrame1:ClearAllPoints()
-	ContainerFrame1:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 4, 3)
+	ContainerFrame1:Point("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 4, 5)
 	ContainerFrame1.ClearAllPoints = T.dummy
 	ContainerFrame1.SetPoint = T.dummy
 end
