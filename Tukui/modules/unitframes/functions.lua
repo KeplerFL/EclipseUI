@@ -778,6 +778,7 @@ if C["unitframes"].raidunitdebuffwatch == true then
 		ORD.ShowDispelableDebuff = true
 		ORD.FilterDispellableDebuff = true
 		ORD.MatchBySpellName = false
+		ORD.DeepCorruption = true
 		
 		local function SpellName(id)
 			local name = select(1, GetSpellInfo(id))
