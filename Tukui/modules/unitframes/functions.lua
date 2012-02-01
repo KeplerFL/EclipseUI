@@ -910,7 +910,7 @@ if C["unitframes"].raidunitdebuffwatch == true then
 			
 		-- Dragon Soul
 			-- Morchok
-				103541,	-- Safe
+				103687,	-- Crush Armor
 				103536,	-- Warning
 				103534,	-- Danger
 				108570,	-- Black Blood of the Earth
@@ -919,26 +919,35 @@ if C["unitframes"].raidunitdebuffwatch == true then
 				103434,	-- Disrupting Shadows
 
 			-- Yor'sahj the Unsleeping
-				105171,	-- Deep Corruption
+				103628,	-- Deep Corruption
 
 			-- Hagara the Stormbinder
-				105465,	-- Lighting Storm
 				104451,	-- Ice Tomb
+				105259,	-- Watery Entrenchment
 				109325,	-- Frostflake
 				105289,	-- Shattered Ice
 				105285,	-- Target
+				107061,	-- Ice Lance
 
 			-- Ultraxion
-				110079,	-- Fading Light
-				109075,	-- Fading Light
+				105925,	-- Fading Light
 
 			-- Warmaster Blackhorn
+				108043,	-- Devastate
+				108046,	-- Shockwave
+				107567,	-- Brutal Strike
+				107558,	-- Degeneration
 
 			-- Spine of Deathwing
+				105563,	-- Grasping Tendrils
 				105479,	-- Searing Plasma
 				105490,	-- Fiery Grip
 
 			-- Madness of Deathwing
+				105841,	-- Degenerative Bite
+				105445,	-- Blistering Heat
+				109603,	-- Tetanus
+				110141,	-- Shrapnel
 		}
 		
 		T.ReverseTimer = {
