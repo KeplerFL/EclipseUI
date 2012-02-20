@@ -40,3 +40,5 @@ end)
 f:RegisterEvent("QUEST_ACCEPT_CONFIRM")    
 f:RegisterEvent("QUEST_DETAIL")
 f:RegisterEvent("QUEST_COMPLETE")
+
+QuestInfoDescriptionText.SetAlphaGradient=function() return false end
